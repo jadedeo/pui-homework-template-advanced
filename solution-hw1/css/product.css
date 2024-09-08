@@ -1,13 +1,14 @@
+/* Styling that is specific to each product card */
+/* GENERAL */
 #product-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
   column-gap: 5%;
-  row-gap: 3em;
-  margin: 5% 0;
+  row-gap: 5em;
+  margin: 50px 0;
 }
 
 .product-card {
-  padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -18,7 +19,8 @@
   aspect-ratio: 1/1;
 }
 
-.product-meta {
+/* PRODUCT options */
+.product-options {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto auto auto;
@@ -47,6 +49,7 @@ button.add-to-cart-cta {
   display: inline-block;
   cursor: pointer;
   text-align: center;
+  padding: 7px 0;
 }
 
 .pack-btn:hover,

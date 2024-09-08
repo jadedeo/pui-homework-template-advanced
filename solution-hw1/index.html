@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <options charset="UTF-8" />
+    <options name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bun Bun Bake Shop</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/product.css" />
   </head>
   <body>
     <header>
+      <!-- header contains 2 columns -->
       <div id="header-columns">
+        <!-- left column: logo image -->
         <div id="logo-wrapper">
           <img id="logo" src="assets/logo/logo-01.svg" />
         </div>
+        <!-- right column: nav bar, horizontal line & company slogan -->
         <div>
           <nav>
             <ul>
@@ -21,19 +24,22 @@
             </ul>
           </nav>
           <hr />
-          <h3>Our hand-made cinnamon rolls</h3>
+          <h2 id="slogan">Our hand-made cinnamon rolls</h2>
         </div>
       </div>
     </header>
     <main>
       <div id="product-gallery">
+        <!-- ORIGINAL CINNAMON ROLL -->
         <div class="product-card">
+          <!-- card content is broken into 3 vertical section: image, title and options -->
           <img
             class="product-image"
             src="assets/products/original-cinnamon-roll.jpg"
           />
-          <h4 class="bold">Original Cinnamon Roll</h4>
-          <div class="product-meta">
+          <h3>Original Cinnamon Roll</h3>
+          <div class="product-options">
+            <!-- options section is broken into 3 rows for each of the action items: glazing, pack size & price/add to cart-->
             <label for="glazing">Glazing:</label>
             <select name="glazing" id="glazing">
               <option value="keep-original">Keep original</option>
@@ -86,13 +92,14 @@
           </div>
         </div>
 
+        <!-- APPLE CINNAMON ROLL -->
         <div class="product-card">
           <img
             class="product-image"
             src="assets/products/apple-cinnamon-roll.jpg"
           />
-          <h4 class="bold">Apple Cinnamon Roll</h4>
-          <div class="product-meta">
+          <h3>Apple Cinnamon Roll</h3>
+          <div class="product-options">
             <label for="glazing">Glazing:</label>
             <select name="glazing" id="glazing">
               <option value="keep-original">Keep original</option>
@@ -145,13 +152,14 @@
           </div>
         </div>
 
+        <!-- RAISIN CINNAMON ROLL -->
         <div class="product-card">
           <img
             class="product-image"
             src="assets/products/raisin-cinnamon-roll.jpg"
           />
-          <h4 class="bold">Raisin Cinnamon Roll</h4>
-          <div class="product-meta">
+          <h3>Raisin Cinnamon Roll</h3>
+          <div class="product-options">
             <label for="glazing">Glazing:</label>
             <select name="glazing" id="glazing">
               <option value="keep-original">Keep original</option>
@@ -204,13 +212,14 @@
           </div>
         </div>
 
+        <!-- WALNUT CINNAMON ROLL -->
         <div class="product-card">
           <img
             class="product-image"
             src="assets/products/walnut-cinnamon-roll.jpg"
           />
-          <h4 class="bold">Walnut Cinnamon Roll</h4>
-          <div class="product-meta">
+          <h3>Walnut Cinnamon Roll</h3>
+          <div class="product-options">
             <label for="glazing">Glazing:</label>
             <select name="glazing" id="glazing">
               <option value="keep-original">Keep original</option>
@@ -263,13 +272,14 @@
           </div>
         </div>
 
+        <!-- DOUBLE-CHOCOLATE CINNAMON ROLL -->
         <div class="product-card">
           <img
             class="product-image"
             src="assets/products/double-chocolate-cinnamon-roll.jpg"
           />
-          <h4 class="bold">Double-Chocolate Cinnamon Roll</h4>
-          <div class="product-meta">
+          <h3>Double-Chocolate Cinnamon Roll</h3>
+          <div class="product-options">
             <label for="glazing">Glazing:</label>
             <select name="glazing" id="glazing">
               <option value="keep-original">Keep original</option>
@@ -322,13 +332,14 @@
           </div>
         </div>
 
+        <!-- STRAWBERRY CINNAMON ROLL -->
         <div class="product-card">
           <img
             class="product-image"
             src="assets/products/strawberry-cinnamon-roll.jpg"
           />
-          <h4 class="bold">Strawberry Cinnamon Roll</h4>
-          <div class="product-meta">
+          <h3>Strawberry Cinnamon Roll</h3>
+          <div class="product-options">
             <label for="glazing">Glazing:</label>
             <select name="glazing" id="glazing">
               <option value="keep-original">Keep original</option>

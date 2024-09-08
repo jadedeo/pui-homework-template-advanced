@@ -12,10 +12,6 @@ main {
   margin: 25px 10%;
 }
 
-img {
-  width: 100%;
-}
-
 button {
   background-color: white;
   cursor: pointer;
@@ -44,20 +40,22 @@ nav ul li a {
 }
 
 /* MISCELLANEOUS */
-
-h3 {
-  margin-right: 25px;
-}
-
 #logo-wrapper {
-  min-width: 200px; /* Adjust based on desired minimum logo size */
-  flex: 1 0 auto; /* Flexibility in growing but with no shrink below min-width */
+  min-width: 260px;
+  flex: 1 0 auto;
   margin-left: 10%;
+  margin-right: 20px;
 }
 
 #logo {
-  max-width: 100%; /* Ensures logo scales down with the wrapper */
-  height: auto; /* Maintains aspect ratio */
+  max-width: 100%;
+  height: auto;
+}
+
+#slogan {
+  margin: 5% 0;
+  font-weight: unset;
+  margin-right: 25px;
 }
 
 #header-columns {
@@ -69,6 +67,7 @@ h3 {
 #nav-link:hover,
 .add-to-cart-cta:hover {
   background-color: yellow;
+  font-weight: bold;
 }
 
 .bold {
