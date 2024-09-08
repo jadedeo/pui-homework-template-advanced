@@ -1,0 +1,59 @@
+#product-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  column-gap: 5%;
+  row-gap: 3em;
+  margin: 5% 0;
+}
+
+.product-card {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.product-image {
+  border: 2px solid black;
+  aspect-ratio: 1/1;
+}
+
+.product-meta {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto auto auto;
+  gap: 7px;
+  align-items: center;
+}
+
+button.add-to-cart-cta {
+  padding: 5px;
+}
+
+.product-card select {
+  border: 2px solid black;
+  padding: 3px;
+}
+
+.pack-size-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+.pack-btn {
+  background-color: white;
+  border: 2px solid black;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+
+.pack-btn:hover,
+.pack-btn:focus {
+  background-color: #ddd;
+}
+
+input[type="radio"]:checked + .pack-btn {
+  background-color: #aaa;
+}
