@@ -19,7 +19,7 @@
   aspect-ratio: 1/1;
 }
 
-/* PRODUCT options */
+/* PRODUCT OPTIONS */
 .product-options {
   display: grid;
   grid-template-columns: 1fr 2fr;

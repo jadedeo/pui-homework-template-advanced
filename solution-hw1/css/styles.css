@@ -64,7 +64,7 @@ nav ul li a {
   gap: 15px;
 }
 
-#nav-link:hover,
+#nav-link-products:hover,
 .add-to-cart-cta:hover {
   background-color: yellow;
   font-weight: bold;
