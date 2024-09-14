@@ -1,0 +1,75 @@
+/* GENERAL */
+* {
+  font-family: system-ui;
+  margin: 0;
+}
+
+header {
+  margin: 80px 0 0 0;
+}
+
+main {
+  margin: 25px 10%;
+}
+
+button {
+  background-color: white;
+  cursor: pointer;
+}
+
+hr {
+  border: 3px solid black;
+  margin: 20px 0;
+}
+
+/* NAV */
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  justify-content: flex-end;
+  gap: 25px;
+  margin: 25px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: inherit;
+  text-transform: uppercase;
+  padding: 10px;
+}
+
+/* MISCELLANEOUS */
+#logo-wrapper {
+  min-width: 260px;
+  flex: 1 0 auto;
+  margin-left: 10%;
+  margin-right: 20px;
+}
+
+#logo {
+  max-width: 100%;
+  height: auto;
+}
+
+#slogan {
+  margin: 5% 0;
+  font-weight: unset;
+  margin-right: 25px;
+}
+
+#header-columns {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  gap: 15px;
+}
+
+#nav-link-products:hover,
+.add-to-cart-cta:hover {
+  background-color: yellow;
+  font-weight: bold;
+}
+
+.bold {
+  font-weight: bold;
+}

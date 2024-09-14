@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <options charset="UTF-8" />
+    <options name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bun Bun Bake Shop</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/product.css" />
+  </head>
+  <body>
+    <header>
+      <!-- header contains 2 columns -->
+      <div id="header-columns">
+        <!-- left column: logo image -->
+        <div id="logo-wrapper">
+          <img id="logo" src="assets/logo/logo-01.svg" />
+        </div>
+        <!-- right column: nav bar, horizontal line & company slogan -->
+        <div>
+          <nav>
+            <ul>
+              <li><a id="nav-link-products" href="">Products</a></li>
+              <li><a id="nav-link-cart" href="">Cart</a></li>
+            </ul>
+          </nav>
+          <hr />
+          <h2 id="slogan">Our hand-made cinnamon rolls</h2>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div id="product-gallery">
+        <!-- ORIGINAL CINNAMON ROLL -->
+        <div class="product-card">
+          <!-- card content is broken into 3 vertical section: image, title and options -->
+          <img
+            class="product-image"
+            src="assets/products/original-cinnamon-roll.jpg"
+          />
+          <h3>Original Cinnamon Roll</h3>
+          <div class="product-options">
+            <!-- options section is broken into 3 rows for each of the action items: glazing, pack size & price/add to cart-->
+            <label for="glazing">Glazing:</label>
+            <select name="glazing" id="glazing">
+              <option value="keep-original">Keep original</option>
+              <option value="sugar-milk">Sugar milk</option>
+              <option value="vanilla-milk">Vanilla milk</option>
+              <option value="double-chocolate">Double chocolate</option>
+            </select>
+
+            <label id="pack-size">Pack size:</label>
+            <div class="pack-size-buttons">
+              <input
+                type="radio"
+                id="prod1-pack1"
+                name="prod1-pack"
+                value="1"
+                hidden
+              />
+              <label for="prod1-pack1" class="pack-btn">1</label>
+
+              <input
+                type="radio"
+                id="prod1-pack3"
+                name="prod1-pack"
+                value="3"
+                hidden
+              />
+              <label for="prod1-pack3" class="pack-btn">3</label>
+
+              <input
+                type="radio"
+                id="prod1-pack6"
+                name="prod1-pack"
+                value="6"
+                hidden
+              />
+              <label for="prod1-pack6" class="pack-btn">6</label>
+
+              <input
+                type="radio"
+                id="prod1-pack12"
+                name="prod1-pack"
+                value="12"
+                hidden
+              />
+              <label for="prod1-pack12" class="pack-btn">12</label>
+            </div>
+
+            <p class="bold">$2.49</p>
+            <button class="add-to-cart-cta bold">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- APPLE CINNAMON ROLL -->
+        <div class="product-card">
+          <img
+            class="product-image"
+            src="assets/products/apple-cinnamon-roll.jpg"
+          />
+          <h3>Apple Cinnamon Roll</h3>
+          <div class="product-options">
+            <label for="glazing">Glazing:</label>
+            <select name="glazing" id="glazing">
+              <option value="keep-original">Keep original</option>
+              <option value="sugar-milk">Sugar milk</option>
+              <option value="vanilla-milk">Vanilla milk</option>
+              <option value="double-chocolate">Double chocolate</option>
+            </select>
+
+            <label id="pack-size">Pack size:</label>
+            <div class="pack-size-buttons">
+              <input
+                type="radio"
+                id="prod2-pack1"
+                name="prod2-pack"
+                value="1"
+                hidden
+              />
+              <label for="prod2-pack1" class="pack-btn">1</label>
+
+              <input
+                type="radio"
+                id="prod2-pack3"
+                name="prod2-pack"
+                value="3"
+                hidden
+              />
+              <label for="prod2-pack3" class="pack-btn">3</label>
+
+              <input
+                type="radio"
+                id="prod2-pack6"
+                name="prod2-pack"
+                value="6"
+                hidden
+              />
+              <label for="prod2-pack6" class="pack-btn">6</label>
+
+              <input
+                type="radio"
+                id="prod2-pack12"
+                name="prod2-pack"
+                value="12"
+                hidden
+              />
+              <label for="prod2-pack12" class="pack-btn">12</label>
+            </div>
+
+            <p class="bold">$3.49</p>
+            <button class="add-to-cart-cta bold">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- RAISIN CINNAMON ROLL -->
+        <div class="product-card">
+          <img
+            class="product-image"
+            src="assets/products/raisin-cinnamon-roll.jpg"
+          />
+          <h3>Raisin Cinnamon Roll</h3>
+          <div class="product-options">
+            <label for="glazing">Glazing:</label>
+            <select name="glazing" id="glazing">
+              <option value="keep-original">Keep original</option>
+              <option value="sugar-milk">Sugar milk</option>
+              <option value="vanilla-milk">Vanilla milk</option>
+              <option value="double-chocolate">Double chocolate</option>
+            </select>
+
+            <label id="pack-size">Pack size:</label>
+            <div class="pack-size-buttons">
+              <input
+                type="radio"
+                id="prod3-pack1"
+                name="prod3-pack"
+                value="1"
+                hidden
+              />
+              <label for="prod3-pack1" class="pack-btn">1</label>
+
+              <input
+                type="radio"
+                id="prod3-pack3"
+                name="prod3-pack"
+                value="3"
+                hidden
+              />
+              <label for="prod3-pack3" class="pack-btn">3</label>
+
+              <input
+                type="radio"
+                id="prod3-pack6"
+                name="prod3-pack"
+                value="6"
+                hidden
+              />
+              <label for="prod3-pack6" class="pack-btn">6</label>
+
+              <input
+                type="radio"
+                id="prod3-pack12"
+                name="prod3-pack"
+                value="12"
+                hidden
+              />
+              <label for="prod3-pack12" class="pack-btn">12</label>
+            </div>
+
+            <p class="bold">$2.99</p>
+            <button class="add-to-cart-cta bold">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- WALNUT CINNAMON ROLL -->
+        <div class="product-card">
+          <img
+            class="product-image"
+            src="assets/products/walnut-cinnamon-roll.jpg"
+          />
+          <h3>Walnut Cinnamon Roll</h3>
+          <div class="product-options">
+            <label for="glazing">Glazing:</label>
+            <select name="glazing" id="glazing">
+              <option value="keep-original">Keep original</option>
+              <option value="sugar-milk">Sugar milk</option>
+              <option value="vanilla-milk">Vanilla milk</option>
+              <option value="double-chocolate">Double chocolate</option>
+            </select>
+
+            <label id="pack-size">Pack size:</label>
+            <div class="pack-size-buttons">
+              <input
+                type="radio"
+                id="prod4-pack1"
+                name="prod4-pack"
+                value="1"
+                hidden
+              />
+              <label for="prod4-pack1" class="pack-btn">1</label>
+
+              <input
+                type="radio"
+                id="prod4-pack3"
+                name="prod4-pack"
+                value="3"
+                hidden
+              />
+              <label for="prod4-pack3" class="pack-btn">3</label>
+
+              <input
+                type="radio"
+                id="prod4-pack6"
+                name="prod4-pack"
+                value="6"
+                hidden
+              />
+              <label for="prod4-pack6" class="pack-btn">6</label>
+
+              <input
+                type="radio"
+                id="prod4-pack12"
+                name="prod4-pack"
+                value="12"
+                hidden
+              />
+              <label for="prod4-pack12" class="pack-btn">12</label>
+            </div>
+
+            <p class="bold">$3.49</p>
+            <button class="add-to-cart-cta bold">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- DOUBLE-CHOCOLATE CINNAMON ROLL -->
+        <div class="product-card">
+          <img
+            class="product-image"
+            src="assets/products/double-chocolate-cinnamon-roll.jpg"
+          />
+          <h3>Double-Chocolate Cinnamon Roll</h3>
+          <div class="product-options">
+            <label for="glazing">Glazing:</label>
+            <select name="glazing" id="glazing">
+              <option value="keep-original">Keep original</option>
+              <option value="sugar-milk">Sugar milk</option>
+              <option value="vanilla-milk">Vanilla milk</option>
+              <option value="double-chocolate">Double chocolate</option>
+            </select>
+
+            <label id="pack-size">Pack size:</label>
+            <div class="pack-size-buttons">
+              <input
+                type="radio"
+                id="prod5-pack1"
+                name="prod5-pack"
+                value="1"
+                hidden
+              />
+              <label for="prod5-pack1" class="pack-btn">1</label>
+
+              <input
+                type="radio"
+                id="prod5-pack3"
+                name="prod5-pack"
+                value="3"
+                hidden
+              />
+              <label for="prod5-pack3" class="pack-btn">3</label>
+
+              <input
+                type="radio"
+                id="prod5-pack6"
+                name="prod5-pack"
+                value="6"
+                hidden
+              />
+              <label for="prod5-pack6" class="pack-btn">6</label>
+
+              <input
+                type="radio"
+                id="prod5-pack12"
+                name="prod5-pack"
+                value="12"
+                hidden
+              />
+              <label for="prod5-pack12" class="pack-btn">12</label>
+            </div>
+
+            <p class="bold">$3.99</p>
+            <button class="add-to-cart-cta bold">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- STRAWBERRY CINNAMON ROLL -->
+        <div class="product-card">
+          <img
+            class="product-image"
+            src="assets/products/strawberry-cinnamon-roll.jpg"
+          />
+          <h3>Strawberry Cinnamon Roll</h3>
+          <div class="product-options">
+            <label for="glazing">Glazing:</label>
+            <select name="glazing" id="glazing">
+              <option value="keep-original">Keep original</option>
+              <option value="sugar-milk">Sugar milk</option>
+              <option value="vanilla-milk">Vanilla milk</option>
+              <option value="double-chocolate">Double chocolate</option>
+            </select>
+
+            <label id="pack-size">Pack size:</label>
+            <div class="pack-size-buttons">
+              <input
+                type="radio"
+                id="prod6-pack1"
+                name="prod6-pack"
+                value="1"
+                hidden
+              />
+              <label for="prod6-pack1" class="pack-btn">1</label>
+
+              <input
+                type="radio"
+                id="prod6-pack3"
+                name="prod6-pack"
+                value="3"
+                hidden
+              />
+              <label for="prod6-pack3" class="pack-btn">3</label>
+
+              <input
+                type="radio"
+                id="prod6-pack6"
+                name="prod6-pack"
+                value="6"
+                hidden
+              />
+              <label for="prod6-pack6" class="pack-btn">6</label>
+
+              <input
+                type="radio"
+                id="prod6-pack12"
+                name="prod6-pack"
+                value="12"
+                hidden
+              />
+              <label for="prod6-pack12" class="pack-btn">12</label>
+            </div>
+
+            <p class="bold">$3.99</p>
+            <button class="add-to-cart-cta bold">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
