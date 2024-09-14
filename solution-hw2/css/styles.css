@@ -30,6 +30,7 @@ hr {
   padding: 10px;
   position: absolute;
   right: 25px;
+  top: 125px;
 }
 
 #popup.show-popup {
