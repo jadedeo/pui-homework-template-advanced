@@ -27,6 +27,7 @@
               </div>
             </div>
 
+            <!-- pop up div; initially empty -->
             <div id="popup"></div>
           </nav>
           <hr />
@@ -46,12 +47,17 @@
           />
           <h3>Original Cinnamon Roll</h3>
           <div class="product-options">
+            <!-- glazing dropdown -->
             <label for="glazing">Glazing:</label>
+            <!-- <select> initially contains no <option> elements; they are added by script.js -->
             <select name="glazing" class="glazing"></select>
 
+            <!-- pack size buttons -->
             <label class="pack-size">Pack size:</label>
+            <!-- container <div> initially contains no elements; they are added by script.js -->
             <div class="pack-size-container"></div>
 
+            <!-- price <p> initially contains the item's base price; it is updated based on the chosen options by script.js -->
             <p class="bold" id="Original-price">$2.49</p>
             <button class="add-to-cart-cta bold">Add to Cart</button>
           </div>
