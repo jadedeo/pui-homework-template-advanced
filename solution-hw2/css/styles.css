@@ -53,10 +53,13 @@ nav a {
 
 #nav-link-products {
   height: fit-content;
+  text-align: center;
+  width: 100px;
 }
 
 #cart-div {
   text-align: right;
+  width: 100px;
 }
 
 #cart-details {
