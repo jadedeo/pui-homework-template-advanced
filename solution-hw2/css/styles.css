@@ -19,7 +19,6 @@ button {
 
 hr {
   border: 3px solid black;
-  /* margin: 15px 0; */
 }
 
 #popup {
@@ -30,7 +29,7 @@ hr {
   padding: 10px;
   position: absolute;
   right: 25px;
-  top: 125px;
+  top: 75px;
 }
 
 #popup.show-popup {
@@ -43,7 +42,7 @@ nav {
   list-style: none;
   justify-content: flex-end;
   gap: 65px;
-  margin: 0px 25px 15px 25px;
+  margin: 0px 100px 15px 25px;
 }
 
 nav a {
