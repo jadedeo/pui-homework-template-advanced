@@ -1,0 +1,18 @@
+[
+  {
+    "optionName": "Keep Original",
+    "priceAdaptation": 0
+  },
+  {
+    "optionName": "Sugar milk",
+    "priceAdaptation": 0
+  },
+  {
+    "optionName": "Vanilla Milk",
+    "priceAdaptation": 0.5
+  },
+  {
+    "optionName": "Double chocolate",
+    "priceAdaptation": 1.5
+  }
+]

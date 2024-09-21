@@ -1,15 +1,15 @@
-import './App.css';
+import React, { Component } from "react";
+import Home from "./views/home/index.js";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>
-          Solution to HW1
-        </h1>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Home />
+      </div>
+    );
+  }
 }
 
 export default App;
