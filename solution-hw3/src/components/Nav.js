@@ -17,11 +17,11 @@ const Header = ({ cart }) => {
 
   return (
     <nav>
-      <a id="nav-link-products" href="">
+      <a id="nav-link-products" href="/">
         Products
       </a>
       <div id="cart-div">
-        <a id="nav-link-cart" href="">
+        <a id="nav-link-cart" href="/">
           Cart
         </a>
         <div id="cart-details">
