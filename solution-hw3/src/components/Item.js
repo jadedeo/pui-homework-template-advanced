@@ -1,100 +1,89 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import BaseSelect from "./BaseSelect";
 import BaseRadioButtons from "./BaseRadioButtons";
 import glazingOptions from "../resources/glazingOptions.json";
 import packSizeOptions from "../resources/packSizeOptions.json";
 import "../css/item.css";
 
-class Item extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      glazing: glazingOptions[0],
-      packSize: packSizeOptions[0],
-      price: this.props.basePrice,
-    };
-  }
-  handleGlazingChange = (event) => {
+const Item = ({
+  itemId,
+  imageUrl,
+  imageAlt,
+  itemName,
+  basePrice,
+  sendDataToParent,
+}) => {
+  const [glazing, setGlazing] = useState(glazingOptions[0]);
+  const [packSize, setPackSize] = useState(packSizeOptions[0]);
+  const [price, setPrice] = useState(basePrice);
+
+  useEffect(() => {
+    const newPrice = (
+      (basePrice + glazing.priceAdaptation) *
+      packSize.priceAdaptation
+    ).toFixed(2);
+    setPrice(newPrice);
+  }, [basePrice, glazing, packSize]);
+
+  const handleGlazingChange = (event) => {
     const selectedGlazing = glazingOptions.find(
-      (option) => option.priceAdaptation === Number(event.target.value)
+      (option) => option.optionName === event.target.value
     );
-    this.setState({ glazing: selectedGlazing }, () => {
-      this.calculatePrice();
-    });
+    setGlazing(selectedGlazing);
   };
 
-  handlePackSizeChange = (event) => {
+  const handlePackSizeChange = (event) => {
     const selectedPackSize = packSizeOptions.find(
       (option) => option.priceAdaptation === Number(event.target.value)
     );
-    this.setState({ packSize: selectedPackSize }, () => {
-      this.calculatePrice();
-    });
+    setPackSize(selectedPackSize);
   };
 
-  handleAddToCart = () => {
-    const finalGlazing = this.state.glazing;
-    const finalPackSize = this.state.packSize;
-    const finalPrice = Number(this.state.price).toFixed(2);
+  const handleAddToCart = () => {
+    const finalGlazing = glazing;
+    const finalPackSize = packSize;
+    const finalPrice = Number(price).toFixed(2);
 
     const newItem = {
-      name: this.props.itemName,
+      name: itemName,
       glazing: finalGlazing,
       packSize: finalPackSize,
       price: finalPrice,
     };
-
-    this.props.sendDataToParent(newItem);
+    sendDataToParent(newItem);
   };
 
-  calculatePrice = () => {
-    const newPrice = (
-      (this.props.basePrice + this.state.glazing.priceAdaptation) *
-      this.state.packSize.priceAdaptation
-    ).toFixed(2);
-    this.setState({ price: newPrice });
-  };
-
-  render() {
-    return (
-      <div className="product-card" id={this.props.itemId}>
-        <img
-          className="product-image"
-          src={this.props.imageUrl}
-          alt={this.props.imageAlt}
+  return (
+    <div className="product-card" id={itemId}>
+      <img className="product-image" src={imageUrl} alt={imageAlt} />
+      <h3>{itemName}</h3>
+      <div className="product-options">
+        <BaseSelect
+          data={glazingOptions}
+          label="Glazing"
+          name="glazing"
+          onChangeHandler={handleGlazingChange}
         />
-        <h3>{this.props.itemName}</h3>
-        <div className="product-options">
-          <BaseSelect
-            data={glazingOptions}
-            label="Glazing"
-            name="glazing"
-            onChangeHandler={this.handleGlazingChange}
-          />
 
-          <BaseRadioButtons
-            data={packSizeOptions}
-            itemId={this.props.itemId}
-            label="Pack Size"
-            name="pack-size"
-            selected={this.state.packSize}
-            onChangeHandler={this.handlePackSizeChange}
-          />
+        <BaseRadioButtons
+          data={packSizeOptions}
+          itemId={itemId}
+          label="Pack Size"
+          name="pack-size"
+          selected={packSize}
+          onChangeHandler={handlePackSizeChange}
+        />
 
-          <p className="bold" id="Original-price">
-            ${this.state.price}
-          </p>
+        <p className="bold" id="Original-price">
+          ${price}
+        </p>
 
-          <button
-            className="add-to-cart-cta bold"
-            onClick={this.handleAddToCart}
-          >
-            Add to Cart
-          </button>
-        </div>
+        <button className="add-to-cart-cta bold" onClick={handleAddToCart}>
+          Add to Cart
+        </button>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Item;
