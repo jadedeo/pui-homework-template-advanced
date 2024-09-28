@@ -1,6 +1,12 @@
 import React from "react";
 import "../css/baseForm.css";
 
+/** 'BaseSelect' component accepts the following props to create a dropdown:
+ * data: array of options
+ * label: select label text
+ * name: name attribute text
+ * onChangeHandler: function to be executed when select is changed
+ */
 const BaseSelect = ({ data, label, name, onChangeHandler }) => {
   return (
     <>
