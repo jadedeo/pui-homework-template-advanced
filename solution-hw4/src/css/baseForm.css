@@ -1,0 +1,31 @@
+/* RADIO BUTTONS */
+[class$="-container"] {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+[class$="-btn"] {
+  background-color: white;
+  border: 2px solid black;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  padding: 7px 0;
+  width: 90%;
+}
+
+[class$="-btn"]:hover,
+[class$="-btn"]:focus {
+  background-color: #ddd;
+}
+
+input[type="radio"]:checked + [class$="-btn"] {
+  background-color: #aaa;
+}
+
+/* SELECT DROPDOWN */
+select {
+  border: 2px solid black;
+  padding: 3px;
+}
