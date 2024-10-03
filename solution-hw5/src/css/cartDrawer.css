@@ -1,0 +1,34 @@
+/* .cart-item {
+  background-color: pink;
+} */
+
+#cart-drawer {
+  margin: 20px 0;
+  padding: 20px 0;
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+  text-align: left;
+}
+
+#cart-item-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 20px 10% 0 10%;
+}
+
+.cart-item {
+  text-align: center;
+}
+
+.cart-item img {
+  max-width: 200px;
+}
+
+.remove-button {
+  border: 0;
+  /* border-bottom: 2px solid black; */
+  background-color: unset;
+  text-decoration: underline;
+  margin-top: 5px;
+}

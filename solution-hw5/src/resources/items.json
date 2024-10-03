@@ -1,0 +1,44 @@
+[
+  {
+    "itemId": "original",
+    "imageURL": "assets/products/original-cinnamon-roll.jpg",
+    "imageAlt": "photo of a plain cinnamon roll",
+    "itemName": "Original Cinnamon Roll",
+    "basePrice": 2.49
+  },
+  {
+    "itemId": "apple",
+    "imageURL": "assets/products/apple-cinnamon-roll.jpg",
+    "imageAlt": "photo of an apple cinnamon roll",
+    "itemName": "Apple Cinnamon Roll",
+    "basePrice": 3.49
+  },
+  {
+    "itemId": "raisin",
+    "imageURL": "assets/products/raisin-cinnamon-roll.jpg",
+    "imageAlt": "photo of a raisin cinnamon roll",
+    "itemName": "Raisin Cinnamon Roll",
+    "basePrice": 2.99
+  },
+  {
+    "itemId": "walnut",
+    "imageURL": "assets/products/walnut-cinnamon-roll.jpg",
+    "imageAlt": "photo of a walnut cinnamon roll",
+    "itemName": "Walnut Cinnamon Roll",
+    "basePrice": 3.49
+  },
+  {
+    "itemId": "double-chocolate",
+    "imageURL": "assets/products/double-chocolate-cinnamon-roll.jpg",
+    "imageAlt": "photo of a double-chocolate cinnamon roll",
+    "itemName": "Double-Chocolate Cinnamon Roll",
+    "basePrice": 3.99
+  },
+  {
+    "itemId": "strawberry",
+    "imageURL": "assets/products/strawberry-cinnamon-roll.jpg",
+    "imageAlt": "photo of a strawberry cinnamon roll",
+    "itemName": "Strawberry Cinnamon Roll",
+    "basePrice": 3.99
+  }
+]

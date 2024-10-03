@@ -1,0 +1,29 @@
+/* Styling that is specific to the navigation bar */
+nav {
+  display: flex;
+  list-style: none;
+  justify-content: flex-end;
+  gap: 65px;
+  margin: 0px 100px 15px 25px;
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+  text-transform: uppercase;
+}
+
+#nav-link-products {
+  height: fit-content;
+  text-align: center;
+  width: 100px;
+}
+
+#cart-div {
+  text-align: right;
+  width: 100px;
+}
+
+#cart-details {
+  margin-top: 10px;
+}
