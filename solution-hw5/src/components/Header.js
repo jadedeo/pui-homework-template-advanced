@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Nav from "./Nav.js";
 import Popup from "./Popup.js";
 

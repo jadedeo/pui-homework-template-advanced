@@ -73,3 +73,16 @@ hr {
   background-color: yellow;
   font-weight: bold;
 }
+
+/*SEARCH & SORT*/
+#search-sort {
+  align-items: center;
+  margin: 20px 10%;
+}
+
+#search,
+#sort {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}

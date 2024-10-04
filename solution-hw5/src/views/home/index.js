@@ -15,6 +15,10 @@ const Home = () => {
   const [cartTotal, setCartTotal] = useState(Number(0.0).toFixed(2));
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [query, setQuery] = useState("");
+  const [sortCriteria, setSortCriteria] = useState("name");
+  const [displayedItems, setDisplayedItems] = useState(items);
 
   // if 'cart' is updated & there is at least one item in 'cart', show popup
   useEffect(() => {
@@ -23,7 +27,33 @@ const Home = () => {
     }
   }, [cart]);
 
-  //add new item to last position in cart array when 'add to cart' button is clicked
+  useEffect(() => {
+    // sort items based on selected criteria, creating copy of 'items' so the original is not mutated
+    let sortedArray = [...items].sort((a, b) => {
+      if (sortCriteria === "name") {
+        // compare item names
+        return a.itemName.localeCompare(b.itemName);
+      } else if (sortCriteria === "basePrice") {
+        // compare item base prices
+        return a.basePrice - b.basePrice;
+      } else return 0;
+    });
+
+    // filter the sorted array of items according to presence of 'query' string
+    let filteredArray = sortedArray.filter((item) => {
+      return item.itemName.toLowerCase().includes(query.toLowerCase());
+    });
+
+    setDisplayedItems(filteredArray);
+  }, [query, sortCriteria]);
+
+  // remove specified item from cart (being sure to avoid state mutation)
+  const removeFromCart = (itemToRemove) => {
+    const newCart = cart.filter((item) => item !== itemToRemove);
+    setCart(newCart);
+  };
+
+  // add new item to last position in cart array when 'add to cart' button is clicked
   const addToCart = (newItem) => {
     setCart((prevCart) => [...prevCart, newItem]);
   };
@@ -44,9 +74,14 @@ const Home = () => {
     }, 3000);
   };
 
+  // only set 'query' after the 'search' button has been clicked
+  const executeSearch = () => {
+    setQuery(searchInput);
+  };
+
   return (
     <div>
-      {/* pass the visibility of the popup to the 'Header' component */}
+      {/* pass 'cart', 'cartTotal' & the visibility of the popup to the 'Header' component */}
       <Header
         cart={cart}
         cartTotal={cartTotal}
@@ -54,39 +89,61 @@ const Home = () => {
         setIsCartOpen={setIsCartOpen}
       />
 
-      {isCartOpen && <CartDrawer cart={cart} cartTotal={cartTotal} />}
+      {/* only render 'CartDrawer' according to boolean value in 'isCartOpen' */}
+      {isCartOpen && (
+        <CartDrawer
+          cart={cart}
+          cartTotal={cartTotal}
+          handleRemoveFromCart={removeFromCart}
+        />
+      )}
 
       {/* SEARCH & SORT */}
       <div id="search-sort">
-        <div>
-          <input />
-          <button>Search</button>
+        <div id="search">
+          <input
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            onKeyUp={(e) => {
+              if (e.key === "Enter") executeSearch();
+            }}
+          />
+          <button onClick={executeSearch}>Search</button>
         </div>
 
-        <div>
-          <label>Sort by:</label>
-          <select>
-            <option>Name</option>
-            <option>Base Price</option>
+        <div id="sort">
+          <label htmlFor="sort-dropdown">Sort by:</label>
+          <select
+            id="sort-dropdown"
+            onChange={(e) => {
+              setSortCriteria(e.target.value);
+            }}
+            value={sortCriteria}
+          >
+            <option value="name">Name</option>
+            <option value="basePrice">Base Price</option>
           </select>
         </div>
       </div>
 
       <main>
-        <div id="product-gallery">
-          {/* iterate over imported array of items, creating a new 'Item' for each*/}
-          {items.map((item, index) => (
-            <Item
-              key={index}
-              itemId={item.itemId}
-              imageUrl={item.imageURL}
-              imageAlt={item.imageAlt}
-              itemName={item.itemName}
-              basePrice={item.basePrice}
-              handleAddToCart={addToCart}
-            />
-          ))}
-        </div>
+        {displayedItems.length > 0 ? (
+          <div id="product-gallery">
+            {displayedItems.map((item) => (
+              <Item
+                key={item.itemId}
+                itemId={item.itemId}
+                imageUrl={item.imageURL}
+                imageAlt={item.imageAlt}
+                itemName={item.itemName}
+                basePrice={item.basePrice}
+                handleAddToCart={addToCart}
+              />
+            ))}
+          </div>
+        ) : (
+          <p>No match!</p>
+        )}
       </main>
     </div>
   );
