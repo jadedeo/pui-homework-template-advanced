@@ -3,7 +3,6 @@
 #product-gallery {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  /* grid-template-columns: repeat(auto-fit, minmax(225px, 1fr)); */
   column-gap: 5%;
   row-gap: 5em;
   margin: 50px 0;

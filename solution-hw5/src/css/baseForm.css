@@ -20,17 +20,26 @@
   background-color: #ddd;
 }
 
-/* input[type="radio"]:checked + [class$="-btn"] {
-  background-color: #aaa;
-} */
-
 /* SELECT DROPDOWN */
 select {
   border: 2px solid black;
   padding: 3px;
 }
 
+/*SEARCH & SORT*/
 #search-sort {
   display: flex;
   gap: 15px;
+}
+
+#search-sort {
+  align-items: center;
+  margin: 20px 10%;
+}
+
+#search,
+#sort {
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }

@@ -36,6 +36,7 @@ const BaseRadioButtons = ({
               <label
                 htmlFor={`${itemId}-${index}`}
                 className={`${name}-btn`}
+                // conditionally style button based on whether it's been selected/checked or not
                 style={{
                   backgroundColor:
                     selected.priceAdaptation === option.priceAdaptation

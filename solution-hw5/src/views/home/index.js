@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../../components/Header.js";
 import Item from "../../components/Item.js";
 import CartDrawer from "../../components/CartDrawer.js";
+import SearchSort from "../../components/SearchSort.js";
 
 // import items/product types from json file in 'resources'
 import items from "../../resources/items.json";
@@ -20,13 +21,15 @@ const Home = () => {
   const [sortCriteria, setSortCriteria] = useState("name");
   const [displayedItems, setDisplayedItems] = useState(items);
 
-  // if 'cart' is updated & there is at least one item in 'cart', show popup
+  // recalculate 'cartTotal' when 'cart' is updated
   useEffect(() => {
-    if (cart.length > 0) {
-      showPopup();
-    }
+    const newTotal = cart
+      .reduce((total, item) => total + parseFloat(item.price), 0)
+      .toFixed(2);
+    setCartTotal(newTotal);
   }, [cart]);
 
+  //reevaluate array of displayed items if either search query or sorting criteria is changed
   useEffect(() => {
     // sort items based on selected criteria, creating copy of 'items' so the original is not mutated
     let sortedArray = [...items].sort((a, b) => {
@@ -40,11 +43,11 @@ const Home = () => {
     });
 
     // filter the sorted array of items according to presence of 'query' string
-    let filteredArray = sortedArray.filter((item) => {
+    let filteredAndSortedArray = sortedArray.filter((item) => {
       return item.itemName.toLowerCase().includes(query.toLowerCase());
     });
 
-    setDisplayedItems(filteredArray);
+    setDisplayedItems(filteredAndSortedArray);
   }, [query, sortCriteria]);
 
   // remove specified item from cart (being sure to avoid state mutation)
@@ -56,15 +59,9 @@ const Home = () => {
   // add new item to last position in cart array when 'add to cart' button is clicked
   const addToCart = (newItem) => {
     setCart((prevCart) => [...prevCart, newItem]);
+    // display popup
+    showPopup();
   };
-
-  // recalculate 'cartTotal' when 'cart' is updated
-  useEffect(() => {
-    const newTotal = cart
-      .reduce((total, item) => total + parseFloat(item.price), 0)
-      .toFixed(2);
-    setCartTotal(newTotal);
-  }, [cart]);
 
   // ensure popup is visible for only 3 seconds after being triggered
   const showPopup = () => {
@@ -98,33 +95,14 @@ const Home = () => {
         />
       )}
 
-      {/* SEARCH & SORT */}
-      <div id="search-sort">
-        <div id="search">
-          <input
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            onKeyUp={(e) => {
-              if (e.key === "Enter") executeSearch();
-            }}
-          />
-          <button onClick={executeSearch}>Search</button>
-        </div>
-
-        <div id="sort">
-          <label htmlFor="sort-dropdown">Sort by:</label>
-          <select
-            id="sort-dropdown"
-            onChange={(e) => {
-              setSortCriteria(e.target.value);
-            }}
-            value={sortCriteria}
-          >
-            <option value="name">Name</option>
-            <option value="basePrice">Base Price</option>
-          </select>
-        </div>
-      </div>
+      {/* Component that includes the search input & sort dropdown */}
+      <SearchSort
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        sortCriteria={sortCriteria}
+        setSortCriteria={setSortCriteria}
+        executeSearch={executeSearch}
+      />
 
       <main>
         {displayedItems.length > 0 ? (

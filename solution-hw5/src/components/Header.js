@@ -20,10 +20,12 @@ const Header = ({ cart, cartTotal, popupStatus, setIsCartOpen }) => {
           />
           <hr />
           <h2 id="slogan">Our hand-made cinnamon rolls</h2>
+          <p>{popupStatus}</p>
         </div>
       </div>
 
       {/*  ... and 'Popup' component (which accepts the item at the last position in the cart) */}
+
       {popupStatus && <Popup lastItem={cart?.slice(-1)[0]} />}
     </header>
   );
