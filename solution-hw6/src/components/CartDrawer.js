@@ -1,4 +1,5 @@
 import React from "react";
+import CartItem from "./CartItem";
 import "../css/cartDrawer.css";
 
 /** 'CartDrawer' component accepts the following props to create a drawer containing the current cart:
@@ -7,11 +8,6 @@ import "../css/cartDrawer.css";
  * handleRemoveFromCart: function that lifts the item to be removed to the parent component
  */
 const CartDrawer = ({ cart, cartTotal, handleRemoveFromCart }) => {
-  // when an item is selected for removal, pass it up to the parent/Home component
-  const removeFromCart = (itemToRemove) => {
-    handleRemoveFromCart(itemToRemove);
-  };
-
   return (
     <div id="cart-drawer">
       <div id="cart-drawer-header">
@@ -25,23 +21,13 @@ const CartDrawer = ({ cart, cartTotal, handleRemoveFromCart }) => {
       <div id="cart-item-list">
         {/* if 'cart' contains more than 0 items */}
         {cart.length > 0 ? (
-          // iterate through array and display items currently in 'cart'
+          // iterate through array and display items currently in 'cart' using CartItem component
           cart.map((item, index) => (
-            <div key={index} className="cart-item">
-              <img src={item.image} alt={item.name} />
-              <p>{item.name}</p>
-              <p>Glazing: {item.glazing.optionName}</p>
-              <p>Pack Size: {item.packSize.optionName}</p>
-              <p>
-                <strong>${item.price}</strong>
-              </p>
-              <button
-                className="remove-button"
-                onClick={() => removeFromCart(item)}
-              >
-                Remove
-              </button>
-            </div>
+            <CartItem
+              key={index}
+              item={item}
+              handleRemoveFromCart={handleRemoveFromCart}
+            />
           ))
         ) : (
           // if 'cart' contains 0 items, display this message
