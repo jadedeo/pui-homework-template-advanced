@@ -1,0 +1,18 @@
+[
+  {
+    "optionName": "1",
+    "priceAdaptation": 1
+  },
+  {
+    "optionName": "3",
+    "priceAdaptation": 3
+  },
+  {
+    "optionName": "6",
+    "priceAdaptation": 5
+  },
+  {
+    "optionName": "12",
+    "priceAdaptation": 10
+  }
+]

@@ -1,0 +1,41 @@
+/* Styling that is specific to the cart drawer component */
+#cart-drawer {
+  margin: 20px 0;
+  padding: 40px 0;
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+  text-align: left;
+}
+
+#cart-drawer-header {
+  margin: 0 10%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#cart-item-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 20px 10% 0 10%;
+  text-align: center;
+}
+
+#cart-item-list > p {
+  width: 100%;
+}
+
+.cart-item {
+  text-align: center;
+}
+
+.cart-item img {
+  max-width: 150px;
+}
+
+.remove-button {
+  border: 0;
+  background-color: unset;
+  text-decoration: underline;
+  margin-top: 5px;
+}
