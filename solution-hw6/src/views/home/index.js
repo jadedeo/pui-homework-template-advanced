@@ -11,8 +11,11 @@ import items from "../../resources/items.json";
 import "../../css/main.css";
 
 const Home = () => {
-  // define state variables & functions for updating them with useState hook
-  const [cart, setCart] = useState([]);
+  // retrieve cart from localStorage, or create empty array
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
+  // define other state variables & functions for updating them with useState hook
   const [cartTotal, setCartTotal] = useState(Number(0.0).toFixed(2));
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -27,6 +30,13 @@ const Home = () => {
       .reduce((total, item) => total + parseFloat(item.price), 0)
       .toFixed(2);
     setCartTotal(newTotal);
+
+    // since i already have a useEffect that watches for changes to the cart, i can update localStorage with those changes here as well
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // output cart in localStorage when it is updated
+    console.log("Updated Cart -------------- ");
+    console.log(JSON.parse(localStorage.getItem("cart")));
   }, [cart]);
 
   //reevaluate array of displayed items if either search query or sorting criteria is changed
