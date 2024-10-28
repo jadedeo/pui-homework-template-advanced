@@ -199,59 +199,56 @@ How would you use Generative AI responsibly?
 
 ### _LitTunes_
 
+**LitTunes** is an application that creates custom playlists for readers, tailoring song recommendations to suit a specified book, characters, or keywords using the Spotify API.
+
+_Interactivity and Engagement:_ The functionality of the app depends on user participation. Users will have control over several metrics for playlist generation (book title or character name, desired moods, genres, and keywords).
+
+_Accessibility:_ The design will prioritize easy navigation and control. The platform will also strive to abide by [Spotify's accessibility guide for developers](https://developer.spotify.com/documentation/accessibility), maintaining awareness of alt text, color contrast, and more.
+
+_Information:_ Not applicable. LitTunes is not an informational application.
+
 ![title for sketch1](public/assets/proposal/LitTunesSketch.jpg)
-Left: Prompt page; contains various fields for users to specify their playlist features
-Right: Playlist generation results; reiteration of playlist features and vertical list of recommended tracks
-
-**Purpose + Goal**
-Create a playlist based on user-specified criteria (eg. genre, mood, “vibes”/other descriptive keywords) using Spotify API
-
-**Questions + Concerns**
-Concerns around using Hardcover.app API (which is still heavily in beta and would require use of either Apollo Client or Axios for GraphQL calls) and ensuring selected songs are relevant
-
-Add a few sentences about your design. Briefly state the motivation of each project idea. Example questions to answer:
-
-- What is the basic idea of your final project? (1-2 sentences)
-- How do you plan to make your design interactive and engaging?
-- How do you plan to make your design accessible?
-- What information do you specifically want to convey and include on your website?
+_Left: Prompt page; contains various fields for users to specify their playlist features_
+_Right: Playlist generation results; reiteration of playlist features and vertical list of recommended tracks_
 
 ### _FableFrame_
 
+**FableFrame** is a tool aimed at helping authors and storytellers organize and visualize the details of their characters and settings, making the manuscript development process more structured and accessible.
+
+_Interactivity and Engagement:_ At it's based level the platform will allow users to create character and setting profiles, with the ability to enter text and add images and links. Future iterations might explore ways to link characters, drag-and-drop functionality, etc.
+
+_Accessibility:_ FableFrame will be designed with a focus on readability and ease of use, possibly including options for changing text size and background colors to accommodate different visual preferences. As a form of a CMS, organization will be key, and the interface will need to be as straightforward as possible.
+
+_Information:_ The information FableFrame showcases depends on content entered by the user, but the interface will at least feature the essential sections for character and setting design. Users will be able to access both general and detail views of their information, reducing information-overload and ensuring only the necessary information is provided at a given time.
+
 ![title for sketch1](public/assets/proposal/FableFrameSketch.jpg)
-Top Left: Main page; shows sortable/filter-able list of created subpages (characters and settings); navigation panel allows user to access pages specifically for characters or settings
-Bottom Left: Alternate main page; user can toggle between list and grid view
-Right: Example of a character page, containing sections dedicated to general information, appearance, personality, etc. Setting pages would be similar, but with different sections.
-
-**Purpose + Goal**
-Provide a way for authors working on manuscripts to effectively organize information about their characters and settings (and potentially plotlines/arcs).
-
-**Questions + Concerns**
-Need to explore types of (CMS?) layouts/the most effective ways to display detailed content.
-Would require managing a lot of user-entered data/in order to be truly effective, would require many fields
+_Top Left: Main page; shows sortable/filter-able list of created subpages (characters and settings); navigation panel allows user to access pages specifically for characters or settings_
+_Bottom Left: Alternate main page; user can toggle between list and grid view_
+_Right: Example of a character page, containing sections dedicated to general information, appearance, personality, etc. Setting pages would be similar, but with different sections._
 
 ### _Mealwise_
 
+**Mealwise** is designed to provide users with personalized recipe recommendations and nutritional information by leveraging the Spoonacular API. The project aims to help users discover new meals based on their dietary preferences and what ingredients they have on hand.
+
+_Interactivity and Engagement:_ With the "What's in my fridge" feature, users will be able to input specific ingredientsto receive recipe suggestions, creating a dynamic and personalized experience.
+
+_Accessibility:_ The design will focus on photos and text, screen reader compatibility, and simple, intuitive navigation to ensure that the website is accessible to users with varying abilities.
+
+_Information:_ The site will feature general browsing and a recipe detail view. It will display thorough breakdowns of recipes, including ingredients, cooking steps, nutritional information, and more.
+
 ![title for sketch1](public/assets/proposal/MealwiseSketch.jpg)
-Top Left: Homepage; choice between general recipe search and searching for recipes with specific ingredients/"What's in my fridge" (in hindsight, would not separate these options, just add filtering to general search)
-Top Right: General recipe search/browsing page
-Bottom Left: "What's in my fridge" page; user enters specific ingredients they want recipes for
-Bottom Right: Recipe page; includes image, name, description, ingredients, steps, etc.
-
-**Purpose + Goal**
-Provide users with recipe recommendations & nutritional information using the Spoonacular API.
-
-**Questions + Concerns**
-How personalized will the recommendations from Spoonacular be?
-How diverse is Spoonacular’s data? Is it Western-centric, or does it contain recipes from a variety of cultures?
+_Top Left: Homepage; choice between general recipe search and searching for recipes with specific ingredients/"What's in my fridge" (in hindsight, would not separate these options, just add filtering to general search)_
+_Top Right: General recipe search/browsing page_
+_Bottom Left: "What's in my fridge" page; user enters specific ingredients they want recipes for_
+_Bottom Right: Recipe page; includes image, name, description, ingredients, steps, etc._
 
 ## Feedback Summary
 
-For Mealwise, the feedback centered on enhancing user interaction and personalization. Cella suggested incorporating appealing designs, especially around the "what's in my fridge" feature. Abby liked the idea of saving recipes and highlighted the fridge feature, while Michael appreciated the meal recommendation aspect. Sapna found the concept useful for managing leftover ingredients. Sanjna recommended focusing on creating a personal recipe book for users and suggested filtering options to refine recipe searches. Kennion emphasized the potential of integrating an LLM API to explore what could be made from available ingredients, suggesting that this aspect might introduce complexity but could be enjoyable.
+For LitTunes, the feedback generally focused on refining the mechanism of playlist creation to ensure relevance and user engagement. Cella found the initial book-centric playlist idea feasible with the Spotify API. Abby and Sapna were intrigued by customizing playlists based on detailed criteria like keywords or book characteristics. Michael questioned the basis for song recommendations and the functionality for saving playlists. Sanjna cautioned against using "vibes" due to their complexity, suggesting sticking with moods. Kennion favored the idea of recommending lyric-free music to accompany reading, considering it a unique angle that could enhance the reading experience.
 
 FableFrame received suggestions related to enhancing the story development tools and information management. Cella advised considering unique interactions or elements that differentiate it from standard content management systems. Abby viewed it as beneficial for organizational purposes and gaining a high-level view of the narrative. Michael proposed a feature to visualize character connections and prevent out-of-character behaviors, which might be complex but intriguing. Sapna saw its utility for authors and their collaborators, like editors and illustrators. Kennion liked it for practicing information architecture and suggested integrating interactive elements like images and sounds through an LLM API.
 
-For LitTunes, the feedback generally focused on refining the mechanism of playlist creation to ensure relevance and user engagement. Cella found the initial book-centric playlist idea feasible with the Spotify API. Abby and Sapna were intrigued by customizing playlists based on detailed criteria like keywords or book characteristics. Michael questioned the basis for song recommendations and the functionality for saving playlists. Sanjna cautioned against using "vibes" due to their complexity, suggesting sticking with moods. Kennion favored the idea of recommending lyric-free music to accompany reading, considering it a unique angle that could enhance the reading experience.
+For Mealwise, the feedback centered on enhancing user interaction and personalization. Cella suggested incorporating appealing designs, especially around the "what's in my fridge" feature. Abby liked the idea of saving recipes and highlighted the fridge feature, while Michael appreciated the meal recommendation aspect. Sapna found the concept useful for managing leftover ingredients. Sanjna recommended focusing on creating a personal recipe book for users and suggested filtering options to refine recipe searches. Kennion emphasized the potential of integrating an LLM API to explore what could be made from available ingredients, suggesting that this aspect might introduce complexity but could be enjoyable.
 
 ## Feedback Digestion
 
