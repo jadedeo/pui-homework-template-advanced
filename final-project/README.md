@@ -228,7 +228,7 @@ _Right: Example of a character page, containing sections dedicated to general in
 
 ### _Mealwise_
 
-**Mealwise** is designed to provide users with personalized recipe recommendations and nutritional information by leveraging the Spoonacular API. The project aims to help users discover new meals based on their dietary preferences and what ingredients they have on hand.
+**Mealwise** is designed to provide users with personalized recipe recommendations and nutritional information by leveraging the [Spoonacular API](https://spoonacular.com/food-api). The project aims to help users discover new meals based on their dietary preferences and what ingredients they have on hand.
 
 _Interactivity and Engagement:_ With the "What's in my fridge" feature, users will be able to input specific ingredientsto receive recipe suggestions, creating a dynamic and personalized experience.
 
