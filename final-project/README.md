@@ -199,9 +199,7 @@ How would you use Generative AI responsibly?
 
 ### _LitTunes_
 
-![title for sketch1](images/sketch1.png)
-![title for sketch1](assets/proposal/LitTunesSketch.jpg)
-![title for sketch1](public/assets/proposal/FableFrameSketch.jpg)
+![title for sketch1](public/assets/proposal/LitTunesSketch.jpg)
 
 Add a few sentences about your design. Briefly state the motivation of each project idea. Example questions to answer:
 
@@ -212,16 +210,24 @@ Add a few sentences about your design. Briefly state the motivation of each proj
 
 ### _FableFrame_
 
+![title for sketch1](public/assets/proposal/FableFrameSketch.jpg)
 …
 
 ### _Mealwise_
 
+![title for sketch1](public/assets/proposal/MealwiseSketch.jpg)
 …
 
 ## Feedback Summary
 
-Summarize all the critiques you received during the lab session (\~300 words).
+For Mealwise, the feedback centered on enhancing user interaction and personalization. Cella suggested incorporating appealing designs, especially around the "what's in my fridge" feature. Abby liked the idea of saving recipes and highlighted the fridge feature, while Michael appreciated the meal recommendation aspect. Sapna found the concept useful for managing leftover ingredients. Sanjna recommended focusing on creating a personal recipe book for users and suggested filtering options to refine recipe searches. Kennion emphasized the potential of integrating an LLM API to explore what could be made from available ingredients, suggesting that this aspect might introduce complexity but could be enjoyable.
+
+FableFrame received suggestions related to enhancing the story development tools and information management. Cella advised considering unique interactions or elements that differentiate it from standard content management systems. Abby viewed it as beneficial for organizational purposes and gaining a high-level view of the narrative. Michael proposed a feature to visualize character connections and prevent out-of-character behaviors, which might be complex but intriguing. Sapna saw its utility for authors and their collaborators, like editors and illustrators. Kennion liked it for practicing information architecture and suggested integrating interactive elements like images and sounds through an LLM API.
+
+For LitTunes, the feedback generally focused on refining the mechanism of playlist creation to ensure relevance and user engagement. Cella found the initial book-centric playlist idea feasible with the Spotify API. Abby and Sapna were intrigued by customizing playlists based on detailed criteria like keywords or book characteristics. Michael questioned the basis for song recommendations and the functionality for saving playlists. Sanjna cautioned against using "vibes" due to their complexity, suggesting sticking with moods. Kennion favored the idea of recommending lyric-free music to accompany reading, considering it a unique angle that could enhance the reading experience.
 
 ## Feedback Digestion
 
-Digest the feedback you got in the lab (\~300 words). Indicate which critique you will act on in your next design and why you chose to incorporate/dismiss pieces of critique.
+I have decided to develop LitTunes, as I believe it’s the most interesting and interactive project of the three.
+
+I really appreciate Kennion’s point about recommending instrumental songs that could be listened to _while_ reading.
