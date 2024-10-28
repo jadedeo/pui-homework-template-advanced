@@ -201,6 +201,12 @@ How would you use Generative AI responsibly?
 
 ![title for sketch1](public/assets/proposal/LitTunesSketch.jpg)
 
+**Purpose + Goal**
+Create a playlist based on user-specified criteria (eg. genre, mood, “vibes”/other descriptive keywords) using Spotify API
+
+**Questions + Concerns**
+Initial idea was to create a playlist for a user-specified book (and maybe character?) based on identified genre and mood, but had concerns around using Hardcover.app API (which is still heavily in beta and would require use of either Apollo Client or Axios for GraphQL calls) and ensuring selected songs are relevant
+
 Add a few sentences about your design. Briefly state the motivation of each project idea. Example questions to answer:
 
 - What is the basic idea of your final project? (1-2 sentences)
@@ -211,12 +217,24 @@ Add a few sentences about your design. Briefly state the motivation of each proj
 ### _FableFrame_
 
 ![title for sketch1](public/assets/proposal/FableFrameSketch.jpg)
-…
+
+**Purpose + Goal**
+Provide a way for authors working on manuscripts to effectively organize information about their characters and settings (and potentially plotlines/arcs).
+
+**Questions + Concerns**
+Need to explore types of (CMS?) layouts/the most effective ways to display detailed content.
+Would require managing a lot of user-entered data/in order to be truly effective, would require many fields
 
 ### _Mealwise_
 
 ![title for sketch1](public/assets/proposal/MealwiseSketch.jpg)
-…
+
+**Purpose + Goal**
+Provide users with recipe recommendations & nutritional information using the Spoonacular API.
+
+**Questions + Concerns**
+How personalized will the recommendations from Spoonacular be?
+How diverse is Spoonacular’s data? Is it Western-centric, or does it contain recipes from a variety of cultures?
 
 ## Feedback Summary
 
@@ -228,6 +246,6 @@ For LitTunes, the feedback generally focused on refining the mechanism of playli
 
 ## Feedback Digestion
 
-I have decided to develop LitTunes, as I believe it’s the most interesting and interactive project of the three.
+I have decided to develop LitTunes, as I believe it’s the most interesting and interactive project of the three, both for users and myself as the developer.
 
-I really appreciate Kennion’s point about recommending instrumental songs that could be listened to _while_ reading.
+I really appreciate Kennion’s point about recommending instrumental songs that could be listened to _while_ reading. That would definitely be a useful setting for users to toggle on and off, depending on their intentions for the playlist and/or personal preference. I'm not someone who listens to music while reading, but can certainly see how lyric-free tracks would be less distracting and potentially more immersive.
