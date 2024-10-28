@@ -1,9 +1,3 @@
-<mark>**Note that this document order from FP4 -> FP1**</mark>
-
-<mark>Please sign up for the study</mark> at [https://tinyurl.com/pui-study](https://tinyurl.com/pui-study) to allow us to use your submission to create a better GenAI assistant for designers!
-
----
-
 # **FP4 \- Final Project Writeup**
 
 Feel free to refer to this [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/) to make your writeup more organized, and you can preview your markdown file in VSCode [Markdown editing with Visual Studio Code](https://code.visualstudio.com/docs/languages/markdown#_markdown-preview).
@@ -203,9 +197,10 @@ How would you use Generative AI responsibly?
 
 ## Idea Sketches
 
-### _Idea 1_
+### _LitTunes_
 
 ![title for sketch1](images/sketch1.png)
+![title for sketch1](assets/proposal/LitTunesSketch.jpg)
 
 Add a few sentences about your design. Briefly state the motivation of each project idea. Example questions to answer:
 
@@ -214,11 +209,11 @@ Add a few sentences about your design. Briefly state the motivation of each proj
 - How do you plan to make your design accessible?
 - What information do you specifically want to convey and include on your website?
 
-### _Idea 2_
+### _FableFrame_
 
 …
 
-### _Idea 3_
+### _Mealwise_
 
 …
 
