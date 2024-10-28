@@ -200,12 +200,14 @@ How would you use Generative AI responsibly?
 ### _LitTunes_
 
 ![title for sketch1](public/assets/proposal/LitTunesSketch.jpg)
+Left: Prompt page; contains various fields for users to specify their playlist features
+Right: Playlist generation results; reiteration of playlist features and vertical list of recommended tracks
 
 **Purpose + Goal**
 Create a playlist based on user-specified criteria (eg. genre, mood, “vibes”/other descriptive keywords) using Spotify API
 
 **Questions + Concerns**
-Initial idea was to create a playlist for a user-specified book (and maybe character?) based on identified genre and mood, but had concerns around using Hardcover.app API (which is still heavily in beta and would require use of either Apollo Client or Axios for GraphQL calls) and ensuring selected songs are relevant
+Concerns around using Hardcover.app API (which is still heavily in beta and would require use of either Apollo Client or Axios for GraphQL calls) and ensuring selected songs are relevant
 
 Add a few sentences about your design. Briefly state the motivation of each project idea. Example questions to answer:
 
@@ -217,6 +219,9 @@ Add a few sentences about your design. Briefly state the motivation of each proj
 ### _FableFrame_
 
 ![title for sketch1](public/assets/proposal/FableFrameSketch.jpg)
+Top Left: Main page; shows sortable/filter-able list of created subpages (characters and settings); navigation panel allows user to access pages specifically for characters or settings
+Bottom Left: Alternate main page; user can toggle between list and grid view
+Right: Example of a character page, containing sections dedicated to general information, appearance, personality, etc. Setting pages would be similar, but with different sections.
 
 **Purpose + Goal**
 Provide a way for authors working on manuscripts to effectively organize information about their characters and settings (and potentially plotlines/arcs).
@@ -228,6 +233,10 @@ Would require managing a lot of user-entered data/in order to be truly effective
 ### _Mealwise_
 
 ![title for sketch1](public/assets/proposal/MealwiseSketch.jpg)
+Top Left: Homepage; choice between general recipe search and searching for recipes with specific ingredients/"What's in my fridge" (in hindsight, would not separate these options, just add filtering to general search)
+Top Right: General recipe search/browsing page
+Bottom Left: "What's in my fridge" page; user enters specific ingredients they want recipes for
+Bottom Right: Recipe page; includes image, name, description, ingredients, steps, etc.
 
 **Purpose + Goal**
 Provide users with recipe recommendations & nutritional information using the Spoonacular API.
