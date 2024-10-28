@@ -201,6 +201,7 @@ How would you use Generative AI responsibly?
 
 ![title for sketch1](images/sketch1.png)
 ![title for sketch1](assets/proposal/LitTunesSketch.jpg)
+![title for sketch1](public/assets/proposal/FableFrameSketch.jpg)
 
 Add a few sentences about your design. Briefly state the motivation of each project idea. Example questions to answer:
 
