@@ -119,79 +119,108 @@ Remember to keep track of your prompts and usage for [FP4 writeup](#part-6-gener
 
 ## Project Description
 
-Briefly restate your motivation and a short description of your project.
+**LitTunes** is an application that creates custom playlists for readers, tailoring song recommendations to suit a specified book, characters, or keywords using the Spotify API.
 
 ## High-Fi Prototypes
 
-### _Prototype 1_
+### _Prototype 1_ - Homepage
 
-![title for prototype1](images/prototype1.png)
+![Homepage](public/assets/proposal/Homepage.png)
 
-A brief description and summary of the user feedback (\<100 words, 2 images)
+The Homepage features a form for the user to complete, gathering the information needed to construct their playlist. Participant #2 initially overlooked the radio buttons at the beginning of the form (for choosing between a book and particular character); as is mentioned later, spacing is increased to call more attention to it.
 
-### _Prototype 2_
+### _Prototype 2_ - Playlist Page
 
-…
+![Homepage](public/assets/proposal/PlaylistPage.png)
+
+The Playlist Page follows the loading screen; it displays the playlist generated as a result of the user's specifications on the Homepage. Neither of the users had any feedback around this stage of the prototype.
 
 ## Usability Test
 
-Discuss the user feedback you got during the evaluation / usability test (\~300 words). Indicate which feedback you implemented, inspired new directions, or otherwise influenced your final design.
+In my usability test, I first provided the participants with some context as to the purpose of the app, then assigned them their task (the app has a pretty singular purpose, so I only found one task to be necessary). Users were asked to generate a playlist for the character Henry Winter from "The Secret History" by Donna Tartt. The playlist should have the following characteristics:
+
+- It should include the genres Indie and Classical
+- It’s moods should be Sad and Calm
+- It should be further inspired by the phrases Dark Academia and Gothic
+- It may include songs with lyrics
+
+Equipped with this direction, both users were able to successfully complete the task.
+
+Participant #1 did not encounter any difficulty and did not have any visual design feedback. They expressed satisfaction with the app’s performance and appreciated the loading screen and the recommendation it featured. Since the application will be heavily dependent on behind-the-scenes logic for crafting the playlist, it is anticipated that a loading screen lasting a few seconds will be required. The colorful animation and TBR suggestion were added as a way to decrease the user's perceived waiting time, so I'm glad they're able to contribute some value to the user's experience, rather than serve solely as a functional necessity.
+
+Participant #2 did initially overlook the radio buttons at the beginning of the form (for choosing between a book and particular character). It carries less visual weight than larger input fields, so to distinguish it further from the rest of the questions they advised increasing the spacing between it and the following fields. Specifically, they suggested matching the amount of space that is used between the book/author/character fields and the genre/mood/keyword fields. This is feedback that I implemented, as seen in my revised design.
 
 ## Updated Designs
 
-Show screenshots of your updated design based on the user feedback (\<100 words, \~2 images).
+Designs were updated to increase spacing in the first section of the form & remove the play icon from the "Create playlist" button.
+
+![Original Homepage](public/assets/proposal/HomepageOriginalAnnotated.png)
+![Updated Homepage](public/assets/proposal/HomepageAnnotated.png)
 
 ## Feedback Summary
 
-Summarize the feedback you received in the lab session and discuss how it influenced your design (\~300 words).
+One of the points of feedback I received from our lab session last week was to consider incorporating colored cards to represent genres and moods instead of a list format. While I do agree this would add visual interest to the page, I don't believe it would be conducive to many items. Spotify's list of genres is extremely extensive, numbering well past 1,000. While I don't (currently) plan to include all of them in my application, I would still like to include more than would be appropriate for cards. Perhaps there is a way to use cards for the most popular/well-known genres and moods, but provide a more condensed format for others. Once I have started looking into the specific components needed for the form, I will decide how to proceed.
+
+Another point of feedback I received was surrounding the "Create playlist" button on my homepage. It was brought up that the inclusion of a play icon prepending the button text might lead to some confusion, since the button submits a form rather than actually plays something. I had initially added the icon for decorative purposes, thinking it would "add something" to an otherwise plain button, but this is a valid point; I have removed the icon from my updated design.
+
+It was also suggested that I might provide an explanation as to why each song was chosen, making clear the connection between the book/character and the generated playlist. I would love to add a feature like this, but I believe it reaches beyond timeframe I have to work with. Getting into the weeds with lyric analysis sounds like a great learning opportunity, but also a time consuming one that wouldn't be doable within the scope of the class.
 
 ## Milestones
-
-Outline weekly milestones to plan your expected implementation progress until the end of the semester (\~300 words).
 
 ### _Implementation Plan_
 
 - [ ] Week 9 Oct 28 \- Nov 1:
   - [x] FP1 due
-  - [ ] ...
 - [ ] Week 10 Nov 4 \- Nov 8:
-
-  - [ ] FP2 due
-
+  - [x] FP2 due
+  - [ ] Initial set-up with libraries and frameworks
+  - [ ] Obtain credentials for required APIs
+  - [ ] Basic form logic for capturing user input
+  - [ ] Potentially implement user authentication with Spotify's OAuth
 - [ ] Week 11 Nov 11 \- Nov 15:
+  - [ ] Create mapping of values such as valence, energy, etc. to moods for use with Spotify's API
+  - [ ] Test Hardcover API (or alternative), ensuring content can be located based on user specified title, author and character
+  - [ ] Test Spotify API (or alternative), ensuring content can be located based on user specified genres, moods and keywords
 - [ ] Week 12 Nov 18 \- Nov 22:
+  - [ ] Continue with API integration logic
+  - [ ] Determine best way to pick which songs of returned results to include in playlist
 - [ ] Week 13 Nov 25 \- Nov 29:
 
+  - [ ] If needed, continue working on API logic
+  - [ ] Work on styling, animations, etc.
   - [ ] Thanksgiving
 
 - [ ] Week 14 Dec 2 \- Dec 6:
+  - [ ] Last tweaks & bug fixes
   - [ ] FP4 due
 
 ### _Libraries and Other Components_
 
 List the JS libraries and other components (if applicable) that you plan to use.
 
--
+- React.js
+- Mantine or Material UI component library
+- Redux (maybe just to try it out, probably overkill)
 
 ## Generative AI Use Plan
 
-Outline how you plan to use Generative AI tools to aid in the implementation (\~300 words).
-
 ### _Tool Use_
 
-What would you use? Edit the list given your plan. For each tool, explain briefly on what do you expect Generative AI to help you with and what might it not be able to help you with.
+I primarily plan to use ChatGPT over the courrse of the development of my project. My previous experiences in web development and CS education have equipped me to recognize the strengths and limitations of the tool in practical scenarios.
 
-- ChatGPT
-  - I will use it for … because it can help me …
-  - I will not use it for … because it might not be able to help me with …
-- GitHub Copilot
-- ...
+- ChatGPT can serve as a first line of inquiry for troubleshooting common errors and optimizing code snippets. By inputting specific error messages or describing a bug, I can receive suggestions on potential fixes or better practices. This is particularly useful in iterative testing and refining phases, where quick resolutions can accelerate development.
+- With my background in teaching for CS, I especially recognize the importance of understanding the fundamentals behind any solution. It is imperative that it be treated as a resource and not a crutch. I will use ChatGPT to supplement my research on new programming concepts or APIs by asking it to explain complex ideas in simpler terms or to provide additional context. This will aid in reinforcing my learning and ensuring a solid foundation for my development work.
+
+I will not use ChatGPT for:
+
+- Final Decision-Making or Complex Problem Solving: While ChatGPT is an excellent tool for generating ideas and providing suggestions, it does not understand the specific context or unique requirements of my project like a human developer would. I will not rely on it for making critical decisions or solving complex problems that require deep understanding of user needs or the specific technical stack of my project.
+- Substituting Peer Reviews: GenAI can help spot straightforward issues or inefficiencies in code, but it cannot replace the nuanced feedback provided by human peer reviews. I value insights that come from the perspectives of my peers, particularly those that can challenge my assumptions and encourage creative solutions.
 
 ### _Responsible Use_
 
 How would you use Generative AI responsibly?
-
----
+I will always be aware of the information being fed to a GenAI tool like ChatGPT, particularly as this relates to keys and tokens that are meant to remain secure.
+I will also provide oversight at all times, vetting any code that is produced for potentially biased and/or harmful decision-making.
 
 # **FP1 \- Proposal for Critique**
 
@@ -207,7 +236,7 @@ _Accessibility:_ The design will prioritize easy navigation and control. The pla
 
 _Information:_ Not applicable. LitTunes is not an informational application.
 
-![title for sketch1](public/assets/proposal/LitTunesSketch.jpg)
+![LitTunes Sketch](public/assets/proposal/LitTunesSketch.jpg)
 _Left: Prompt page; contains various fields for users to specify their playlist features_
 _Right: Playlist generation results; reiteration of playlist features and vertical list of recommended tracks_
 
@@ -221,7 +250,7 @@ _Accessibility:_ FableFrame will be designed with a focus on readability and eas
 
 _Information:_ The information FableFrame showcases depends on content entered by the user, but the interface will at least feature the essential sections for character and setting design. Users will be able to access both general and detail views of their information, reducing information-overload and ensuring only the necessary information is provided at a given time.
 
-![title for sketch1](public/assets/proposal/FableFrameSketch.jpg)
+![FableFrame Sketch](public/assets/proposal/FableFrameSketch.jpg)
 _Top Left: Main page; shows sortable/filter-able list of created subpages (characters and settings); navigation panel allows user to access pages specifically for characters or settings_
 _Bottom Left: Alternate main page; user can toggle between list and grid view_
 _Right: Example of a character page, containing sections dedicated to general information, appearance, personality, etc. Setting pages would be similar, but with different sections._
@@ -236,7 +265,7 @@ _Accessibility:_ The design will focus on photos and text, screen reader compati
 
 _Information:_ The site will feature general browsing and a recipe detail view. It will display thorough breakdowns of recipes, including ingredients, cooking steps, nutritional information, and more.
 
-![title for sketch1](public/assets/proposal/MealwiseSketch.jpg)
+![Mealwise Sketch](public/assets/proposal/MealwiseSketch.jpg)
 _Top Left: Homepage; choice between general recipe search and searching for recipes with specific ingredients/"What's in my fridge" (in hindsight, would not separate these options, just add filtering to general search)_
 _Top Right: General recipe search/browsing page_
 _Bottom Left: "What's in my fridge" page; user enters specific ingredients they want recipes for_
