@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(36, 36, 36);
+  color: white;
+}
+
+#home-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.MuiFormLabel-root {
+  color: white;
+}
+.MuiButtonBase-root.MuiRadio-root {
+  color: white;
+}
+
+.MuiFormControl-root,
+.MuiInputBase-root,
+.MuiInputBase-input {
+  width: 100%;
+}
+
+.MuiFormGroup-root {
+  flex-wrap: nowrap;
+}
+
+.MuiFormControlLabel-root {
+  display: flex;
+  align-items: center !important;
+  margin: 0 !important;
+}
+
+/* HEADER */
+
+#header-container,
+#form-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+}
+
+#header-container {
+  padding-bottom: 40px;
+  background-color: gray;
+  background-size: 400% 400%;
+  height: 30%;
+
+  /* background: linear-gradient(-45deg, #bfbebd, #837f80, #4f5050, #3d3d3d); */
+  /* animation: gradient 15s ease infinite; */
+}
+
+#header-content,
+#form-content {
+  display: flex;
+  width: 70%;
+  gap: 60px;
+  text-align: left;
+}
+
+#books-favicon {
+  height: 100%;
+}
+
+.columns {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+input[type="text"] {
+  background-color: rgb(64, 64, 64);
+  border-radius: 10px;
+  color: white;
+}
+
+/* @keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+} */
