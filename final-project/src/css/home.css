@@ -15,7 +15,7 @@ body {
 }
 
 .MuiFormLabel-root {
-  color: white;
+  color: white !important;
 }
 .MuiButtonBase-root.MuiRadio-root {
   color: white;
@@ -25,6 +25,10 @@ body {
 .MuiInputBase-root,
 .MuiInputBase-input {
   width: 100%;
+}
+
+.MuiFormControl-root {
+  gap: 40px;
 }
 
 .MuiFormGroup-root {
@@ -38,13 +42,16 @@ body {
 }
 
 /* HEADER */
+#header-container {
+  align-items: flex-end;
+}
 
 #header-container,
 #form-container {
   display: flex;
-  align-items: flex-end;
   justify-content: center;
   width: 100%;
+  height: 100%;
 }
 
 #header-container {
@@ -63,6 +70,16 @@ body {
   width: 70%;
   gap: 60px;
   text-align: left;
+}
+
+#form-content {
+  padding: 25px 0;
+}
+
+#text-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 #books-favicon {

@@ -1,3 +1,5 @@
+// actions signal a change to the store's state
+
 export const setPlaylistType = (newType) => {
   return {
     type: "CHANGE_TYPE",
