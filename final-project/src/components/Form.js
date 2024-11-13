@@ -10,25 +10,30 @@ import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-// import Checkbox from "@mui/material/Checkbox";
-// import Select from "@mui/material/Select";
-// import Chip from "@mui/material/Chip";
 
 const Form = () => {
+  // values needed to construct token for spotify authorization & api access
   const CLIENT_ID = "ce9eb5d8d8314180a0c10ed4fd87001d";
-  // const REDIRECT_URI = "http://localhost:3000/";
   const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
+
+  const dispatch = useDispatch();
+  const playlistType = useSelector((state) => state.playlistType);
+  const title = useSelector((state) => state.title);
+  const author = useSelector((state) => state.author);
+  const character = useSelector((state) => state.character);
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
 
+  // useEffect with no dependencies called after initial mount & after every render
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
 
+    // extract access_token from url
     if (!token && hash) {
       token = hash
         .substring(1)
@@ -38,29 +43,11 @@ const Form = () => {
 
       console.log("TOKEN:", token);
       window.location.hash = "";
+      // save token to local storage
       window.localStorage.setItem("token", token);
     }
     setToken(token);
   }, []);
-
-  const dispatch = useDispatch();
-  const playlistType = useSelector((state) => state.playlistType);
-  const title = useSelector((state) => state.title);
-  const author = useSelector((state) => state.author);
-  const character = useSelector((state) => state.character);
-
-  const handlePlaylistTypeChange = (e) => {
-    dispatch(setPlaylistType(e.target.value));
-  };
-  const handleTitleChange = (e) => {
-    dispatch(setTitle(e.target.value));
-  };
-  const handleAuthorChange = (e) => {
-    dispatch(setAuthor(e.target.value));
-  };
-  const handleCharacterChange = (e) => {
-    dispatch(setCharacter(e.target.value));
-  };
 
   const searchArtists = async (e) => {
     e.preventDefault();
@@ -89,6 +76,20 @@ const Form = () => {
         {artist.name}
       </div>
     ));
+  };
+
+  //event listeners attached to fields that dispatch actions
+  const handlePlaylistTypeChange = (e) => {
+    dispatch(setPlaylistType(e.target.value));
+  };
+  const handleTitleChange = (e) => {
+    dispatch(setTitle(e.target.value));
+  };
+  const handleAuthorChange = (e) => {
+    dispatch(setAuthor(e.target.value));
+  };
+  const handleCharacterChange = (e) => {
+    dispatch(setCharacter(e.target.value));
   };
 
   return (
@@ -150,12 +151,14 @@ const Form = () => {
 
           <Button variant="contained">Create Playlist</Button>
 
+          {/* send user to spotify url to authorize their account */}
           <a
             href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
           >
             Log into Spotify
           </a>
 
+          {/* only display search field & list of artists if token exists */}
           {token ? (
             <form onSubmit={searchArtists}>
               <input

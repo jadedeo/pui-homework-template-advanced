@@ -1,4 +1,6 @@
-// actions signal a change to the store's state
+// "what to do"
+// actions are objects that signal a change to the store's state
+// can accept a payload that is used to modify state
 
 export const setPlaylistType = (newType) => {
   return {
