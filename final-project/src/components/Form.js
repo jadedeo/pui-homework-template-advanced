@@ -16,7 +16,8 @@ import TextField from "@mui/material/TextField";
 
 const Form = () => {
   const CLIENT_ID = "ce9eb5d8d8314180a0c10ed4fd87001d";
-  const REDIRECT_URI = "http://localhost:3000/";
+  // const REDIRECT_URI = "http://localhost:3000/";
+  const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
