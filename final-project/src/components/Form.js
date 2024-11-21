@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setPlaylistType, setTitle, setAuthor, setCharacter } from "../actions";
-import axios from "axios";
+
+import genres from "../resources/genres.json";
 
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
@@ -10,73 +12,18 @@ import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
+import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import MenuItem from "@mui/material/MenuItem";
 
 const Form = () => {
-  // values needed to construct token for spotify authorization & api access
-  const CLIENT_ID = "ce9eb5d8d8314180a0c10ed4fd87001d";
-  const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
-  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-  const RESPONSE_TYPE = "token";
-
   const dispatch = useDispatch();
   const playlistType = useSelector((state) => state.playlistType);
   const title = useSelector((state) => state.title);
   const author = useSelector((state) => state.author);
   const character = useSelector((state) => state.character);
-
-  const [token, setToken] = useState("");
-  const [searchKey, setSearchKey] = useState("");
-  const [artists, setArtists] = useState([]);
-
-  // useEffect with no dependencies called after initial mount & after every render
-  useEffect(() => {
-    const hash = window.location.hash;
-    let token = window.localStorage.getItem("token");
-
-    // extract access_token from url
-    if (!token && hash) {
-      token = hash
-        .substring(1)
-        .split("&")
-        .find((elem) => elem.startsWith("access_token"))
-        .split("=")[1];
-
-      console.log("TOKEN:", token);
-      window.location.hash = "";
-      // save token to local storage
-      window.localStorage.setItem("token", token);
-    }
-    setToken(token);
-  }, []);
-
-  const searchArtists = async (e) => {
-    e.preventDefault();
-    const { data } = await axios.get("https://api.spotify.com/v1/search", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      params: {
-        q: searchKey,
-        type: "artist",
-      },
-    });
-
-    console.log("DATA:", data);
-    setArtists(data.artists.items);
-  };
-
-  const renderArtists = () => {
-    return artists.map((artist) => (
-      <div key={artist.id}>
-        {artist.images.length ? (
-          <img width={"100%"} src={artist.images[0].url} alt="" />
-        ) : (
-          <div>No Image</div>
-        )}
-        {artist.name}
-      </div>
-    ));
-  };
 
   //event listeners attached to fields that dispatch actions
   const handlePlaylistTypeChange = (e) => {
@@ -90,6 +37,18 @@ const Form = () => {
   };
   const handleCharacterChange = (e) => {
     dispatch(setCharacter(e.target.value));
+  };
+
+  const [myGenres, setMyGenres] = useState([]);
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setMyGenres(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
   };
 
   return (
@@ -149,29 +108,35 @@ const Form = () => {
             )}
           </div>
 
-          <Button variant="contained">Create Playlist</Button>
-
-          {/* send user to spotify url to authorize their account */}
-          <a
-            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+          <Select
+            labelId="demo-multiple-chip-label"
+            id="demo-multiple-chip"
+            multiple
+            value={myGenres}
+            onChange={handleChange}
+            input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+            renderValue={(selected) => (
+              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                {selected.map((value) => (
+                  <Chip key={value} label={value} />
+                ))}
+              </Box>
+            )}
           >
-            Log into Spotify
-          </a>
+            {genres.map((genre) => (
+              <MenuItem key={genre.name} value={genre.name}>
+                {genre.name}
+              </MenuItem>
+            ))}
+          </Select>
 
-          {/* only display search field & list of artists if token exists */}
-          {token ? (
-            <form onSubmit={searchArtists}>
-              <input
-                type="text"
-                onChange={(e) => setSearchKey(e.target.value)}
-              />
-              <button type="submit">SUBMIT</button>
-              {renderArtists()}
-            </form>
-          ) : (
-            ""
-          )}
+          <Link to="/playlist">
+            <Button variant="contained">Create Playlist</Button>
+          </Link>
         </FormControl>
+      </div>
+      <div>
+        <p>{genres[0].name}</p>
       </div>
     </div>
   );

@@ -8,12 +8,6 @@ body {
   color: white;
 }
 
-#home-container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
 .MuiFormLabel-root {
   color: white !important;
 }
