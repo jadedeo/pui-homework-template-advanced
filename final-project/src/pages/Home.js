@@ -26,7 +26,7 @@ const Home = () => {
         .find((elem) => elem.startsWith("access_token"))
         .split("=")[1];
 
-      console.log("TOKEN:", token);
+      // console.log("TOKEN:", token);
       window.location.hash = "";
       // save token to local storage
       window.localStorage.setItem("token", token);
@@ -34,34 +34,34 @@ const Home = () => {
     setToken(token);
   }, []);
 
-  const searchArtists = async (e) => {
-    e.preventDefault();
-    const { data } = await axios.get("https://api.spotify.com/v1/search", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      params: {
-        q: searchKey,
-        type: "artist",
-      },
-    });
+  // const searchArtists = async (e) => {
+  //   e.preventDefault();
+  //   const { data } = await axios.get("https://api.spotify.com/v1/search", {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     params: {
+  //       q: searchKey,
+  //       type: "artist",
+  //     },
+  //   });
 
-    console.log("DATA:", data);
-    setArtists(data.artists.items);
-  };
+  //   console.log("DATA:", data);
+  //   setArtists(data.artists.items);
+  // };
 
-  const renderArtists = () => {
-    return artists.map((artist) => (
-      <div key={artist.id}>
-        {artist.images.length ? (
-          <img width={"100%"} src={artist.images[0].url} alt="" />
-        ) : (
-          <div>No Image</div>
-        )}
-        {artist.name}
-      </div>
-    ));
-  };
+  // const renderArtists = () => {
+  //   return artists.map((artist) => (
+  //     <div key={artist.id}>
+  //       {artist.images.length ? (
+  //         <img width={"100%"} src={artist.images[0].url} alt="" />
+  //       ) : (
+  //         <div>No Image</div>
+  //       )}
+  //       {artist.name}
+  //     </div>
+  //   ));
+  // };
 
   const handleSignIn = () => {
     window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
