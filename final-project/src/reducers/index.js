@@ -6,6 +6,8 @@ import playlistTypeReducer from "./playlistType";
 import titleReducer from "./title";
 import authorReducer from "./author";
 import characterReducer from "./character";
+import playlistTrackReducer from "./playlistTracks";
+import spotifyUserReducer from "./spotifyUser";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
   title: titleReducer,
   author: authorReducer,
   character: characterReducer,
+  playlistTracks: playlistTrackReducer,
+  spotifyUser: spotifyUserReducer,
 });
 
 export default rootReducer;

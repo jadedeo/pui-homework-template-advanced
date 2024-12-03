@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setPlaylistType, setTitle, setAuthor, setCharacter } from "../actions";
+import {
+  setPlaylistType,
+  setTitle,
+  setAuthor,
+  setCharacter,
+  setPlaylistTracks,
+} from "../actions";
+import { useNavigate } from "react-router-dom";
 
 import genres from "../resources/genres.json";
 import moods from "../resources/moods.json";
@@ -22,8 +29,10 @@ import MenuItem from "@mui/material/MenuItem";
 import ChipInput from "./ChipInput";
 
 const Form = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const playlistType = useSelector((state) => state.playlistType);
+
   // const title = useSelector((state) => state.title);
   const title = "The Secret History";
   const author = useSelector((state) => state.author);
@@ -55,16 +64,71 @@ const Form = () => {
     }
   };
 
-  const getSimilarPlaylists = async () => {
+  const performCreationLogic = async () => {
     try {
+      //set up initial query using user inputs
       const query = createSearchQuery(title, character, keywords);
+
+      //collect playlists that currently match query
       const playlists = await searchSpotifyForPlaylists(query, token);
+
+      //retrieve songs from those playlists
       const tracks = await getTracksFromPlaylists(playlists);
+      console.log(`FETCHED TOTAL OF ${tracks.length} TRACKS`);
       console.log(tracks);
+
+      const shortenedTracks = tracks.slice(0, 10);
+      console.log(shortenedTracks);
+      dispatch(setPlaylistTracks(shortenedTracks));
+      navigate("/playlist");
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
+  const createSearchQuery = (title, character, keywords) => {
+    let queryParts = [];
+
+    console.log(title, character, keywords);
+
+    if (title) {
+      queryParts.push(`"${title}"`);
+    }
+    if (character) {
+      queryParts.push(`"${character}"`);
+    }
+    if (keywords && keywords.length > 0) {
+      keywords.forEach((keyword) => {
+        queryParts.push(`"${keyword}"`);
+      });
+    }
+
+    console.log(queryParts.join(" OR "));
+    return queryParts.join(" OR ");
+  };
+
+  async function searchSpotifyForPlaylists(query, accessToken) {
+    const encodedQuery = encodeURIComponent(query);
+    try {
+      const response = await fetch(
+        `https://api.spotify.com/v1/search?type=playlist&q=${encodedQuery}&limit=1`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`ERROR status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data.playlists.items;
+    } catch (error) {
+      console.error("ERROR ", error);
+    }
+  }
 
   async function getTracksFromPlaylists(playlists) {
     const allTracks = [];
@@ -85,70 +149,20 @@ const Form = () => {
         );
 
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          throw new Error(`ERROR status: ${response.status}`);
         }
 
         const data = await response.json();
-        // console.log(data.items);
+        console.log(`.... fetched ${data.items.length} tracks`);
 
-        // const tracks = data.items;
         for (const item of data.items) {
-          // console.log(item.track.name, item.track.id);
-
           allTracks.push(item);
         }
-
-        // return data.items;
       } catch (error) {
-        console.error("Error:", error);
+        console.error("ERROR", error);
       }
     }
-    // console.log(allTracks);
     return allTracks;
-  }
-
-  const createSearchQuery = (title, character, keywords) => {
-    let queryParts = [];
-
-    console.log(title, character, keywords);
-
-    if (title) {
-      queryParts.push(`"${title}"`);
-      // console.log(title);
-    }
-    if (character) {
-      queryParts.push(`"${character}"`);
-    }
-    if (keywords && keywords.length > 0) {
-      keywords.forEach((keyword) => {
-        queryParts.push(`"${keyword}"`);
-      });
-    }
-
-    return queryParts.join(" OR ");
-  };
-
-  async function searchSpotifyForPlaylists(query, accessToken) {
-    const encodedQuery = encodeURIComponent(query);
-    try {
-      const response = await fetch(
-        `https://api.spotify.com/v1/search?type=playlist&q=${encodedQuery}&limit=5`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      return data.playlists.items;
-    } catch (error) {
-      console.error("Error:", error);
-    }
   }
 
   return (
@@ -258,7 +272,7 @@ const Form = () => {
         <Button
           variant="contained"
           component={Link}
-          onClick={getSimilarPlaylists} /*to="/playlist"*/
+          onClick={performCreationLogic} /*to="/playlist"*/
         >
           Create Playlist
         </Button>

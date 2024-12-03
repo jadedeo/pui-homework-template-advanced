@@ -29,3 +29,17 @@ export const setCharacter = (newCharacter) => {
     payload: newCharacter,
   };
 };
+
+export const setPlaylistTracks = (playlistTracks) => {
+  return {
+    type: "SET_PLAYLIST_TRACKS",
+    payload: playlistTracks,
+  };
+};
+
+export const setSpotifyUser = (userData) => {
+  return {
+    type: "SET_SPOTIFY_USER",
+    payload: userData,
+  };
+};
