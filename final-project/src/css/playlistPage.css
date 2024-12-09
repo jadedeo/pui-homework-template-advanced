@@ -1,0 +1,20 @@
+#playlist-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.BackgroundColorContainer_backgroundColorContainer__YZSQ7 {
+  background-color: pink !important;
+}
+
+#playlist-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+#playlist-page-container #save-playlist-button {
+  width: 30%;
+  margin: auto 0 auto auto;
+}

@@ -5,47 +5,55 @@ import {
   setPlaylistType,
   setTitle,
   setAuthor,
+  setMood,
+  setKeyword,
   setCharacter,
   setPlaylistTracks,
 } from "../actions";
 import { useNavigate } from "react-router-dom";
 
-import genres from "../resources/genres.json";
+// import genres from "../resources/genres.json";
 import moods from "../resources/moods.json";
 
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import RadioGroup from "@mui/material/RadioGroup";
-import Radio from "@mui/material/Radio";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Select from "@mui/material/Select";
-import Box from "@mui/material/Box";
-import Chip from "@mui/material/Chip";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import MenuItem from "@mui/material/MenuItem";
+import {
+  FormControl,
+  FormLabel,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
+  Button,
+  TextField,
+  Select,
+  Box,
+  Chip,
+  OutlinedInput,
+  MenuItem,
+} from "@mui/material";
 
 import ChipInput from "./ChipInput";
+
+import "../css/form.css";
 
 const Form = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const playlistType = useSelector((state) => state.playlistType);
 
-  // const title = useSelector((state) => state.title);
-  const title = "The Secret History";
+  const title = useSelector((state) => state.title);
   const author = useSelector((state) => state.author);
-  // const character = useSelector((state) => state.character);
-  const character = "Henry Winter";
+  const character = useSelector((state) => state.character);
+  const mood = useSelector((state) => state.mood);
+  const keyword = useSelector((state) => state.keyword);
 
-  const [myGenres, setMyGenres] = useState([]);
-  const [myMoods, setMyMoods] = useState([]);
-  const [keywords, setKeywords] = useState(["Academia"]);
+  const [myMoods, setMyMoods] = useState(useSelector((state) => state.mood));
+  const [keywords, setKeywords] = useState(
+    useSelector((state) => state.keyword)
+  );
   const [token, setToken] = useState("");
 
   const handleKeywordsChange = (newKeywords) => {
     setKeywords(newKeywords);
+    dispatch(setKeyword(newKeywords));
   };
 
   useEffect(() => {
@@ -57,12 +65,16 @@ const Form = () => {
     const {
       target: { value },
     } = event;
-    if (type === "genre") {
-      setMyGenres(typeof value === "string" ? value.split(",") : value);
-    } else if (type === "mood") {
-      setMyMoods(typeof value === "string" ? value.split(",") : value);
-    }
+
+    setMyMoods(typeof value === "string" ? value.split(",") : value);
+    // dispatch(setMood(myMoods));
   };
+
+  useEffect(() => {
+    if (myMoods.length > 0) {
+      dispatch(setMood(myMoods)); // Dispatch the updated mood state
+    }
+  }, [myMoods, dispatch]);
 
   const performCreationLogic = async () => {
     try {
@@ -70,15 +82,18 @@ const Form = () => {
       const query = createSearchQuery(title, character, keywords);
 
       //collect playlists that currently match query
-      const playlists = await searchSpotifyForPlaylists(query, token);
+      const playlists = (await searchSpotifyForPlaylists(query, token)) || [];
 
       //retrieve songs from those playlists
       const tracks = await getTracksFromPlaylists(playlists);
       console.log(`FETCHED TOTAL OF ${tracks.length} TRACKS`);
       console.log(tracks);
 
+      //get first 10 tracks for testing purposes
       const shortenedTracks = tracks.slice(0, 10);
       console.log(shortenedTracks);
+
+      //put tracks into state
       dispatch(setPlaylistTracks(shortenedTracks));
       navigate("/playlist");
     } catch (error) {
@@ -111,7 +126,8 @@ const Form = () => {
     const encodedQuery = encodeURIComponent(query);
     try {
       const response = await fetch(
-        `https://api.spotify.com/v1/search?type=playlist&q=${encodedQuery}&limit=1`,
+        //only getting one playlist for testing purposes
+        `https://api.spotify.com/v1/search?type=playlist&q=${title}&limit=3`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -169,105 +185,109 @@ const Form = () => {
     <div id="form-container">
       <div id="form-content">
         <FormControl component="fieldset">
-          <FormLabel id="playlist-type-radio-label">
-            I would like to create a playlist for:
-          </FormLabel>
-          <RadioGroup
-            aria-labelledby="playlist-type-radio-label"
-            defaultValue="book"
-            name="playlist-type"
-            row
-            onChange={(e) => dispatch(setPlaylistType(e.target.value))}
-            value={playlistType}
-          >
-            <FormControlLabel value="book" control={<Radio />} label="A book" />
-            <FormControlLabel
-              value="character"
-              control={<Radio />}
-              label="A book character"
-            />
-          </RadioGroup>
+          <div id="playlist-type-form-control">
+            <FormLabel id="playlist-type-radio-label">
+              I would like to create a playlist for:
+            </FormLabel>
+            <RadioGroup
+              id="playlist-type-radio-group"
+              aria-labelledby="playlist-type-radio-label"
+              defaultValue="book"
+              name="playlist-type"
+              row
+              onChange={(e) => dispatch(setPlaylistType(e.target.value))}
+              value={playlistType}
+            >
+              <FormControlLabel
+                className="playlist-type-radio"
+                value="book"
+                control={<Radio />}
+                label="A book"
+              />
+              <FormControlLabel
+                className="playlist-type-radio"
+                value="character"
+                control={<Radio />}
+                label="A book character"
+              />
+            </RadioGroup>
+          </div>
         </FormControl>
 
-        <FormControl component="fieldset" fullWidth>
-          <TextField
-            label="Title"
-            // value="The Secret History"
-            value={title}
-            onChange={(e) => dispatch(setTitle(e.target.value))}
-            fullWidth
-          />
-          {/* <TextField
-            label="Author"
-            value={author}
-            onChange={(e) => dispatch(setAuthor(e.target.value))}
-            fullWidth
-          /> */}
+        <div id="title-author-character-container">
+          <div id="title-author-container">
+            <FormControl component="fieldset" fullWidth>
+              <FormLabel id="title-input-label">Title</FormLabel>
+              <TextField
+                hiddenlabel
+                aria-labelledby="title-input-label"
+                value={title}
+                onChange={(e) => dispatch(setTitle(e.target.value))}
+                fullWidth
+              />
+            </FormControl>
+            <FormControl component="fieldset" fullWidth>
+              <FormLabel id="author-input-label">Author</FormLabel>
+              <TextField
+                hiddenlabel
+                aria-labelledby="author-input-label"
+                value={author}
+                onChange={(e) => dispatch(setAuthor(e.target.value))}
+                fullWidth
+              />
+            </FormControl>
+          </div>
+
           {playlistType === "character" && (
-            <TextField
-              label="Character"
-              value={character}
-              onChange={(e) => dispatch(setCharacter(e.target.value))}
-              fullWidth
-            />
+            <FormControl component="fieldset" fullWidth>
+              <FormLabel id="character-input-label">Character</FormLabel>
+              <TextField
+                hiddenlabel
+                aria-labelledby="character-input-label"
+                value={character}
+                onChange={(e) => dispatch(setCharacter(e.target.value))}
+                fullWidth
+              />
+            </FormControl>
           )}
-        </FormControl>
+        </div>
 
-        <FormControl component="fieldset" fullWidth>
-          <p>Mood</p>
-          <Select
-            multiple
-            value={myMoods}
-            onChange={(e) => handleChange(e, "mood")}
-            input={<OutlinedInput label="Moods" />}
-            renderValue={(selected) => (
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                {selected.map((value) => (
-                  <Chip key={value} label={value} />
-                ))}
-              </Box>
-            )}
-          >
-            {moods.map((mood) => (
-              <MenuItem key={mood.name} value={mood.name}>
-                {mood.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <div id="mood-keyword-container">
+          <FormControl component="fieldset" fullWidth>
+            <FormLabel id="mood-input-label">Mood</FormLabel>
+            <Select
+              hiddenlabel
+              aria-labelledby="mood-input-label"
+              multiple
+              value={myMoods}
+              onChange={(e) => handleChange(e, "mood")}
+              input={<OutlinedInput />}
+              renderValue={(selected) => (
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} />
+                  ))}
+                </Box>
+              )}
+            >
+              {moods.map((mood) => (
+                <MenuItem key={mood.name} value={mood.name}>
+                  {mood.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
-        <FormControl component="fieldset" fullWidth>
-          <p>Genre</p>
-          <Select
-            multiple
-            value={myGenres}
-            onChange={(e) => handleChange(e, "genre")}
-            input={<OutlinedInput label="Genres" />}
-            renderValue={(selected) => (
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                {selected.map((value) => (
-                  <Chip key={value} label={value} />
-                ))}
-              </Box>
-            )}
-          >
-            {genres.map((genre) => (
-              <MenuItem key={genre.name} value={genre.name}>
-                {genre.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <p>Keywords</p>
-        <FormControl>
-          <ChipInput
-            label=""
-            value={keywords}
-            onChange={handleKeywordsChange}
-            placeholder="Type and press enter"
-          />
-        </FormControl>
+          {/* <p>Keywords</p> */}
+          <FormControl>
+            <ChipInput
+              label=""
+              value={keywords}
+              onChange={handleKeywordsChange}
+              placeholder="Type and press enter"
+            />
+          </FormControl>
+        </div>
 
         <Button
           variant="contained"

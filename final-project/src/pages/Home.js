@@ -89,7 +89,7 @@ const Home = () => {
   };
 
   const handleSignIn = () => {
-    const loginUrl = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=playlist-modify-public playlist-modify-private`;
+    const loginUrl = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&show-dialog=true&scope=playlist-modify-public playlist-modify-private`;
     console.log("Redirecting to login URL:", loginUrl);
     window.location.href = loginUrl;
   };
@@ -99,8 +99,8 @@ const Home = () => {
       <div id="home-container">
         <div id="home-text-content">
           <div>
-            <h1>*~LitTunes~* wow</h1>
-            <h3>some container with introductory information idk</h3>
+            <h1>LitTunes</h1>
+            <h3>Soundtracks for your shelf.</h3>
           </div>
           <div>
             <p>
@@ -112,18 +112,21 @@ const Home = () => {
               nulla tristique leo.
             </p>
           </div>
-        </div>
 
-        {/* Only show sign-in button if there's no token */}
-        {!token ? (
-          <Button variant="contained" onClick={handleSignIn}>
-            SIGN IN
-          </Button>
-        ) : (
-          <Link to="/form">
-            <Button variant="contained">Start</Button>
-          </Link>
-        )}
+          {/* Only show sign-in button if there's no token */}
+          {!token ? (
+            <Button variant="contained" onClick={handleSignIn}>
+              SIGN IN
+            </Button>
+          ) : (
+            <Link to="/form">
+              <Button variant="contained">Start</Button>
+            </Link>
+          )}
+        </div>
+        <div id="home-img-container">
+          <img id="home-img" src="assets/proposal/PlaylistPage.png" />
+        </div>
       </div>
     </main>
   );

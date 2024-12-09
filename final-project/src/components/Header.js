@@ -1,8 +1,10 @@
 import "../css/home.css";
+import "../css/header.css";
 
 const Header = (props) => {
   return (
-    <div id="header-container">
+    <header id="header-container">
+      {/* <div > */}
       <div id="header-content">
         <div>
           <img
@@ -17,7 +19,8 @@ const Header = (props) => {
           <h4>Soundtracks for your shelf.</h4>
         </div>
       </div>
-    </div>
+      {/* </div> */}
+    </header>
   );
 };
 

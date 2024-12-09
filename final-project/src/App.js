@@ -10,7 +10,7 @@ import PlaylistPage from "../src/pages/PlaylistPage.js";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#00cc22",
+      main: "#fff",
     },
   },
 });

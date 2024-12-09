@@ -1,0 +1,51 @@
+/* .playlist-type-radio {
+  background-color: white;
+  color: black;
+} */
+
+#title-author-character-container,
+#mood-keyword-container {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+
+#title-author-container {
+  display: flex;
+  gap: 15px;
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+  }
+}
+
+fieldset,
+div.MuiFormControl-root {
+  gap: 5px;
+}
+
+label,
+div label {
+  font-weight: bold !important;
+}
+
+#playlist-type-form-control {
+  display: flex;
+
+  @media screen and (min-width: 481px) {
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+  }
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+  }
+}
+
+#playlist-type-radio-group {
+  display: flex;
+  flex-wrap: no-wrap !important;
+  @media screen and (max-width: 480px) {
+    /* display: flex; */
+    gap: 4%;
+  }
+}

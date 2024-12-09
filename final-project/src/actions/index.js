@@ -30,6 +30,20 @@ export const setCharacter = (newCharacter) => {
   };
 };
 
+export const setMood = (newMood) => {
+  return {
+    type: "SET_MOOD",
+    payload: newMood,
+  };
+};
+
+export const setKeyword = (newKeyword) => {
+  return {
+    type: "SET_KEYWORD",
+    payload: newKeyword,
+  };
+};
+
 export const setPlaylistTracks = (playlistTracks) => {
   return {
     type: "SET_PLAYLIST_TRACKS",

@@ -6,10 +6,15 @@ import { Spotify } from "react-spotify-embed";
 import Header from "../components/Header";
 
 import "../css/home.css";
+import "../css/playlistPage.css";
 
 const PlaylistPage = () => {
   const tokenFromStorage = window.localStorage.getItem("token");
   const spotifyUser = useSelector((state) => state.spotifyUser);
+
+  const title = useSelector((state) => state.title);
+  const author = useSelector((state) => state.author);
+  const character = useSelector((state) => state.character);
   const playlistTracks = useSelector((state) => state.playlistTracks);
 
   let playlist_name = null;
@@ -21,8 +26,8 @@ const PlaylistPage = () => {
     console.log(spotifyUser.display_name);
 
     //use modal to ask user for this info:
-    playlist_name = "My Showstopping Amazing Spectacular Playlist";
-    playlist_description = "Some description for my playlist.";
+    playlist_name = "My Amazing Spectacular Showstopping Playlist";
+    playlist_description = "Some description here.";
     playlist_isPublic = false;
 
     createNewPlaylist();
@@ -89,18 +94,37 @@ const PlaylistPage = () => {
   return (
     <>
       <Header />
-      <div>
-        {playlistTracks.map((item) => (
-          <Spotify
-            key={item.track.id}
-            wide
-            link={item.track.external_urls?.spotify}
-          />
-        ))}
-        <Button variant="contained" onClick={handleSavePlaylist}>
-          Save Playlist
-        </Button>
-      </div>
+      <main>
+        <div id="playlist-page-container">
+          <div>
+            <h4>
+              Here's your playlist for {character ? `${character} from ` : ""}"
+              {title}" by {author}!
+            </h4>
+            <p>
+              If you’d like to save it to your library, please click the button
+              in the bottom right.
+            </p>
+          </div>
+          <div id="playlist-list">
+            {playlistTracks.map((item) => (
+              <Spotify
+                // style={{ backgroundColor: "red" }}
+                key={item.track.id}
+                wide
+                link={item.track.external_urls?.spotify}
+              />
+            ))}
+          </div>
+          <Button
+            id="save-playlist-button"
+            variant="contained"
+            onClick={handleSavePlaylist}
+          >
+            Save Playlist
+          </Button>
+        </div>
+      </main>
     </>
   );
 };
