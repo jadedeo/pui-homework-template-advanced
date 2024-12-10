@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
 import {
   setPlaylistType,
   setTitle,
@@ -11,16 +10,13 @@ import {
   setCharacter,
   setPlaylistTracks,
 } from "../actions";
-
 import { useNavigate } from "react-router-dom";
-
 import moods from "../resources/moods.json";
 import {
   searchSpotifyForPlaylists,
   getTracksFromPlaylists,
   getRandomTracks,
 } from "../resources/playlistLogic";
-
 import {
   FormControl,
   FormLabel,
@@ -36,8 +32,6 @@ import {
   MenuItem,
 } from "@mui/material";
 import ChipInput from "./ChipInput";
-
-import { Spotify } from "react-spotify-embed";
 
 import "../css/form.css";
 
@@ -58,12 +52,14 @@ const Form = () => {
   );
   const [token, setToken] = useState("");
 
+  const [isValid, setIsValid] = useState(false);
+
   useEffect(() => {
     const tokenFromStorage = window.localStorage.getItem("token");
     setToken(tokenFromStorage);
   }, []);
 
-  // Handle Mood change
+  // handle mood changes
   const handleChange = (event, type) => {
     const {
       target: { value },
@@ -71,29 +67,41 @@ const Form = () => {
     setMyMoods(typeof value === "string" ? value.split(",") : value);
   };
 
-  // Dispatch mood changes once state is updated
+  // dispatch mood changes once state is updated
   useEffect(() => {
     if (myMoods.length > 0) {
       dispatch(setMood(myMoods));
     }
   }, [myMoods, dispatch]);
 
-  // Handle Keywords change
+  // handle keywords changes
   const handleKeywordsChange = (newKeywords) => {
     setKeywords(newKeywords);
   };
 
-  // Dispatch keywords changes once state is updated
+  // dispatch keywords changes once state is updated
   useEffect(() => {
     if (keywords.length > 0) {
       dispatch(setKeyword(keywords));
     }
   }, [keywords, dispatch]);
 
-  // const handleClickTest = () =>{
-  //   navigate("/playlist");
-  // }
+  // form validation logic
+  const validateForm = () => {
+    const isTitleValid = title.trim() !== "";
+    const isAuthorValid = author.trim() !== "";
+    const isCharacterValid =
+      playlistType === "character" ? character.trim() !== "" : true;
 
+    setIsValid(isTitleValid && isAuthorValid && isCharacterValid);
+  };
+
+  // perform validation when any of the fields change
+  useEffect(() => {
+    validateForm();
+  }, [title, author, character, playlistType]);
+
+  // perform playlist creation logic
   const performCreationLogic = async () => {
     console.log("--------------------------------");
     console.log(title, character, keywords, myMoods);
@@ -137,10 +145,19 @@ const Form = () => {
       console.log(allTracks);
 
       dispatch(setPlaylistTracks(allTracks));
-      // setShowPlaylistPage(true);
       navigate("/playlist");
     } catch (error) {
       console.error("Error:", error);
+    }
+  };
+
+  const handlePlaylistTypeChange = (event) => {
+    const newType = event.target.value;
+    dispatch(setPlaylistType(newType));
+
+    // clear the character field if the playlist type is changed to "book"
+    if (newType === "book") {
+      dispatch(setCharacter(""));
     }
   };
 
@@ -158,7 +175,7 @@ const Form = () => {
               defaultValue="book"
               name="playlist-type"
               row
-              onChange={(e) => dispatch(setPlaylistType(e.target.value))}
+              onChange={handlePlaylistTypeChange}
               value={playlistType}
             >
               <FormControlLabel
@@ -180,9 +197,9 @@ const Form = () => {
         <div id="title-author-character-container">
           <div id="title-author-container">
             <FormControl component="fieldset" fullWidth>
-              <FormLabel id="title-input-label">Title</FormLabel>
+              <FormLabel id="title-input-label">Title*</FormLabel>
               <TextField
-                hiddenlabel
+                hiddenLabel
                 aria-labelledby="title-input-label"
                 value={title}
                 onChange={(e) => dispatch(setTitle(e.target.value))}
@@ -190,9 +207,9 @@ const Form = () => {
               />
             </FormControl>
             <FormControl component="fieldset" fullWidth>
-              <FormLabel id="author-input-label">Author</FormLabel>
+              <FormLabel id="author-input-label">Author*</FormLabel>
               <TextField
-                hiddenlabel
+                hiddenLabel
                 aria-labelledby="author-input-label"
                 value={author}
                 onChange={(e) => dispatch(setAuthor(e.target.value))}
@@ -203,9 +220,9 @@ const Form = () => {
 
           {playlistType === "character" && (
             <FormControl component="fieldset" fullWidth>
-              <FormLabel id="character-input-label">Character</FormLabel>
+              <FormLabel id="character-input-label">Character*</FormLabel>
               <TextField
-                hiddenlabel
+                hiddenLabel
                 aria-labelledby="character-input-label"
                 value={character}
                 onChange={(e) => dispatch(setCharacter(e.target.value))}
@@ -219,7 +236,7 @@ const Form = () => {
           <FormControl component="fieldset" fullWidth>
             <FormLabel id="mood-input-label">Mood</FormLabel>
             <Select
-              hiddenlabel
+              hiddenLabel
               aria-labelledby="mood-input-label"
               multiple
               value={myMoods}
@@ -241,7 +258,6 @@ const Form = () => {
             </Select>
           </FormControl>
 
-          {/* <p>Keywords</p> */}
           <FormControl>
             <ChipInput
               label=""
@@ -256,6 +272,7 @@ const Form = () => {
           id="create-playlist-button"
           variant="contained"
           onClick={performCreationLogic}
+          disabled={!isValid}
         >
           Create Playlist
         </Button>
@@ -264,4 +281,5 @@ const Form = () => {
     </div>
   );
 };
+
 export default Form;

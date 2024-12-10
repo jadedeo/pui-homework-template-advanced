@@ -40,7 +40,6 @@ div label {
   display: flex;
   flex-wrap: no-wrap !important;
   @media screen and (max-width: 480px) {
-    /* display: flex; */
     gap: 4%;
   }
 }
@@ -53,4 +52,16 @@ div label {
 #create-playlist-button {
   width: 30%;
   margin: auto 0 auto auto;
+  font-weight: 600;
+  border-radius: 50px;
+}
+
+.Mui-disabled#create-playlist-button {
+  background-color: white;
+  color: black;
+  opacity: 30%;
+}
+
+.required-asterisk {
+  color: white;
 }
