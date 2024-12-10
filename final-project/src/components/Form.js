@@ -1,6 +1,9 @@
+// general react, redux & router
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+// redux actions
 import {
   setPlaylistType,
   setTitle,
@@ -10,13 +13,8 @@ import {
   setCharacter,
   setPlaylistTracks,
 } from "../actions";
-import { useNavigate } from "react-router-dom";
-import moods from "../resources/moods.json";
-import {
-  searchSpotifyForPlaylists,
-  getTracksFromPlaylists,
-  getRandomTracks,
-} from "../resources/playlistLogic";
+
+// components
 import {
   FormControl,
   FormLabel,
@@ -33,10 +31,20 @@ import {
 } from "@mui/material";
 import ChipInput from "./ChipInput";
 
+// utility functions
+import {
+  searchSpotifyForPlaylists,
+  getTracksFromPlaylists,
+  getRandomTracks,
+} from "../resources/playlistLogic";
+
+// data
+import moods from "../resources/moods.json";
+
+// stylesheet
 import "../css/form.css";
 
 const Form = () => {
-  const [showPlaylistPage, setShowPlaylistPage] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -220,7 +228,7 @@ const Form = () => {
 
           {playlistType === "character" && (
             <FormControl component="fieldset" fullWidth>
-              <FormLabel id="character-input-label">Character*</FormLabel>
+              <FormLabel id="character-input-label">Character Name*</FormLabel>
               <TextField
                 hiddenLabel
                 aria-labelledby="character-input-label"
@@ -276,7 +284,7 @@ const Form = () => {
         >
           Create Playlist
         </Button>
-        <p>Token: {token}</p>
+        {/* <p>Token: {token}</p> */}
       </div>
     </div>
   );
