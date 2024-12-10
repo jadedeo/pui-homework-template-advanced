@@ -112,7 +112,7 @@ const PlaylistPage = () => {
                 // style={{ backgroundColor: "red" }}
                 key={item.track.id}
                 wide
-                link={item.track.external_urls?.spotify}
+                link={item.track?.external_urls?.spotify}
               />
             ))}
           </div>

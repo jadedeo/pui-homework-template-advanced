@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+
 import {
   setPlaylistType,
   setTitle,
@@ -10,10 +11,15 @@ import {
   setCharacter,
   setPlaylistTracks,
 } from "../actions";
+
 import { useNavigate } from "react-router-dom";
 
-// import genres from "../resources/genres.json";
 import moods from "../resources/moods.json";
+import {
+  searchSpotifyForPlaylists,
+  getTracksFromPlaylists,
+  getRandomTracks,
+} from "../resources/playlistLogic";
 
 import {
   FormControl,
@@ -29,7 +35,6 @@ import {
   OutlinedInput,
   MenuItem,
 } from "@mui/material";
-
 import ChipInput from "./ChipInput";
 
 import "../css/form.css";
@@ -38,12 +43,11 @@ const Form = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const playlistType = useSelector((state) => state.playlistType);
-
   const title = useSelector((state) => state.title);
   const author = useSelector((state) => state.author);
   const character = useSelector((state) => state.character);
-  const mood = useSelector((state) => state.mood);
-  const keyword = useSelector((state) => state.keyword);
+  // const mood = useSelector((state) => state.mood);
+  // const keyword = useSelector((state) => state.keyword);
 
   const [myMoods, setMyMoods] = useState(useSelector((state) => state.mood));
   const [keywords, setKeywords] = useState(
@@ -65,121 +69,57 @@ const Form = () => {
     const {
       target: { value },
     } = event;
-
     setMyMoods(typeof value === "string" ? value.split(",") : value);
-    // dispatch(setMood(myMoods));
   };
 
   useEffect(() => {
     if (myMoods.length > 0) {
-      dispatch(setMood(myMoods)); // Dispatch the updated mood state
+      dispatch(setMood(myMoods));
     }
   }, [myMoods, dispatch]);
 
   const performCreationLogic = async () => {
+    console.log("--------------------------------");
     try {
-      //set up initial query using user inputs
-      const query = createSearchQuery(title, character, keywords);
+      // get songs that match 'title'
+      const titlePlaylists = await searchSpotifyForPlaylists(title, token);
+      const titleTracks = await getTracksFromPlaylists(titlePlaylists, token);
+      const randomTitleTracks = getRandomTracks(titleTracks);
 
-      //collect playlists that currently match query
-      const playlists = (await searchSpotifyForPlaylists(query, token)) || [];
+      // get songs that match 'character'
+      const characterPlaylists = await searchSpotifyForPlaylists(
+        character,
+        token
+      );
+      const characterTracks = await getTracksFromPlaylists(
+        characterPlaylists,
+        token
+      );
+      const randomCharacterTracks = getRandomTracks(characterTracks);
 
-      //retrieve songs from those playlists
-      const tracks = await getTracksFromPlaylists(playlists);
-      console.log(`FETCHED TOTAL OF ${tracks.length} TRACKS`);
-      console.log(tracks);
+      // const moodPlaylists = await searchSpotifyForPlaylists(mood, token);
+      // const moodTracks = await getTracksFromPlaylists(moodPlaylists, token);
+      // allTracks.push(...getRandomTracks(moodTracks));
 
-      //get first 10 tracks for testing purposes
-      const shortenedTracks = tracks.slice(0, 10);
-      console.log(shortenedTracks);
+      // for (let kw of keywords) {
+      //   const keywordPlaylists = await searchSpotifyForPlaylists(kw, token);
+      //   const keywordTracks = await getTracksFromPlaylists(
+      //     keywordPlaylists,
+      //     token
+      //   );
+      //   allTracks.push(...getRandomTracks(keywordTracks));
+      // }
 
-      //put tracks into state
-      dispatch(setPlaylistTracks(shortenedTracks));
-      navigate("/playlist");
+      // compile final list of tracks
+      const allTracks = [...randomTitleTracks, ...randomCharacterTracks];
+      console.log(`Total Tracks: ${allTracks.length}`);
+
+      // dispatch(setPlaylistTracks(allTracks));
+      // navigate("/playlist");
     } catch (error) {
       console.error("Error:", error);
     }
   };
-
-  const createSearchQuery = (title, character, keywords) => {
-    let queryParts = [];
-
-    console.log(title, character, keywords);
-
-    if (title) {
-      queryParts.push(`"${title}"`);
-    }
-    if (character) {
-      queryParts.push(`"${character}"`);
-    }
-    if (keywords && keywords.length > 0) {
-      keywords.forEach((keyword) => {
-        queryParts.push(`"${keyword}"`);
-      });
-    }
-
-    console.log(queryParts.join(" OR "));
-    return queryParts.join(" OR ");
-  };
-
-  async function searchSpotifyForPlaylists(query, accessToken) {
-    const encodedQuery = encodeURIComponent(query);
-    try {
-      const response = await fetch(
-        //only getting one playlist for testing purposes
-        `https://api.spotify.com/v1/search?type=playlist&q=${title}&limit=3`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`ERROR status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      return data.playlists.items;
-    } catch (error) {
-      console.error("ERROR ", error);
-    }
-  }
-
-  async function getTracksFromPlaylists(playlists) {
-    const allTracks = [];
-    for (const playlist of playlists) {
-      if (!playlist) {
-        return;
-      }
-
-      console.log("FETCHING TRACKS IN", playlist.name, playlist.id);
-      try {
-        const response = await fetch(
-          `https://api.spotify.com/v1/playlists/${playlist.id}/tracks`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(`ERROR status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log(`.... fetched ${data.items.length} tracks`);
-
-        for (const item of data.items) {
-          allTracks.push(item);
-        }
-      } catch (error) {
-        console.error("ERROR", error);
-      }
-    }
-    return allTracks;
-  }
 
   return (
     <div id="form-container">
@@ -290,6 +230,7 @@ const Form = () => {
         </div>
 
         <Button
+          id="create-playlist-button"
           variant="contained"
           component={Link}
           onClick={performCreationLogic} /*to="/playlist"*/

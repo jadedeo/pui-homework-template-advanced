@@ -49,3 +49,13 @@ div label {
     gap: 4%;
   }
 }
+
+#form-container fieldset svg,
+#form-container div svg {
+  color: white !important;
+}
+
+#create-playlist-button {
+  width: 30%;
+  margin: auto 0 auto auto;
+}
