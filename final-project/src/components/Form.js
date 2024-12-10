@@ -255,8 +255,7 @@ const Form = () => {
         <Button
           id="create-playlist-button"
           variant="contained"
-          // component={Link}
-          onClick={performCreationLogic} /*to="/playlist"*/
+          onClick={performCreationLogic}
         >
           Create Playlist
         </Button>

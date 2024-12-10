@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import { Spotify } from "react-spotify-embed";
 import Header from "../components/Header";
+import PlaylistDialog from "../components/PlaylistDialog";
 
 import "../css/home.css";
 import "../css/playlistPage.css";
@@ -17,30 +18,31 @@ const PlaylistPage = () => {
   const character = useSelector((state) => state.character);
   const playlistTracks = useSelector((state) => state.playlistTracks);
 
-  let playlist_name = null;
-  let playlist_description = null;
-  let playlist_isPublic = null;
-  let playlist_id = null;
+  const [open, setOpen] = useState(false);
+  const [playlistId, setPlaylistId] = useState(null);
 
-  const handleSavePlaylist = () => {
-    console.log(spotifyUser.display_name);
-
-    //use modal to ask user for this info:
-    playlist_name = "My Amazing Spectacular Showstopping Playlist";
-    playlist_description = "Some description here.";
-    playlist_isPublic = false;
-
-    createNewPlaylist();
+  const handleClickOpen = () => {
+    setOpen(true);
   };
 
-  const createNewPlaylist = async () => {
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSavePlaylist = (name, description, isPublic) => {
+    console.log("Creating playlist with details:", name, description, isPublic);
+    createNewPlaylist(name, description, isPublic);
+    setOpen(false);
+  };
+
+  const createNewPlaylist = async (name, description, isPublic) => {
     try {
       const response = await axios.post(
         `https://api.spotify.com/v1/users/${spotifyUser.id}/playlists`,
         {
-          name: playlist_name,
-          description: playlist_description,
-          public: playlist_isPublic,
+          name,
+          description,
+          public: isPublic,
         },
         {
           headers: {
@@ -51,26 +53,23 @@ const PlaylistPage = () => {
       );
 
       if (response.status !== 201) {
-        throw new Error(`ERORR status: ${response.status}`);
+        throw new Error(`ERROR status: ${response.status}`);
       }
 
       const data = response.data;
-      console.log("playlist created:", data);
-      playlist_id = data.id;
-      addTracksToPlaylist(playlist_id);
+      console.log("Playlist created:", data);
+      setPlaylistId(data.id);
+      addTracksToPlaylist(data.id);
     } catch (error) {
-      console.error("error creating playlist:", error);
+      console.error("Error creating playlist:", error);
     }
   };
 
   const addTracksToPlaylist = async (playlistId) => {
     const trackUris = playlistTracks.map((item) => item.uri);
-    // console.log(playlistId);
-    // console.log(trackUris);
-
     try {
       const response = await axios.post(
-        `https://api.spotify.com/v1/playlists/${playlist_id}/tracks`,
+        `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
         {
           uris: trackUris,
         },
@@ -82,10 +81,10 @@ const PlaylistPage = () => {
         }
       );
       if (response.status === 201) {
-        console.log("tracks added to the playlist");
+        console.log("Tracks added to the playlist");
       }
     } catch (error) {
-      console.error("error adding tracks:", error);
+      console.error("Error adding tracks:", error);
     }
   };
 
@@ -96,7 +95,7 @@ const PlaylistPage = () => {
         <div id="playlist-page-container">
           <div>
             <h4>
-              Here's your playlist for {character ? `${character} from ` : ""}"
+              Here's your playlist for {character ? `${character} from ` : ""}"{" "}
               {title}" by {author}!
             </h4>
             <p>
@@ -116,13 +115,20 @@ const PlaylistPage = () => {
               );
             })}
           </div>
+
           <Button
             id="save-playlist-button"
             variant="contained"
-            onClick={handleSavePlaylist}
+            onClick={handleClickOpen}
           >
             Save Playlist
           </Button>
+
+          <PlaylistDialog
+            open={open}
+            onClose={handleClose}
+            onSave={handleSavePlaylist}
+          />
         </div>
       </main>
     </>

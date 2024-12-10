@@ -1,5 +1,3 @@
-// playlistLogic.js
-
 export async function searchSpotifyForPlaylists(query, accessToken) {
   const encodedQuery = encodeURIComponent(query);
   try {

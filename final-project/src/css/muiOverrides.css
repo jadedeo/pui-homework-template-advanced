@@ -26,11 +26,12 @@
   font-weight: bold;
 }
 
-.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiAutocomplete-inputRoot {
+#form-container
+  .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiAutocomplete-inputRoot {
   background-color: #404040;
 }
 
-input[type="text"],
+#form-container input[type="text"],
 .MuiSelect-select {
   background-color: rgb(64, 64, 64) !important;
   border-radius: 10px;
