@@ -207,7 +207,7 @@ const Form = () => {
             <FormControl component="fieldset" fullWidth>
               <FormLabel id="title-input-label">Title*</FormLabel>
               <TextField
-                hiddenLabel
+                variant="outlined"
                 aria-labelledby="title-input-label"
                 value={title}
                 onChange={(e) => dispatch(setTitle(e.target.value))}
@@ -217,7 +217,7 @@ const Form = () => {
             <FormControl component="fieldset" fullWidth>
               <FormLabel id="author-input-label">Author*</FormLabel>
               <TextField
-                hiddenLabel
+                variant="outlined"
                 aria-labelledby="author-input-label"
                 value={author}
                 onChange={(e) => dispatch(setAuthor(e.target.value))}
@@ -230,7 +230,7 @@ const Form = () => {
             <FormControl component="fieldset" fullWidth>
               <FormLabel id="character-input-label">Character Name*</FormLabel>
               <TextField
-                hiddenLabel
+                variant="outlined"
                 aria-labelledby="character-input-label"
                 value={character}
                 onChange={(e) => dispatch(setCharacter(e.target.value))}
@@ -244,7 +244,6 @@ const Form = () => {
           <FormControl component="fieldset" fullWidth>
             <FormLabel id="mood-input-label">Mood</FormLabel>
             <Select
-              hiddenLabel
               aria-labelledby="mood-input-label"
               multiple
               value={myMoods}

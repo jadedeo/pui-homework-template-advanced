@@ -104,14 +104,16 @@ const PlaylistPage = () => {
             </p>
           </div>
           <div id="playlist-list">
-            {playlistTracks.map((item) => {
+            {playlistTracks.map((item, index) => {
               const trackUrl = item.external_urls?.spotify;
-              return trackUrl ? (
-                <div key={item.track.id}>
-                  <Spotify key={item.track.id} wide link={trackUrl} />
+              return (
+                <div key={index}>
+                  {trackUrl ? (
+                    <Spotify wide link={trackUrl} />
+                  ) : (
+                    <p>Invalid URL for {item.name}</p>
+                  )}
                 </div>
-              ) : (
-                <p key={item.track.id}>Invalid URL for {item.name}</p>
               );
             })}
           </div>
