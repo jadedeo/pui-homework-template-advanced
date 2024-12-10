@@ -37,17 +37,20 @@ import {
 } from "@mui/material";
 import ChipInput from "./ChipInput";
 
+import { Spotify } from "react-spotify-embed";
+
 import "../css/form.css";
 
 const Form = () => {
+  const [showPlaylistPage, setShowPlaylistPage] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const playlistType = useSelector((state) => state.playlistType);
   const title = useSelector((state) => state.title);
   const author = useSelector((state) => state.author);
   const character = useSelector((state) => state.character);
-  // const mood = useSelector((state) => state.mood);
-  // const keyword = useSelector((state) => state.keyword);
+  const playlistTracks = useSelector((state) => state.playlistTracks);
 
   const [myMoods, setMyMoods] = useState(useSelector((state) => state.mood));
   const [keywords, setKeywords] = useState(
@@ -55,16 +58,12 @@ const Form = () => {
   );
   const [token, setToken] = useState("");
 
-  const handleKeywordsChange = (newKeywords) => {
-    setKeywords(newKeywords);
-    dispatch(setKeyword(newKeywords));
-  };
-
   useEffect(() => {
     const tokenFromStorage = window.localStorage.getItem("token");
     setToken(tokenFromStorage);
   }, []);
 
+  // Handle Mood change
   const handleChange = (event, type) => {
     const {
       target: { value },
@@ -72,19 +71,40 @@ const Form = () => {
     setMyMoods(typeof value === "string" ? value.split(",") : value);
   };
 
+  // Dispatch mood changes once state is updated
   useEffect(() => {
     if (myMoods.length > 0) {
       dispatch(setMood(myMoods));
     }
   }, [myMoods, dispatch]);
 
+  // Handle Keywords change
+  const handleKeywordsChange = (newKeywords) => {
+    setKeywords(newKeywords);
+  };
+
+  // Dispatch keywords changes once state is updated
+  useEffect(() => {
+    if (keywords.length > 0) {
+      dispatch(setKeyword(keywords));
+    }
+  }, [keywords, dispatch]);
+
+  // const handleClickTest = () =>{
+  //   navigate("/playlist");
+  // }
+
   const performCreationLogic = async () => {
     console.log("--------------------------------");
+    console.log(title, character, keywords, myMoods);
+    console.log("--------------------------------");
     try {
+      let allTracks = [];
+
       // get songs that match 'title'
       const titlePlaylists = await searchSpotifyForPlaylists(title, token);
       const titleTracks = await getTracksFromPlaylists(titlePlaylists, token);
-      const randomTitleTracks = getRandomTracks(titleTracks);
+      allTracks.push(...getRandomTracks(titleTracks));
 
       // get songs that match 'character'
       const characterPlaylists = await searchSpotifyForPlaylists(
@@ -95,27 +115,30 @@ const Form = () => {
         characterPlaylists,
         token
       );
-      const randomCharacterTracks = getRandomTracks(characterTracks);
+      allTracks.push(...getRandomTracks(characterTracks));
 
-      // const moodPlaylists = await searchSpotifyForPlaylists(mood, token);
-      // const moodTracks = await getTracksFromPlaylists(moodPlaylists, token);
-      // allTracks.push(...getRandomTracks(moodTracks));
+      // get songs that match 'mood'
+      for (let md of myMoods) {
+        const moodPlaylists = await searchSpotifyForPlaylists(md, token);
+        const moodTracks = await getTracksFromPlaylists(moodPlaylists, token);
+        allTracks.push(...getRandomTracks(moodTracks));
+      }
 
-      // for (let kw of keywords) {
-      //   const keywordPlaylists = await searchSpotifyForPlaylists(kw, token);
-      //   const keywordTracks = await getTracksFromPlaylists(
-      //     keywordPlaylists,
-      //     token
-      //   );
-      //   allTracks.push(...getRandomTracks(keywordTracks));
-      // }
+      // get songs that match 'keywords'
+      for (let kw of keywords) {
+        const keywordPlaylists = await searchSpotifyForPlaylists(kw, token);
+        const keywordTracks = await getTracksFromPlaylists(
+          keywordPlaylists,
+          token
+        );
+        allTracks.push(...getRandomTracks(keywordTracks));
+      }
 
-      // compile final list of tracks
-      const allTracks = [...randomTitleTracks, ...randomCharacterTracks];
-      console.log(`Total Tracks: ${allTracks.length}`);
+      console.log(allTracks);
 
-      // dispatch(setPlaylistTracks(allTracks));
-      // navigate("/playlist");
+      dispatch(setPlaylistTracks(allTracks));
+      // setShowPlaylistPage(true);
+      navigate("/playlist");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -232,7 +255,7 @@ const Form = () => {
         <Button
           id="create-playlist-button"
           variant="contained"
-          component={Link}
+          // component={Link}
           onClick={performCreationLogic} /*to="/playlist"*/
         >
           Create Playlist

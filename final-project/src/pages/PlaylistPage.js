@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Button from "@mui/material/Button";
@@ -83,9 +83,10 @@ const PlaylistPage = () => {
 
       if (response.status === 201) {
         console.log("tracks added to the playlist");
-      } else {
-        console.error("error adding tracks:", response.status);
       }
+      // else {
+      //   console.error("error adding tracks:", response.status);
+      // }
     } catch (error) {
       console.error("error adding tracks:", error);
     }
@@ -97,6 +98,7 @@ const PlaylistPage = () => {
       <main>
         <div id="playlist-page-container">
           <div>
+            {/* <p>readToRender: {readyToRender ? "true" : "false"}</p> */}
             <h4>
               Here's your playlist for {character ? `${character} from ` : ""}"
               {title}" by {author}!
@@ -107,14 +109,16 @@ const PlaylistPage = () => {
             </p>
           </div>
           <div id="playlist-list">
-            {playlistTracks.map((item) => (
-              <Spotify
-                // style={{ backgroundColor: "red" }}
-                key={item.track.id}
-                wide
-                link={item.track?.external_urls?.spotify}
-              />
-            ))}
+            {playlistTracks.map((item) => {
+              const trackUrl = item.external_urls?.spotify;
+              return trackUrl ? (
+                <div key={item.track.id}>
+                  <Spotify key={item.track.id} wide link={trackUrl} />
+                </div>
+              ) : (
+                <p key={item.track.id}>Invalid URL for {item.name}</p>
+              );
+            })}
           </div>
           <Button
             id="save-playlist-button"
