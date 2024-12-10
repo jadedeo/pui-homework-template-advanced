@@ -64,8 +64,9 @@ const PlaylistPage = () => {
   };
 
   const addTracksToPlaylist = async (playlistId) => {
-    const trackUris = playlistTracks.map((item) => item.track.uri);
-    console.log(playlistId);
+    const trackUris = playlistTracks.map((item) => item.uri);
+    // console.log(playlistId);
+    // console.log(trackUris);
 
     try {
       const response = await axios.post(
@@ -80,13 +81,9 @@ const PlaylistPage = () => {
           },
         }
       );
-
       if (response.status === 201) {
         console.log("tracks added to the playlist");
       }
-      // else {
-      //   console.error("error adding tracks:", response.status);
-      // }
     } catch (error) {
       console.error("error adding tracks:", error);
     }
@@ -98,7 +95,6 @@ const PlaylistPage = () => {
       <main>
         <div id="playlist-page-container">
           <div>
-            {/* <p>readToRender: {readyToRender ? "true" : "false"}</p> */}
             <h4>
               Here's your playlist for {character ? `${character} from ` : ""}"
               {title}" by {author}!
