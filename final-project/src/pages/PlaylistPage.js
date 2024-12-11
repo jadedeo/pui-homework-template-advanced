@@ -95,7 +95,8 @@ const PlaylistPage = () => {
         <div id="playlist-page-container">
           <div>
             <h4>
-              Here's your playlist for {character ? `${character} from ` : ""}"{" "}
+              Here's your playlist for {character ? `${character} from ` : ""}"
+              {""}
               {title}" by {author}!
             </h4>
             <p>

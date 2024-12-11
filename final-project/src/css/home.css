@@ -42,3 +42,8 @@
   align-items: center;
   gap: 20px;
 }
+
+button {
+  font-weight: 800 !important;
+  border-radius: 50px !important;
+}

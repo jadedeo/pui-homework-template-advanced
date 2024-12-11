@@ -2,6 +2,11 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  @media screen and (min-width: 1024px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .BackgroundColorContainer_backgroundColorContainer__YZSQ7 {

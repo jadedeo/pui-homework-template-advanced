@@ -160,7 +160,7 @@ const Form = () => {
     } catch (error) {
       console.error("Error:", error);
     } finally {
-      setIsLoading(false); // End loading regardless of success or failure
+      setIsLoading(false);
     }
   };
 
@@ -179,8 +179,10 @@ const Form = () => {
       <div id="form-content">
         {isLoading ? (
           <div id="loading-container">
-            <h4>Creating your playlist</h4>
-            <CircularProgress />
+            <div>
+              <h3>Creating your playlist</h3>
+            </div>
+            <CircularProgress size="4rem" />
           </div>
         ) : (
           <>
