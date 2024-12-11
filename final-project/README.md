@@ -1,10 +1,11 @@
 # **FP4 \- Final Project Writeup**
 
-Feel free to refer to this [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/) to make your writeup more organized, and you can preview your markdown file in VSCode [Markdown editing with Visual Studio Code](https://code.visualstudio.com/docs/languages/markdown#_markdown-preview).
-
 ## Part 1: Website Description
 
 Describe your website (300 words).
+
+LitTunes is an application that creates custom playlists for readers, tailoring song recommendations to suit a specified book, characters, or keywords using the Spotify API. The site will work best for readers of popular fiction.
+As a life-long reader who has worked in publishing in various respects & who is active in book communities, I know that creating playlists for current/favorite reads is something that many people enjoy doing. I have a few of these playlists myself,
 
 - What is the purpose of your website?
 - Who is the target audience?
@@ -15,26 +16,59 @@ Describe your website (300 words).
 
 How a user would interact with your website? For each step, briefly but clearly state the interaction type & how we should reproduce it.
 
-1. Interaction type. Click on X on page Y / scroll on page X, etc.
-2.
+1. Click to authenticate user. On homepage, click on the sign-in button to be directed to a Spotify url for authorization. Once given permission to access user's account, Spotify url will redirect to /form page of app.
+2. Click into form fields. Click on the various form fields to activate them.
+3. Type in form fields. The first few form fields require users to type their desired book/character into the specified fields.
+4. Click to select 'mood' from dropdown. Clicking on the 'mood' field will open the MUI select component, populated with a number of options. Users are able to choose more than one.
+5. Type into 'keyword' field. Users may type into the 'keyword' field, and hit 'enter' to add the word or phrase.
+6. Click to create playlist. Clicking on the button in the bottom right of the form will begin the playlist creation. The button will remain disabled until all required fields are completed.
+7. Loading state. To show that an action is being performed behind the scenes, a simple loading animation is used.
+8. Click to interact with returned tracks. On the /playlist page, users can click to play tracks, use + to add them to their Liked Songs, or view more options for interfacing with the songs on Spotify.
+9. Click and drag. Users can click & drag on the slider for each track to scrubt to a certain point in the audio.
+10. Click to save playlist. If a user wishes to save the entire playlist to their library, they can click the button in the bottom right.
+11. Click into form fields. Click into form fields in the resulting modal to activate them.
+12. Type in form fields. The user should type their desired playlist name & description into the modal's fields.
+13. Click to check checkbox. Clicking on checkbox sets playlist visibility once it's been saved to user's library; checked = public, unchecked = private.
+14. Click to save or cancel. User can click on a button to either move ahead with saving their playlist, or quit the action.
 
 ## Part 3: External Tool
 
 Describe what important external tool you used (JavaScript library, Web API, animations, or other). Following the bulleted list format below, reply to each of the prompts.
 
-1. Name of tool1
-   - Why did you choose to use it over other alternatives? (2 sentences max)
-   - How you used it? (2 sentences max)
-   - What does it add to your website? (2 sentences max)
-2. Name of tool2
+1. [Spotify Web API](https://developer.spotify.com/documentation/web-api)
+   - Spotify is the most popular music streaming app. Because my app logic relies on pre-existing playlists, it makes sense to leverage a widely-used platform.
+   - I used the API to authenticate users, search for playlists based on a specified query parameter, retrieve the tracks on those playlists, create a new playlist under a user's account, and save tracks to that playlist.
+2. [React Router](https://reactrouter.com/)
+   - As my app has only a few pages, using Router was not strictly necessary. I implemented it primarily to gain exposure to the tool, though I do find thinking of a site in terms of "pages" to be familiar enough to be helpful.
+   - I used React Router to separate my app into 3 "pages": homepage (/), form page(/form), and playlist page (/playlist).
+   - Router simulates the pagination of traditional websites that is familiar to users, creating the appearance and experience of distinct pages.
+   - The API provides the data needed for my app to work; it would not be functional without it.
+3. [React Redux](https://react-redux.js.org/)
+   - Passing values as props and having to lift state up (especially through multiple layers) gets bothersome. Technically, using props instead would not have been that drasting of a difference because the app is so small. However, I know Redux is something that is used widely, and I wanted to gain practical exposure to it.
+   - I used Redux to store values I would need on more than on page of the site (eg. user data, book title, book character, playlist tracks).
+   - I am able to reference values from my Redux state without the need for props.
+4. [Material UI](https://mui.com/material-ui/)
+   - When looking for a suitable component library, I wanted one that was somewhat visually similar to Spotify's existing brand. This is highly specific, but I also knew I wanted one with a multi-select component that utilized chips, which are fairly common in Spotify's UI.
+   - I used MUI input components (select, text field, autocomplete), as well as dialogs, buttons, and a loading spinner.
+   - As is the goal for a design systems, using a set of components creates consistency across a product. It also alleviates the fatigue that comes with needing to code low-level building blocks from scratch, making development more efficient.
+5. [React Spotify Embed](https://www.npmjs.com/package/react-spotify-embed)
+   - I actually would have much preferred a more customizable embed (allowing me to change the color of the tracks, for instance), but deploying with GitHub pages would have made setting up a backend for the [Web Playback SDK](https://developer.spotify.com/documentation/web-playback-sdk) more complicated and time consuming than advisable for this project.
+   - This was installed with npm and imported at the top of the file (PlaylistPage.js) as another component would be
+   - Provides a way for the user to interact with the tracks returned for the playlist, as opposed to a static list. Now they can play the tracks right in the app, as well as perform other actions on the player.
 
 ## Part 4: Design Iteration
 
-Describe how you iterated on your prototypes, if at all, including any changes you made to your original design while you were implementing your website and the rationale for the changes. (4-8 sentences max)
+To accommodate the issues I ran into with APIs, I ended up removing the 'Genre' field on the form page, as well as the checkbox for retricting a playlist to instrumental-only tracks.
+
+I thought the loading animation I had included in my protoype was a fun touch, but didn't have the time to implement it. The animation would have added some color, but I think the book recommendation included alongside it added it's own interest as well.
+
+There is also a difference between my prototype and website in the way the resulting playlist is displayed. The original design was made referencing the way Spotify lists tracks in a playlist, but I wound up having to use an embed component to make the track playable. I dislike that the color of these embeds is not customizable; it would have been nice to theme their appearance around the cover of the specified book, but introducing an image to the page alonside the inconsistently colored tracks felt messy.
 
 ## Part 5: Implementation Challenge
 
-What challenges did you experience in implementing your website? (2-4 sentences max)
+I first found that the book API I had intended on using was not publically accessible and would only work on localhost; most other services didn't contain the information I needed, or the site that did didn't have APIs of their own.
+
+[On November 27th, Spotify deprecated the API endpoints I needed to make more intricate requests](https://developer.spotify.com/blog/2024-11-27-changes-to-the-web-api); I would no longer be able to search for tracks based on audio features, nor woud I be able to generate recommendations based on predetermined selections. The current logic is much simpler & less personalized than I would have liked, but I believe it presents a decent solution.
 
 ## Part 6: Generative AI Use and Reflection
 
@@ -44,51 +78,38 @@ Document your use of all GenAI tools — ChatGPT, Copilot, Claude, Cursor, etc. 
 
 ### Usage Experiences by Project Aspects
 
-Feel free to edit the column \_ (other?) or add more columns if there's any other aspect in your project you've used the GenAI tools for.
-
-For the following aspects of your project, edit the corresponding table cell to answer:
-
-- _Usage_: Whether you used / did not use this tool for the aspect. Enter [Yes/No]
-- _Productivity_: Give a rating on whether this tool makes your productivity for X aspect [1-Much Reduced, 2-Reduced, 3-Slightly Reduced, 4-Not Reduced nor Improved, 5-Slightly Improved, 6-Improved, 7-Much Improved].
-
-| Tool Name | Ratings      | design | plan   | write code | debug  | \_ (other?) |
-| :-------- | :----------- | :----- | :----- | :--------- | :----- | :---------- |
-| Tool1     | Usage        | Yes/No | Yes/No | Yes/No     | Yes/No | Yes/No      |
-| Tool1     | Productivity | 1~7    | 1~7    | 1~7        | 1~7    | 1~7         |
-| Tool2     | Usage        | Yes/No | Yes/No | Yes/No     | Yes/No | Yes/No      |
-| Tool2     | Productivity | 1~7    | 1~7    | 1~7        | 1~7    | 1~7         |
+| Tool Name | Ratings      | design | plan | write code | debug | \_ (other?) |
+| :-------- | :----------- | :----- | :--- | :--------- | :---- | :---------- |
+| ChatGPT   | Usage        | No     | No   | Yes        | Yes   | N/A         |
+| ChatGPT   | Productivity | N/A    | N/A  | 6          | 7     | N/A         |
 
 ### Usage Reflection
 
 > Impact on your design and plan
 
 - It matched my expectations and plan in [FP2](#generative-ai-use-plan) in that … For example,
-  1. Tool1:
-  2. Tool2:
+  1. ChatGPT: I expected that I would use the tool primarily for debugging and troubleshooting purposes, which was accurate.
 - It did not match my expectations and plan in [FP2](#generative-ai-use-plan) in that … For example,
-  1. Tool1:
-  2. Tool2:
-- GenAI tool did/did not influence my final design and implementation plan because … For example,
-  1. Tool1:
-  2. Tool2:
+  1. ChatGPT: Not applicable; I believe I was reasonable in my expectations and had a good understanding of what I would/wouldn't use the tool for.
+- GenAI tool did not influence my final design and implementation plan because … For example,
+  1. ChatGPT: It didn't have any bearing on the functionality of my website. It moreso served as a means of making the idea come to fruition. The changes that came about as I worked on my project were motivated by forces ouside of GenAI. They were brought about by restrictions in time and the services I sought to leverage, and not outputs from ChatGPT.
 
 > Use patterns
 
-- I accepted the generations when … For example,
-  1. Tool1: this tool once suggested … and I adjusted my design according to the suggestion because …
-  2. Tool2:
-- I critiqued/evaluated the generated suggestions by … For example,
-  1. Tool1: this tool once suggested … but I modified/rejected the suggestion because …
-  2. Tool2:
+- I accepted the generations when I didn't have enough existing knowledge of the issue to troubleshoot efficiently while unguided. For example,
+  1. ChatGPT: I ran into some issues with the authorization step of working with the Spotify API, hadn't made progress through conventional research (StackOverflow, forums, etc.), and didn't know how to proceed. I could see that a token was being returned, but was still receiving errors; ChatGPT proposed that this might be because a request for the token was being made with the authorization code more than once - since codes can't be reused, resulted in an error. It suggested using debouncing and query parameter management to avoid this, forcing a wait time between calls and removing the authorization code from the url after it had been used once. This finally worked! I had seen lodash in passing, but didn't know enough about it to realize it could be of use here.
+- I critiqued/evaluated the generated suggestions by considering my particular needs and the context of my project, as well as by making comparisons to best practices I was already aware of.
+  1. ChatGPT: When working on getting the user's account data to persist despite page refreshes, the tool suggested that set up an initial loading state in a store folder, use redux-thunk, applyMiddleware, etc. I rejected this suggestion because I knew I had already configured my Redux state in a particular way that didn't include a store folder. redux-thunk and applyMiddleware seemed to be for setting up Redux dev tools, but I had also already done that. I was able to set up an initial loading state without following these extraneous suggestions, because I understood the nuances of my app better than ChatGPT did.
+  2. ChatGPT: This tool initially assumed my logic for searching the Spotify API would be kept within the component it was executed in; I made the suggestion that it might be best to break the functions out into a utils file for later importing. This was a method I saw often while working on large projects, and though my app is small, I knew it would probably be a good habit to develop.
 
 > Pros and cons of using GenAI tools
 
 - Pros
-  1. Tool1:
-  2. Tool2:
+  1. ChatGPT: Provided suggestions for problem-solving in areas/with tools I had less experience with
+  2. ChatGPT: Can provide starter code that you're then able to build upon
 - Cons
-  1. Tool1:
-  2. Tool2:
+  1. ChatGPT: May not entirely grasp the scope or nuances of your particular project, and can provide incorrect/misleading information as a result
+  2. ChatGPT: Easy to fall into the trap of seeking quick solutions without understanding them
 
 ### Usage Log
 
@@ -105,11 +126,14 @@ Document the changes and progress of your project. How have you followed or chan
 
 ## Implementation Plan Updates
 
-- [ ] ...
+- Was on largely track with implementation plan at this point
+- Able to successfully make calls to Spotify API
+- Had mapping of values to be used on user-specified mood, but having difficulties with Hardcover's API
+- May have to rethink book API integration aspect of the site
 
 ## Generative AI Use Plan Updates
 
-- [ ] ...
+- No updates to Generative AI Use Plan
 
 Remember to keep track of your prompts and usage for [FP4 writeup](#part-6-generative-ai-use-and-reflection).
 
