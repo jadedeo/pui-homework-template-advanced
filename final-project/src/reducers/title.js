@@ -1,4 +1,4 @@
-const titleReducer = (state = "The Secret History", action) => {
+const titleReducer = (state = "", action) => {
   switch (action.type) {
     case "SET_TITLE":
       return action.payload !== undefined ? action.payload : state;

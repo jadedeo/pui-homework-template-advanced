@@ -52,6 +52,11 @@ export const setPlaylistTracks = (playlistTracks) => {
 };
 
 export const setSpotifyUser = (userData) => {
+  try {
+    localStorage.setItem("spotifyUser", JSON.stringify(userData));
+  } catch (e) {
+    console.error("Error writing to localStorage", e);
+  }
   return {
     type: "SET_SPOTIFY_USER",
     payload: userData,

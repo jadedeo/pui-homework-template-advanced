@@ -1,4 +1,4 @@
-const authorReducer = (state = "Donna Tartt", action) => {
+const authorReducer = (state = "", action) => {
   switch (action.type) {
     case "SET_AUTHOR":
       return action.payload !== undefined ? action.payload : state;

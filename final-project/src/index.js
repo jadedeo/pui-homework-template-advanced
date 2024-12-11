@@ -7,10 +7,24 @@ import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./reducers";
 import { Provider } from "react-redux";
 
-const store = configureStore(
-  { reducer: rootReducer },
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const loadInitialState = () => {
+  try {
+    return {
+      spotifyUser: JSON.parse(localStorage.getItem("spotifyUser") || "{}"),
+    };
+  } catch (e) {
+    console.error("Error reading from localStorage", e);
+    return {
+      spotifyUser: {},
+    };
+  }
+};
+
+const store = configureStore({
+  reducer: rootReducer,
+  preloadedState: loadInitialState(),
+  devTools: process.env.NODE_ENV !== "production",
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

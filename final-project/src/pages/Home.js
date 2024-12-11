@@ -3,9 +3,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
 import Button from "@mui/material/Button";
+import { useDispatch } from "react-redux";
+import { setSpotifyUser } from "../actions";
 
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [token, setToken] = useState(null);
 
   const CLIENT_ID = "ce9eb5d8d8314180a0c10ed4fd87001d";
@@ -37,6 +40,7 @@ const Home = () => {
       setToken(access_token);
       localStorage.setItem("token", access_token);
       navigate("/form");
+      fetchUserProfile(access_token);
     } catch (error) {
       console.error(
         "Error during token exchange:",
@@ -56,6 +60,22 @@ const Home = () => {
       debouncedExchangeCode(code);
     }
   }, [debouncedExchangeCode]);
+
+  const fetchUserProfile = async (accessToken) => {
+    try {
+      const response = await fetch("https://api.spotify.com/v1/me", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      const data = await response.json();
+      console.log("User Profile:", data);
+      localStorage.setItem("spotifyUser", JSON.stringify(data));
+      dispatch(setSpotifyUser(data));
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+    }
+  };
 
   return (
     <main>
