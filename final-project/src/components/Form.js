@@ -126,15 +126,17 @@ const Form = () => {
       allTracks.push(...getRandomTracks(titleTracks));
 
       // get songs that match 'character'
-      const characterPlaylists = await searchSpotifyForPlaylists(
-        character,
-        token
-      );
-      const characterTracks = await getTracksFromPlaylists(
-        characterPlaylists,
-        token
-      );
-      allTracks.push(...getRandomTracks(characterTracks));
+      if (character) {
+        const characterPlaylists = await searchSpotifyForPlaylists(
+          character,
+          token
+        );
+        const characterTracks = await getTracksFromPlaylists(
+          characterPlaylists,
+          token
+        );
+        allTracks.push(...getRandomTracks(characterTracks));
+      }
 
       // get songs that match 'mood'
       for (let md of myMoods) {

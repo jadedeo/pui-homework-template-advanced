@@ -2,7 +2,7 @@ export async function searchSpotifyForPlaylists(query, accessToken) {
   const encodedQuery = encodeURIComponent(query);
   try {
     const response = await fetch(
-      `https://api.spotify.com/v1/search?type=playlist&q=${encodedQuery}&limit=1`,
+      `https://api.spotify.com/v1/search?type=playlist&q=${encodedQuery}&limit=2`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
