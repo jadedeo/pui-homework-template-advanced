@@ -50,7 +50,7 @@ div label {
 }
 
 #create-playlist-button {
-  width: 30%;
+  width: fit-content;
   margin: auto 0 auto auto;
 }
 

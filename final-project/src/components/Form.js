@@ -219,7 +219,7 @@ const Form = () => {
             <div id="title-author-character-container">
               <div id="title-author-container">
                 <FormControl component="fieldset" fullWidth>
-                  <FormLabel id="title-input-label">Title*</FormLabel>
+                  <FormLabel id="title-input-label">Title *</FormLabel>
                   <TextField
                     variant="outlined"
                     aria-labelledby="title-input-label"
@@ -229,7 +229,7 @@ const Form = () => {
                   />
                 </FormControl>
                 <FormControl component="fieldset" fullWidth>
-                  <FormLabel id="author-input-label">Author*</FormLabel>
+                  <FormLabel id="author-input-label">Author *</FormLabel>
                   <TextField
                     variant="outlined"
                     aria-labelledby="author-input-label"
@@ -243,7 +243,7 @@ const Form = () => {
               {playlistType === "character" && (
                 <FormControl component="fieldset" fullWidth>
                   <FormLabel id="character-input-label">
-                    Character Name*
+                    Character Name *
                   </FormLabel>
                   <TextField
                     variant="outlined"

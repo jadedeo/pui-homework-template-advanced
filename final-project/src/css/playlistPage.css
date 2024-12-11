@@ -20,6 +20,6 @@
 }
 
 #playlist-page-container #save-playlist-button {
-  width: 30%;
+  width: fit-content;
   margin: auto 0 auto auto;
 }

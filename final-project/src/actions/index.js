@@ -62,3 +62,7 @@ export const setSpotifyUser = (userData) => {
     payload: userData,
   };
 };
+
+export const resetSpotifyUser = () => ({
+  type: "RESET_SPOTIFY_USER",
+});
