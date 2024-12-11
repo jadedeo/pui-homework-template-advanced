@@ -15,9 +15,11 @@ const theme = createTheme({
   },
 });
 
+const ROUTER_BASENAME = process.env.REACT_APP_ROUTER_BASENAME;
+
 function App() {
   return (
-    <Router basename="/pui-homework-template-advanced/final-project">
+    <Router basename={ROUTER_BASENAME}>
       <ThemeProvider theme={theme}>
         <div className="App">
           <Routes>
