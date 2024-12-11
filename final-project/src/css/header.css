@@ -13,7 +13,7 @@
 
 #header-container {
   padding: 3% 8%;
-  background-color: rgb(47, 47, 47);
+  background-color: #292929;
   background-size: 400% 400%;
   height: 30%;
 
@@ -37,10 +37,6 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  /* background-color: white;
-  color: black; */
-  /* padding: 5px 15px 5px 10px; */
-  /* border-radius: 50px; */
   margin: auto 0;
   height: fit-content;
 }
@@ -54,4 +50,11 @@
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  #divider,
+  #user-image-name {
+    display: none;
+  }
 }

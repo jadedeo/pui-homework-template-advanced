@@ -10,6 +10,11 @@ export const setPlaylistType = (newType) => {
 };
 
 export const setTitle = (newTitle) => {
+  try {
+    localStorage.setItem("title", JSON.stringify(newTitle));
+  } catch (e) {
+    console.error("Error writing to localStorage", e);
+  }
   return {
     type: "SET_TITLE",
     payload: newTitle,
@@ -17,6 +22,11 @@ export const setTitle = (newTitle) => {
 };
 
 export const setAuthor = (newAuthor) => {
+  try {
+    localStorage.setItem("author", JSON.stringify(newAuthor));
+  } catch (e) {
+    console.error("Error writing to localStorage", e);
+  }
   return {
     type: "SET_AUTHOR",
     payload: newAuthor,
@@ -24,6 +34,11 @@ export const setAuthor = (newAuthor) => {
 };
 
 export const setCharacter = (newCharacter) => {
+  try {
+    localStorage.setItem("character", JSON.stringify(newCharacter));
+  } catch (e) {
+    console.error("Error writing to localStorage", e);
+  }
   return {
     type: "SET_CHARACTER",
     payload: newCharacter,
@@ -45,6 +60,11 @@ export const setKeyword = (newKeyword) => {
 };
 
 export const setPlaylistTracks = (playlistTracks) => {
+  try {
+    localStorage.setItem("playlistTracks", JSON.stringify(playlistTracks));
+  } catch (e) {
+    console.error("Error writing to localStorage", e);
+  }
   return {
     type: "SET_PLAYLIST_TRACKS",
     payload: playlistTracks,

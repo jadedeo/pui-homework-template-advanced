@@ -16,6 +16,11 @@ const Header = (props) => {
 
   const handleLogoutClick = () => {
     // Clear local storage
+    localStorage.removeItem("title");
+    localStorage.removeItem("author");
+    localStorage.removeItem("character");
+    localStorage.removeItem("playlistTracks");
+
     localStorage.removeItem("token");
     localStorage.removeItem("spotifyUser");
 
@@ -46,14 +51,19 @@ const Header = (props) => {
 
         {spotifyUser && (
           <div id="user-logout-container">
-            {spotifyUser.images[1] && (
-              <div id="user-image-name">
-                <img id="user-image" src={spotifyUser?.images[1]?.url} />
+            {/* {spotifyUser.images[1] && ( */}
+            <div id="user-image-name">
+              {/* <img
+                id="user-image"
+                src={spotifyUser?.images[1]?.url}
+                alt="User's Spotify profile image"
+              /> */}
 
-                <h4>{spotifyUser.display_name}</h4>
-              </div>
-            )}
+              <h4>{spotifyUser.display_name}</h4>
+            </div>
+            {/* )} */}
             <div
+              id="divider"
               style={{
                 backgroundColor: "white",
                 width: "1px",

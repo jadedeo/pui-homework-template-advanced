@@ -31,12 +31,14 @@ const PlaylistDialog = ({ open, onClose, onSave }) => {
       <DialogTitle>Enter Playlist Details</DialogTitle>
       <DialogContent>
         <FormControl component="fieldset" fullWidth>
-          <FormLabel id="playlist-name-input-label">Playlist Name</FormLabel>
+          <FormLabel htmlFor="playlist-name-input-label">
+            Playlist Name
+          </FormLabel>
           <TextField
             hiddenLabel
             autoFocus
             margin="dense"
-            aria-labelledby="playlist-name-input-label"
+            id="playlist-name-input-label"
             type="text"
             fullWidth
             value={playlistName}
@@ -44,13 +46,13 @@ const PlaylistDialog = ({ open, onClose, onSave }) => {
           />
         </FormControl>
         <FormControl component="fieldset" fullWidth>
-          <FormLabel id="playlist-description-input-label">
+          <FormLabel htmlFor="playlist-description-input-label">
             Playlist Description
           </FormLabel>
           <TextField
             hiddenLabel
             margin="dense"
-            aria-labelledby="playlist-description-input-label"
+            id="playlist-description-input-label"
             type="text"
             fullWidth
             value={playlistDescription}

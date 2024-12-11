@@ -10,12 +10,19 @@ import { Provider } from "react-redux";
 const loadInitialState = () => {
   try {
     return {
+      title: JSON.parse(localStorage.getItem("title") || "''"),
+      author: JSON.parse(localStorage.getItem("author") || "''"),
+      character: JSON.parse(localStorage.getItem("character") || "''"),
       spotifyUser: JSON.parse(localStorage.getItem("spotifyUser") || "{}"),
+      playlistTracks: JSON.parse(
+        localStorage.getItem("playlistTracks") || "[]"
+      ),
     };
   } catch (e) {
     console.error("Error reading from localStorage", e);
     return {
       spotifyUser: {},
+      playlistTracks: [],
     };
   }
 };

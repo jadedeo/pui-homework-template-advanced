@@ -22,18 +22,18 @@
 }
 
 .MuiChip-root {
-  background-color: #00cc22 !important;
+  background-color: #1fd760 !important;
   font-weight: bold;
 }
 
 #form-container
   .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiAutocomplete-inputRoot {
-  background-color: #404040;
+  background-color: #292929;
 }
 
 #form-container input[type="text"],
 .MuiSelect-select {
-  background-color: rgb(64, 64, 64) !important;
+  background-color: #292929 !important;
   border-radius: 10px;
 }
 

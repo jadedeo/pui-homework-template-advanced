@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Button from "@mui/material/Button";
@@ -8,6 +8,8 @@ import PlaylistDialog from "../components/PlaylistDialog";
 
 import "../css/home.css";
 import "../css/playlistPage.css";
+
+import { motion } from "framer-motion";
 
 const PlaylistPage = () => {
   const tokenFromStorage = window.localStorage.getItem("token");
@@ -19,6 +21,9 @@ const PlaylistPage = () => {
   const playlistTracks = useSelector((state) => state.playlistTracks);
 
   const [open, setOpen] = useState(false);
+  const [loaded, setLoaded] = useState(
+    Array(playlistTracks.length).fill(false)
+  );
   const [playlistId, setPlaylistId] = useState(null);
 
   const handleClickOpen = () => {
@@ -88,6 +93,26 @@ const PlaylistPage = () => {
     }
   };
 
+  useEffect(() => {
+    const timers = playlistTracks.map(
+      (_, index) =>
+        setTimeout(() => {
+          setLoaded((prev) => {
+            const newLoaded = [...prev];
+            newLoaded[index] = true;
+            return newLoaded;
+          });
+        }, 2000 + index * 100) // Adding a small stagger for each track
+    );
+
+    return () => timers.forEach(clearTimeout);
+  }, [playlistTracks]);
+
+  const variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <>
       <Header />
@@ -108,13 +133,19 @@ const PlaylistPage = () => {
             {playlistTracks.map((item, index) => {
               const trackUrl = item.external_urls?.spotify;
               return (
-                <div key={index}>
+                <motion.div
+                  key={index}
+                  variants={variants}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                >
                   {trackUrl ? (
                     <Spotify wide link={trackUrl} />
                   ) : (
                     <p>Invalid URL for {item.name}</p>
                   )}
-                </div>
+                </motion.div>
               );
             })}
           </div>

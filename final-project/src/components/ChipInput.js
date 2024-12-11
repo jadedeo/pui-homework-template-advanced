@@ -6,11 +6,11 @@ const ChipInput = ({ label, placeholder, value, onChange }) => {
 
   return (
     <>
-      <FormLabel id="free-solo-chip">Keywords</FormLabel>
+      <FormLabel htmlFor="keyword-field">Keywords</FormLabel>
       <Autocomplete
         multiple
         freeSolo
-        id="free-solo-chip"
+        id="keyword-field"
         options={[]}
         value={value}
         onChange={(event, newValue) => {

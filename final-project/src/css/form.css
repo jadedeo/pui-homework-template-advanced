@@ -26,12 +26,12 @@ div label {
 #playlist-type-form-control {
   display: flex;
 
-  @media screen and (min-width: 481px) {
+  @media screen and (min-width: 769px) {
     flex-direction: row;
     align-items: center;
     gap: 15px;
   }
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 768px) {
     flex-direction: column;
   }
 }
@@ -39,7 +39,7 @@ div label {
 #playlist-type-radio-group {
   display: flex;
   flex-wrap: no-wrap !important;
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 768px) {
     gap: 4%;
   }
 }
@@ -55,9 +55,9 @@ div label {
 }
 
 .Mui-disabled#create-playlist-button {
-  background-color: white;
+  background-color: #1fd760;
   color: black;
-  opacity: 30%;
+  opacity: 50%;
 }
 
 .required-asterisk {

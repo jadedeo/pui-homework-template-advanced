@@ -219,20 +219,20 @@ const Form = () => {
             <div id="title-author-character-container">
               <div id="title-author-container">
                 <FormControl component="fieldset" fullWidth>
-                  <FormLabel id="title-input-label">Title *</FormLabel>
+                  <FormLabel htmlFor="title-input-label">Title *</FormLabel>
                   <TextField
                     variant="outlined"
-                    aria-labelledby="title-input-label"
+                    id="title-input-label"
                     value={title}
                     onChange={(e) => dispatch(setTitle(e.target.value))}
                     fullWidth
                   />
                 </FormControl>
                 <FormControl component="fieldset" fullWidth>
-                  <FormLabel id="author-input-label">Author *</FormLabel>
+                  <FormLabel htmlFor="author-input-label">Author *</FormLabel>
                   <TextField
                     variant="outlined"
-                    aria-labelledby="author-input-label"
+                    id="author-input-label"
                     value={author}
                     onChange={(e) => dispatch(setAuthor(e.target.value))}
                     fullWidth
@@ -242,12 +242,12 @@ const Form = () => {
 
               {playlistType === "character" && (
                 <FormControl component="fieldset" fullWidth>
-                  <FormLabel id="character-input-label">
+                  <FormLabel htmlFor="character-input-label">
                     Character Name *
                   </FormLabel>
                   <TextField
                     variant="outlined"
-                    aria-labelledby="character-input-label"
+                    id="character-input-label"
                     value={character}
                     onChange={(e) => dispatch(setCharacter(e.target.value))}
                     fullWidth
@@ -258,13 +258,12 @@ const Form = () => {
 
             <div id="mood-keyword-container">
               <FormControl component="fieldset" fullWidth>
-                <FormLabel id="mood-input-label">Mood</FormLabel>
+                <FormLabel htmlFor="mood-input">Mood</FormLabel>
                 <Select
-                  aria-labelledby="mood-input-label"
                   multiple
                   value={myMoods}
                   onChange={(e) => handleChange(e, "mood")}
-                  input={<OutlinedInput />}
+                  input={<OutlinedInput id="mood-input" />}
                   renderValue={(selected) => (
                     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                       {selected.map((value) => (
