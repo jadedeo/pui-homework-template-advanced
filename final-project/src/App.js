@@ -20,6 +20,7 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <div className="App">
+          <Home />
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/form" element={<FormPage />} />
