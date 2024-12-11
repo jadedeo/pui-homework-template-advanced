@@ -2,38 +2,32 @@
 
 ## Part 1: Website Description
 
-Describe your website (300 words).
+LitTunes is an application that creates custom playlists for readers, tailoring song recommendations to suit a specified book or characters using the Spotify API. Users are asked to enter the title of their preferred book, the author's name, and the character name. They are also able to specify particular moods they'd like the tracks to convey, or keywords or phrases they'd like to be factored into the playlist. Songs returned by the app meet one or more of these criteria.
 
-LitTunes is an application that creates custom playlists for readers, tailoring song recommendations to suit a specified book, characters, or keywords using the Spotify API. The site will work best for readers of popular fiction.
-As a life-long reader who has worked in publishing in various respects & who is active in book communities, I know that creating playlists for current/favorite reads is something that many people enjoy doing. I have a few of these playlists myself,
+As a life-long reader who has worked in publishing in various respects, and someone who is active in book communities, I know that creating playlists for current or favorite reads is something that many people enjoy doing. I have a few of these playlists myself, and I understand that curating is half of the fun. So, the playlists created by this app are only intended to be used as a starting point.
 
-- What is the purpose of your website?
-- Who is the target audience?
-- What information do you convey with your website?
-- How is it interesting and engaging?
+The site will work best for readers of popular fiction for which playlists have already been created; this is an unfortunate side-effect of the issues encountered with APIs. It would have been preferable to generate playlists organically, as opposed to pulling songs from existing ones, but even so, this site may be treated as a proof of concept for an idea I'd be interested in exploring further.
+
+The current implementation includes use React Redux and React Router, with Material UI and the React Spotify Embed used for components. Given the time, I would like to refine the visuals of the site (as it is presently quite plain), incorporating micro-interactions, animations, and the like. I would also consider reattempting the concept with the Apple Music API, since Spotify's has recently enacted new restrictions that make it difficult make the basis for recommendations more refined.
 
 ## Part 2: User Interaction
 
-How a user would interact with your website? For each step, briefly but clearly state the interaction type & how we should reproduce it.
-
-1. Click to authenticate user. On homepage, click on the sign-in button to be directed to a Spotify url for authorization. Once given permission to access user's account, Spotify url will redirect to /form page of app.
-2. Click into form fields. Click on the various form fields to activate them.
-3. Type in form fields. The first few form fields require users to type their desired book/character into the specified fields.
-4. Click to select 'mood' from dropdown. Clicking on the 'mood' field will open the MUI select component, populated with a number of options. Users are able to choose more than one.
-5. Type into 'keyword' field. Users may type into the 'keyword' field, and hit 'enter' to add the word or phrase.
-6. Click to create playlist. Clicking on the button in the bottom right of the form will begin the playlist creation. The button will remain disabled until all required fields are completed.
-7. Loading state. To show that an action is being performed behind the scenes, a simple loading animation is used.
-8. Click to interact with returned tracks. On the /playlist page, users can click to play tracks, use + to add them to their Liked Songs, or view more options for interfacing with the songs on Spotify.
-9. Click and drag. Users can click & drag on the slider for each track to scrubt to a certain point in the audio.
-10. Click to save playlist. If a user wishes to save the entire playlist to their library, they can click the button in the bottom right.
-11. Click into form fields. Click into form fields in the resulting modal to activate them.
-12. Type in form fields. The user should type their desired playlist name & description into the modal's fields.
-13. Click to check checkbox. Clicking on checkbox sets playlist visibility once it's been saved to user's library; checked = public, unchecked = private.
-14. Click to save or cancel. User can click on a button to either move ahead with saving their playlist, or quit the action.
+1. **Click to authenticate user.** On homepage, click on the sign-in button to be directed to a Spotify url for authorization. Once given permission to access user's account, Spotify url will redirect to /form page of app.
+2. **Click into form fields.** Click on the various form fields to activate them.
+3. **Type in form fields.** The first few form fields require users to type their desired book/character into the specified fields.
+4. **Click to select 'mood' from dropdown.** Clicking on the 'mood' field will open the MUI select component, populated with a number of options. Users are able to choose more than one.
+5. **Type into 'keyword' field.** Users may type into the 'keyword' field, and hit 'enter' to add the word or phrase.
+6. **Click to create playlist.** Clicking on the button in the bottom right of the form will begin the playlist creation. The button will remain disabled until all required fields are completed.
+7. **Loading state.** To show that an action is being performed behind the scenes, a simple loading animation is used.
+8. **Click to interact with returned tracks.** On the /playlist page, users can click to play tracks, use + to add them to their Liked Songs, or view more options for interfacing with the songs on Spotify.
+9. **Click and drag.** Users can click & drag on the slider for each track to scrubt to a certain point in the audio.
+10. **Click to save playlist.** If a user wishes to save the entire playlist to their library, they can click the button in the bottom right.
+11. **Click into form fields.** Click into form fields in the resulting modal to activate them.
+12. T**ype in form fields.** The user should type their desired playlist name & description into the modal's fields.
+13. **Click to check checkbox.** Clicking on checkbox sets playlist visibility once it's been saved to user's library; checked = public, unchecked = private.
+14. **Click to save or cancel.** User can click on a button to either move ahead with saving their playlist, or quit the action.
 
 ## Part 3: External Tool
-
-Describe what important external tool you used (JavaScript library, Web API, animations, or other). Following the bulleted list format below, reply to each of the prompts.
 
 1. [Spotify Web API](https://developer.spotify.com/documentation/web-api)
    - Spotify is the most popular music streaming app. Because my app logic relies on pre-existing playlists, it makes sense to leverage a widely-used platform.
