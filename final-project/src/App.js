@@ -17,10 +17,9 @@ const theme = createTheme({
 
 function App() {
   return (
-    <Router>
+    <Router basename="/pui-homework-template-advanced/final-project">
       <ThemeProvider theme={theme}>
         <div className="App">
-          <Home />
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/form" element={<FormPage />} />
