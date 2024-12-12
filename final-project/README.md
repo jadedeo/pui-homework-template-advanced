@@ -18,6 +18,11 @@ The current implementation includes use React Redux and React Router, with Mater
 - Title: Throne of Glass, Author: Sarah J. Maas, Character: Aelin Galathynius
 - Title: The Poppy War, Author: R.F. Kuang
 
+**Screen Sizes for Testing**
+
+- Width approx. 1024px
+- Width approx. 480px
+
 ## Part 2: User Interaction
 
 1. **Click to authenticate user.** On homepage, click on the sign-in button to be directed to a Spotify url for authorization. Once given permission to access user's account, Spotify url will redirect to /form page of app.
