@@ -1,11 +1,14 @@
-import "../css/home.css";
-import "../css/header.css";
-
+// general react, redux, router
 import { useSelector, useDispatch } from "react-redux";
 import { resetSpotifyUser } from "../actions";
 import { useNavigate } from "react-router-dom";
 
+// components
 import { Button } from "@mui/material";
+
+// styles
+import "../css/home.css";
+import "../css/header.css";
 
 const Header = (props) => {
   const navigate = useNavigate();
@@ -16,10 +19,10 @@ const Header = (props) => {
 
   const handleLogoutClick = () => {
     // reset state & local storage
-    localStorage.removeItem("title");
-    localStorage.removeItem("author");
-    localStorage.removeItem("character");
-    localStorage.removeItem("playlistTracks");
+    // localStorage.removeItem("title");
+    // localStorage.removeItem("author");
+    // localStorage.removeItem("character");
+    // localStorage.removeItem("playlistTracks");
 
     localStorage.removeItem("token");
     localStorage.removeItem("spotifyUser");
@@ -60,14 +63,7 @@ const Header = (props) => {
               <h4>{spotifyUser.display_name}</h4>
             </div>
             {/* )} */}
-            <div
-              id="divider"
-              style={{
-                backgroundColor: "white",
-                width: "1px",
-                height: "2em",
-              }}
-            ></div>
+            <div id="divider"></div>
             <div>
               <Button variant="contained" onClick={handleLogoutClick}>
                 Logout

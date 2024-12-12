@@ -1,6 +1,6 @@
 .MuiDialog-container .MuiPaper-root {
-  background-color: rgb(43, 43, 43);
-  color: white;
+  background-color: var(--gray-background);
+  color: var(--dark-text);
   padding: 25px;
   gap: 25px;
 }
@@ -22,13 +22,19 @@
 }
 
 .MuiDialog-container button#save-playlist-button {
-  color: black;
+  color: var(--dark-text);
 }
 
 .MuiDialog-container input[type="text"] {
-  background-color: rgb(56, 56, 56);
+  background-color: var(--gray-background);
 }
 
+.MuiDialog-container label,
 .MuiDialog-container svg {
-  color: white;
+  color: var(--dark-text) !important;
+}
+
+#cancel-saving-playlist-button {
+  color: var(--dark-text);
+  border: solid var(--dark-text);
 }

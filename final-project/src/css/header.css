@@ -1,6 +1,7 @@
 /* HEADER */
 #header-container {
   align-items: flex-end;
+  color: var(--dark-text);
 }
 
 #header-container,
@@ -13,7 +14,7 @@
 
 #header-container {
   padding: 40px 8%;
-  background-color: #292929;
+  background-color: var(--gray-background);
   background-size: 400% 400%;
   height: 30%;
 
@@ -52,13 +53,19 @@
   gap: 15px;
 }
 
+#divider {
+  background-color: var(--dark-text);
+  width: 1px;
+  height: 2em;
+}
+
+#books-header-content {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   #divider,
   #user-image-name {
     display: none;
   }
-}
-
-#books-header-content {
-  cursor: pointer;
 }

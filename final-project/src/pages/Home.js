@@ -98,10 +98,24 @@ const Home = () => {
     <main id="main-home">
       <div id="home-container">
         <div id="home-text-content">
-          <div>
+          <div id="home-heading">
+            <div>
+              <img
+                alt="stack of books emoji"
+                id="books-favicon"
+                src="assets/application/books.svg"
+                height="30"
+              />
+            </div>
+            <div>
+              <h1>LitTunes</h1>
+              <h4>Soundtracks for your shelf.</h4>
+            </div>
+          </div>
+          {/* <div>
             <h1>LitTunes</h1>
             <h3>Soundtracks for your shelf.</h3>
-          </div>
+          </div> */}
           <div>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur

@@ -46,7 +46,7 @@ div label {
 
 #form-container fieldset svg,
 #form-container div svg {
-  color: white !important;
+  color: var(--light-text) !important;
 }
 
 #create-playlist-button {
@@ -55,8 +55,8 @@ div label {
 }
 
 .Mui-disabled#create-playlist-button {
-  background-color: #1fd760;
-  color: black;
+  background-color: var(--spotify-green);
+  color: var(--black-background);
   opacity: 50%;
 }
 
@@ -78,10 +78,10 @@ div label {
 }
 
 .MuiFormLabel-root {
-  color: white !important;
+  color: var(--light-text) !important;
 }
 .MuiButtonBase-root.MuiRadio-root {
-  color: white;
+  color: var(--light-text);
 }
 
 .MuiFormControl-root,
@@ -101,21 +101,21 @@ div label {
 }
 
 .MuiChip-root {
-  background-color: #1fd760 !important;
+  background-color: var(--spotify-green) !important;
   font-weight: bold;
 }
 
 #form-container
   .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiAutocomplete-inputRoot {
-  background-color: #292929;
+  background-color: var(--gray-background);
 }
 
 #form-container input[type="text"],
 .MuiSelect-select {
-  background-color: #292929 !important;
+  background-color: var(--gray-background) !important;
   border-radius: 10px;
 }
 
 input[type="text"] {
-  color: white;
+  color: var(--dark-text);
 }

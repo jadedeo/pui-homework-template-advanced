@@ -1,11 +1,20 @@
+/* global styles */
+:root {
+  --spotify-green: #1fd760;
+  --black-background: #000000;
+  --gray-background: #272727;
+  --light-text: #fff;
+  --dark-text: #ffffff;
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
 }
 
 body {
-  background-color: #000000;
-  color: white;
+  background-color: var(--black-background);
+  color: var(--light-text);
 }
 
 main {
