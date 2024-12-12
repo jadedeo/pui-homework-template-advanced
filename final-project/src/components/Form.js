@@ -51,6 +51,7 @@ const Form = () => {
 
   const [token, setToken] = useState("");
 
+  //retrieving values from redux state
   const playlistType = useSelector((state) => state.playlistType);
   const title = useSelector((state) => state.title);
   const author = useSelector((state) => state.author);
@@ -64,6 +65,7 @@ const Form = () => {
   const [isValid, setIsValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // get token needed for api requests from state
   useEffect(() => {
     const tokenFromStorage = window.localStorage.getItem("token");
     setToken(tokenFromStorage);
@@ -113,7 +115,9 @@ const Form = () => {
 
   // perform playlist creation logic
   const performCreationLogic = async () => {
+    // start loading state
     setIsLoading(true);
+
     console.log("--------------------------------");
     console.log(title, character, keywords, myMoods);
     console.log("--------------------------------");
@@ -158,11 +162,15 @@ const Form = () => {
 
       console.log(allTracks);
 
+      // add list of tracks to state
       dispatch(setPlaylistTracks(allTracks));
+
+      // navigate to next page/playlist page
       navigate("/playlist");
     } catch (error) {
       console.error("Error:", error);
     } finally {
+      // end loading state
       setIsLoading(false);
     }
   };
@@ -177,6 +185,7 @@ const Form = () => {
     }
   };
 
+  // jsx for form - uses mui components
   return (
     <div id="form-container">
       <div id="form-content">

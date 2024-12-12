@@ -1,10 +1,15 @@
+// general react
 import React from "react";
-import "../css/home.css";
-import "../css/header.css";
-import "../css/muiOverrides.css";
+
+//components
 import Header from "../components/Header";
 import Form from "../components/Form";
 
+// styles
+import "../css/home.css";
+import "../css/header.css";
+
+// form page displays header & form component
 const FormPage = () => {
   return (
     <>

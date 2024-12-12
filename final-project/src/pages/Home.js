@@ -1,20 +1,25 @@
+// general react, redux, axios & router
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
-import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
 import { setSpotifyUser } from "../actions";
 
+// components
+import Button from "@mui/material/Button";
+
+// home component drives the authentication flow, obtaining a token to be used in api calls
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [token, setToken] = useState(null);
 
+  // set variables to be used as parameters, getting values from .env/.env.production as needed
   const CLIENT_ID = "ce9eb5d8d8314180a0c10ed4fd87001d";
+  const SCOPE = "playlist-modify-private user-read-private";
   const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
   const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
-  const SCOPE = "playlist-modify-private user-read-private";
 
   const exchangeCodeForToken = async (code) => {
     const params = new URLSearchParams({
@@ -25,6 +30,7 @@ const Home = () => {
       client_secret: CLIENT_SECRET,
     }).toString();
 
+    //send request for token
     try {
       const response = await axios.post(
         "https://accounts.spotify.com/api/token",
@@ -37,10 +43,16 @@ const Home = () => {
       );
       const { access_token, refresh_token } = response.data;
       console.log("Tokens received:", access_token, refresh_token);
+
+      //save token
       setToken(access_token);
       localStorage.setItem("token", access_token);
-      navigate("/form");
+
+      // use token to get user's account data
       fetchUserProfile(access_token);
+
+      // move to form page
+      navigate("/form");
     } catch (error) {
       console.error(
         "Error during token exchange:",
@@ -49,11 +61,13 @@ const Home = () => {
     }
   };
 
+  // limit execution of exchangeCodeForToken to once per second
   const debouncedExchangeCode = debounce(exchangeCodeForToken, 1000, {
     leading: true,
     trailing: false,
   });
 
+  //
   useEffect(() => {
     const code = new URLSearchParams(window.location.search).get("code");
     if (code) {
@@ -61,6 +75,7 @@ const Home = () => {
     }
   }, [debouncedExchangeCode]);
 
+  // using newly obtained token, get the user's general account data & save to state & localStorage (will be needed when saving playlist to their account)
   const fetchUserProfile = async (accessToken) => {
     try {
       const response = await fetch("https://api.spotify.com/v1/me", {
@@ -77,6 +92,7 @@ const Home = () => {
     }
   };
 
+  // jsx for home page displays basic introductory content
   return (
     <main id="main-home">
       <div id="home-container">
@@ -98,6 +114,7 @@ const Home = () => {
           {!token ? (
             <Button
               variant="contained"
+              // sends user a spotify url where they can give the app the required permissions
               onClick={() => {
                 const authUrl = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(
                   REDIRECT_URI
