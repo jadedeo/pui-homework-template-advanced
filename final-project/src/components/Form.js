@@ -119,9 +119,9 @@ const Form = () => {
     // start loading state
     setIsLoading(true);
 
-    console.log("--------------------------------");
-    console.log(title, character, keywords, myMoods);
-    console.log("--------------------------------");
+    // console.log("--------------------------------");
+    // console.log(title, character, keywords, myMoods);
+    // console.log("--------------------------------");
     try {
       let allTracks = [];
       let hasCharacter = character ? true : false;

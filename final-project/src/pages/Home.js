@@ -43,7 +43,7 @@ const Home = () => {
         }
       );
       const { access_token, refresh_token } = response.data;
-      console.log("Tokens received:", access_token, refresh_token);
+      // console.log("Tokens received:", access_token, refresh_token);
 
       //save token
       setToken(access_token);
@@ -85,11 +85,11 @@ const Home = () => {
         },
       });
       const data = await response.json();
-      console.log("User Profile:", data);
+      // console.log("User Profile:", data);
       localStorage.setItem("spotifyUser", JSON.stringify(data));
       dispatch(setSpotifyUser(data));
     } catch (error) {
-      console.error("Error fetching user profile:", error);
+      // console.error("Error fetching user profile:", error);
     }
   };
 

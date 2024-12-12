@@ -43,7 +43,7 @@ const PlaylistPage = () => {
 
   // call pass createNewPlaylist & close modal
   const handleSavePlaylist = (name, description, isPublic) => {
-    console.log("Creating playlist with details:", name, description, isPublic);
+    // console.log("Creating playlist with details:", name, description, isPublic);
     createNewPlaylist(name, description, isPublic);
     setOpen(false);
   };
@@ -72,13 +72,13 @@ const PlaylistPage = () => {
       }
 
       const data = response.data;
-      console.log("Playlist created:", data);
+      // console.log("Playlist created:", data);
       // setPlaylistId(data.id);
 
       // call function to add tracks to new empty playlist
       addTracksToPlaylist(data.id);
     } catch (error) {
-      console.error("Error creating playlist:", error);
+      // console.error("Error creating playlist:", error);
     }
   };
 
@@ -100,10 +100,10 @@ const PlaylistPage = () => {
         }
       );
       if (response.status === 201) {
-        console.log("Tracks added to the playlist");
+        // console.log("Tracks added to the playlist");
       }
     } catch (error) {
-      console.error("Error adding tracks:", error);
+      // console.error("Error adding tracks:", error);
     }
   };
 

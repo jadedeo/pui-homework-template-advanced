@@ -47,12 +47,12 @@ export async function getTracksFromPlaylists(playlists, token) {
         }
 
         const data = await response.json();
-        console.log("PLAYLIST: ", playlist.name);
+        // console.log("PLAYLIST: ", playlist.name);
 
         // ensure data.items is valid
         if (data.items && Array.isArray(data.items)) {
           data.items.forEach((item) => {
-            console.log(".....", item.track?.name);
+            // console.log(".....", item.track?.name);
             // add track to the list
             allTracks.push(item.track);
           });
