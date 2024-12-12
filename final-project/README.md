@@ -111,6 +111,7 @@ I share a ChatGPT account with my mother and sister, and we often end up mixing 
 4. Is there anyway to override the background color set by a track's album art in the React Spotify Embed component? (There isn't, at least not a way that is feasible at the moment)
 5. Where should my .env files go in a React project?
 6. Can I break these functions out into a separate utils file? (Referring to the functions used to perform the playlist creation logic)
+7. I'm trying to initialize my redux state with some values in localstorage, but get this error: Error reading from localStorage SyntaxError: Unexpected token ''', "''" is not valid JSON - what should my default values be instead of empty strings?
 
 ---
 

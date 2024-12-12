@@ -200,12 +200,11 @@ const Form = () => {
           <>
             <FormControl component="fieldset">
               <div id="playlist-type-form-control">
-                <FormLabel id="playlist-type-radio-label">
+                <FormLabel htmlFor="playlist-type-radio-group">
                   I would like to create a playlist for:
                 </FormLabel>
                 <RadioGroup
                   id="playlist-type-radio-group"
-                  aria-labelledby="playlist-type-radio-label"
                   defaultValue="book"
                   name="playlist-type"
                   row

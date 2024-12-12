@@ -21,6 +21,7 @@ const Home = () => {
   const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
   const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
 
+  // function for exchanging authorization code for a token
   const exchangeCodeForToken = async (code) => {
     const params = new URLSearchParams({
       grant_type: "authorization_code",
@@ -61,13 +62,13 @@ const Home = () => {
     }
   };
 
-  // limit execution of exchangeCodeForToken to once per second
+  // use debounce to prevent exchangeCodeForToken from being executed until 1 second has passed without it being triggered again
   const debouncedExchangeCode = debounce(exchangeCodeForToken, 1000, {
     leading: true,
     trailing: false,
   });
 
-  //
+  // extracts code from url, then uses it to call debouncedExchangeCode; will run only when debouncedExchangeCode changes
   useEffect(() => {
     const code = new URLSearchParams(window.location.search).get("code");
     if (code) {
@@ -134,7 +135,7 @@ const Home = () => {
           <img
             id="home-img"
             src="assets/application/LitTunesHome.png"
-            alt="Image of sample playlist made for the character Inej Ghafa in Leigh Bardugo's 'Six of Crows', overlayed with an image of the book cover"
+            alt="Image of sample playlist made for Leigh Bardugo's 'Six of Crows', overlayed with an image of the book cover"
           />
         </div>
       </div>

@@ -7,12 +7,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./reducers";
 import { Provider } from "react-redux";
 
+//initialize redux state with values in localStorage, so they persist if the page is refreshed
 const loadInitialState = () => {
   try {
     return {
-      title: JSON.parse(localStorage.getItem("title") || "''"),
-      author: JSON.parse(localStorage.getItem("author") || "''"),
-      character: JSON.parse(localStorage.getItem("character") || "''"),
+      title: JSON.parse(localStorage.getItem("title") || '""'),
+      author: JSON.parse(localStorage.getItem("author") || '""'),
+      character: JSON.parse(localStorage.getItem("character") || '""'),
       spotifyUser: JSON.parse(localStorage.getItem("spotifyUser") || "{}"),
       playlistTracks: JSON.parse(
         localStorage.getItem("playlistTracks") || "[]"
@@ -21,6 +22,9 @@ const loadInitialState = () => {
   } catch (e) {
     console.error("Error reading from localStorage", e);
     return {
+      title: "",
+      author: "",
+      character: "",
       spotifyUser: {},
       playlistTracks: [],
     };
