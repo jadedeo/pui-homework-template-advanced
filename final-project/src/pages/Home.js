@@ -149,7 +149,7 @@ const Home = () => {
           <img
             id="home-img"
             src="assets/application/LitTunesHome.png"
-            alt="Image of sample playlist made for Leigh Bardugo's 'Six of Crows', overlayed with an image of the book cover"
+            alt="Image of sample playlist for Leigh Bardugo's 'Six of Crows' with an image of the book's cover"
           />
         </div>
       </div>

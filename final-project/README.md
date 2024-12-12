@@ -10,6 +10,14 @@ The site will work best for readers of popular fiction for which playlists have 
 
 The current implementation includes use React Redux and React Router, with Material UI and the React Spotify Embed used for components. Given the time, I would like to refine the visuals of the site (as it is presently quite plain), incorporating micro-interactions, animations, and the like. I would also consider reattempting the concept with the Apple Music API, since Spotify's has recently enacted new restrictions that make it difficult make the basis for recommendations more refined.
 
+**Things To Test With**
+(using character not strictly necessary)
+
+- Title: The Secret History, Author: Donna Tartt, Character: Henry Winter
+- Title: Six of Crows, Author: Leigh Bardugo, Character: Inej Ghafa
+- Title: Throne of Glass, Author: Sarah J. Maas, Character: Aelin Galathynius
+- Title: The Poppy War, Author: R.F. Kuang
+
 ## Part 2: User Interaction
 
 1. **Click to authenticate user.** On homepage, click on the sign-in button to be directed to a Spotify url for authorization. Once given permission to access user's account, Spotify url will redirect to /form page of app.
@@ -112,6 +120,42 @@ I share a ChatGPT account with my mother and sister, and we often end up mixing 
 5. Where should my .env files go in a React project?
 6. Can I break these functions out into a separate utils file? (Referring to the functions used to perform the playlist creation logic)
 7. I'm trying to initialize my redux state with some values in localstorage, but get this error: Error reading from localStorage SyntaxError: Unexpected token ''', "''" is not valid JSON - what should my default values be instead of empty strings?
+
+## Part 7: Appendix
+
+After manually checking colors for contrast, I believe the Wave Tool page level scanner may be returning false positives, especially on the Form Page.
+
+My color palette was originally composed of dark grays, whites, and the Spotify green, none of which causes contrast issues when the hex codes are tested against each other in the Wave contrast checker. However, this version of the tool consistently alerts for contrast errors.
+
+To avoid this as best as possible for the sake of submission, I resorted to white, black and green, creating the most contrast possible, but still the tool is returning errors.
+
+I don't believe there was anything wrong or inaccessible about the original color palette, nor do I think the current theme is as visually appealing, but I've left it the way it is for now.
+
+### Homepage
+
+![Homepage Wave Summary](public/assets/waveTool/homeWaveSummary.png)
+![Homepage Wave Details](public/assets/waveTool/homeWaveDetail.png)
+
+### Form Page
+
+**NOTE:**
+I believe the contrast error below is a false positive. Following the screenshots of the summary and detail views are proof of direct checks for contrast performed with Wave's contrast checker. The color combinations for both the field dropdown and chips pass accessibility tests.
+
+![Form Wave Summary](public/assets/waveTool/formWaveSummary.png)
+![Form Wave Details](public/assets/waveTool/formWaveDetail.png)
+
+![Chip Color Valid](public/assets/waveTool/chipColorValid.png)
+![Dropdown Color Valid](public/assets/waveTool/dropdownColorValid.png)
+
+### Playlist Page
+
+![Playlist Page Wave Summary](public/assets/waveTool/playlistWaveSummary.png)
+![Playlist Page Details](public/assets/waveTool/playlistWaveDetail.png)
+
+### Modal
+
+![Modal Wave Summary](public/assets/waveTool/modalWaveSummary.png)
+![Modal Details](public/assets/waveTool/modalWaveDetail.png)
 
 ---
 

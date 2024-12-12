@@ -119,3 +119,10 @@ div label {
 input[type="text"] {
   color: var(--dark-text);
 }
+.MuiInputBase-input.MuiInput-input {
+  padding: 16.5px 14px !important;
+}
+
+.MuiInputBase-root.MuiInput-root {
+  margin-top: 0;
+}

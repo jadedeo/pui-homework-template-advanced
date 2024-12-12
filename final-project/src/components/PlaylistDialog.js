@@ -35,6 +35,7 @@ const PlaylistDialog = ({ open, onClose, onSave }) => {
             Playlist Name
           </FormLabel>
           <TextField
+            variant="standard"
             hiddenLabel
             autoFocus
             margin="dense"
@@ -50,6 +51,7 @@ const PlaylistDialog = ({ open, onClose, onSave }) => {
             Playlist Description
           </FormLabel>
           <TextField
+            variant="standard"
             hiddenLabel
             margin="dense"
             id="playlist-description-input-label"

@@ -41,7 +41,8 @@ const ChipInput = ({ label, placeholder, value, onChange }) => {
         renderInput={(params) => (
           <TextField
             {...params}
-            variant="outlined"
+            // variant="outlined"
+            variant="standard"
             label={label}
             placeholder={placeholder}
             fullWidth

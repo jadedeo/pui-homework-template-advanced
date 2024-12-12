@@ -26,7 +26,8 @@ import {
   Select,
   Box,
   Chip,
-  OutlinedInput,
+  // OutlinedInput,
+  Input,
   MenuItem,
   CircularProgress,
 } from "@mui/material";
@@ -232,7 +233,8 @@ const Form = () => {
                 <FormControl component="fieldset" fullWidth>
                   <FormLabel htmlFor="title-input-label">Title *</FormLabel>
                   <TextField
-                    variant="outlined"
+                    // variant="outlined"
+                    variant="standard"
                     id="title-input-label"
                     value={title}
                     onChange={(e) => dispatch(setTitle(e.target.value))}
@@ -242,7 +244,8 @@ const Form = () => {
                 <FormControl component="fieldset" fullWidth>
                   <FormLabel htmlFor="author-input-label">Author *</FormLabel>
                   <TextField
-                    variant="outlined"
+                    // variant="outlined"
+                    variant="standard"
                     id="author-input-label"
                     value={author}
                     onChange={(e) => dispatch(setAuthor(e.target.value))}
@@ -257,7 +260,8 @@ const Form = () => {
                     Character Name *
                   </FormLabel>
                   <TextField
-                    variant="outlined"
+                    // variant="outlined"
+                    variant="standard"
                     id="character-input-label"
                     value={character}
                     onChange={(e) => dispatch(setCharacter(e.target.value))}
@@ -274,7 +278,7 @@ const Form = () => {
                   multiple
                   value={myMoods}
                   onChange={(e) => handleChange(e, "mood")}
-                  input={<OutlinedInput id="mood-input" />}
+                  input={<Input id="mood-input" variant="standard" />}
                   renderValue={(selected) => (
                     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                       {selected.map((value) => (

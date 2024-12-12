@@ -2,7 +2,8 @@
 :root {
   --spotify-green: #1fd760;
   --black-background: #000000;
-  --gray-background: #272727;
+  --gray-background: #363636;
+  --modal-background: #1a1a1a;
   --light-text: #fff;
   --dark-text: #ffffff;
 }

@@ -1,5 +1,5 @@
 .MuiDialog-container .MuiPaper-root {
-  background-color: var(--gray-background);
+  background-color: var(--modal-background);
   color: var(--dark-text);
   padding: 25px;
   gap: 25px;
@@ -22,11 +22,12 @@
 }
 
 .MuiDialog-container button#save-playlist-button {
-  color: var(--dark-text);
+  color: black;
 }
 
 .MuiDialog-container input[type="text"] {
   background-color: var(--gray-background);
+  border-radius: 10px;
 }
 
 .MuiDialog-container label,
