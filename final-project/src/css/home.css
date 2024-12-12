@@ -47,3 +47,11 @@ button {
   font-weight: 800 !important;
   border-radius: 50px !important;
 }
+
+#main-home {
+  margin: 0 13%;
+
+  @media screen and (max-width: 768px) {
+    margin: 10% 13%;
+  }
+}

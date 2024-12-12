@@ -22,12 +22,11 @@
 }
 
 .MuiDialog-container button#save-playlist-button {
-  background-color: white !important;
   color: black;
 }
 
 #cancel-saving-playlist-button {
-  background-color: rgb(56, 56, 56) !important;
+  /* background-color: rgb(56, 56, 56) !important; */
 }
 
 .MuiDialog-container input[type="text"] {
@@ -40,5 +39,5 @@
 
 .MuiDialog-container fieldset label,
 #playlist-visbility-checkbox {
-  margin-bottom: 15px !important;
+  /* margin-bottom: 15px !important; */
 }

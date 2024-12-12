@@ -15,7 +15,7 @@ const Header = (props) => {
   console.log("spotifyUser from HEADER", spotifyUser);
 
   const handleLogoutClick = () => {
-    // Clear local storage
+    // reset state & local storage
     localStorage.removeItem("title");
     localStorage.removeItem("author");
     localStorage.removeItem("character");
@@ -23,18 +23,16 @@ const Header = (props) => {
 
     localStorage.removeItem("token");
     localStorage.removeItem("spotifyUser");
-
-    // Dispatch an action to reset the user state
     dispatch(resetSpotifyUser());
 
-    // Navigate to the home page or login page
+    // return home
     navigate("/");
   };
 
   return (
     <header id="header-container">
       <div id="header-content">
-        <div id="books-header-content">
+        <div id="books-header-content" onClick={handleLogoutClick}>
           <div>
             <img
               alt="stack of books emoji"

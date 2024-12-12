@@ -78,7 +78,7 @@ const Home = () => {
   };
 
   return (
-    <main>
+    <main id="main-home">
       <div id="home-container">
         <div id="home-text-content">
           <div>
@@ -116,8 +116,8 @@ const Home = () => {
         <div id="home-img-container">
           <img
             id="home-img"
-            src="assets/proposal/PlaylistPage.png"
-            alt="Playlist Visualization"
+            src="assets/application/LitTunesHome.png"
+            alt="Image of sample playlist made for the character Inej Ghafa in Leigh Bardugo's 'Six of Crows', overlayed with an image of the book cover"
           />
         </div>
       </div>

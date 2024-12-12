@@ -66,10 +66,6 @@ I first found that the book API I had intended on using was not publically acces
 
 ## Part 6: Generative AI Use and Reflection
 
-Describe how you used Generative AI tools to create this final project (fill in the following information, write \~500 words in total).
-
-Document your use of all GenAI tools — ChatGPT, Copilot, Claude, Cursor, etc. using the template below. Add/Delete rows or bullet points if needed, and replace Tool1/Tool2 with the name of the tool.
-
 ### Usage Experiences by Project Aspects
 
 | Tool Name | Ratings      | design | plan | write code | debug | \_ (other?) |
@@ -107,10 +103,14 @@ Document your use of all GenAI tools — ChatGPT, Copilot, Claude, Cursor, etc. 
 
 ### Usage Log
 
-Document the usage logs (prompts and chat history links) for the GenAI tools you used. Some tools may not have an easy way to share usage logs, just try your best! Some instructions for different tools:
+I share a ChatGPT account with my mother and sister, and we often end up mixing our chats amongst each other. I also tend to change topics within a single chat. It would be an invasion of thei privacy to share anything that might contain their information, as well as inefficient considering the amount of unrelated things that would be included. Instead, I have listed examples of the questions I have asked below:
 
-1. [ChatGPT](https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq) / [Gemini](https://support.google.com/gemini/answer/13743730?hl=en&co=GENIE.Platform%3DDesktop): share the anonymous link to all of your chat histories relevant to this project
-2. [GitHub Copilot (VSCode)](<https://code.visualstudio.com/docs/copilot/copilot-chat#:~:text=You%20can%20export%20all%20prompts%20and%20responses%20for%20a%20chat%20session%20in%20a%20JSON%20file%20with%20the%20Chat%3A%20Export%20Session...%20command%20(workbench.action.chat.export)%20in%20the%20Command%20Palette.>): export chat histories relevant to this project.
+1. How does the Spotify web API's client creditentials authorization differ from the authorization code flow? How would I need to alter my current set up to transition to this new approach?
+2. I see my authorization code is being received and is successfully exchanged for a token, but there is still an invalid_grant error - why might this be? (This line of questioning was very repetitive, as I tried many suggestions before finding a working solution)
+3. How can I make certain values in my Redux state persist through a page refresh?
+4. Is there anyway to override the background color set by a track's album art in the React Spotify Embed component? (There isn't, at least not a way that is feasible at the moment)
+5. Where should my .env files go in a React project?
+6. Can I break these functions out into a separate utils file? (Referring to the functions used to perform the playlist creation logic)
 
 ---
 

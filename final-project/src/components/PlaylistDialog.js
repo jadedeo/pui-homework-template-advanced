@@ -74,7 +74,11 @@ const PlaylistDialog = ({ open, onClose, onSave }) => {
         <Button id="cancel-saving-playlist-button" onClick={onClose}>
           Cancel
         </Button>
-        <Button id="save-playlist-button" onClick={handleSave}>
+        <Button
+          id="save-playlist-button"
+          onClick={handleSave}
+          variant="contained"
+        >
           Save Playlist
         </Button>
       </DialogActions>

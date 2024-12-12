@@ -119,11 +119,12 @@ const Form = () => {
     console.log("--------------------------------");
     try {
       let allTracks = [];
+      let hasCharacter = character ? true : false;
 
       // get songs that match 'title'
       const titlePlaylists = await searchSpotifyForPlaylists(title, token);
       const titleTracks = await getTracksFromPlaylists(titlePlaylists, token);
-      allTracks.push(...getRandomTracks(titleTracks));
+      allTracks.push(...getRandomTracks(titleTracks, hasCharacter ? 5 : 10));
 
       // get songs that match 'character'
       if (character) {
