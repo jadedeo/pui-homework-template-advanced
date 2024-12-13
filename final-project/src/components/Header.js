@@ -15,7 +15,7 @@ const Header = (props) => {
   const dispatch = useDispatch();
 
   const spotifyUser = useSelector((state) => state.spotifyUser);
-  console.log("spotifyUser from HEADER", spotifyUser);
+  // console.log("spotifyUser from HEADER", spotifyUser);
 
   const handleLogoutClick = () => {
     // reset state & local storage

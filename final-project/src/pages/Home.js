@@ -17,7 +17,8 @@ const Home = () => {
 
   // set variables to be used as parameters, getting values from .env/.env.production as needed
   const CLIENT_ID = "ce9eb5d8d8314180a0c10ed4fd87001d";
-  const SCOPE = "playlist-modify-private user-read-private";
+  const SCOPE =
+    "playlist-modify-private playlist-modify-public user-read-private";
   const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
   const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
 
